@@ -15,7 +15,8 @@
 	<caption>Events</caption>
 	<thead>
 		<tr>
-			<th>Name</th><th>Date/Time</th>
+			<th>Name</th><th>Location</th>
+			<th>State</th><th>Country</th><th>Date/Time</th>
 		</tr>
 </thead>
 <?php 
