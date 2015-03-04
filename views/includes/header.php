@@ -15,6 +15,7 @@
       <li><a href=" " title="Home">Trail Head</a></li>
       <li><a href="views/login.php" title="Login">Login</a></li>
       <li><a href="views/register.php" title="registration">Join Use</a></li>
+       <li><a href="views/member/member.php" title="Member Pics">Member Only</a></li>
       <li><a href="views/admin/admin.php" title="Member Pics">Admin Only</a></li>
     </ul>
   </nav>

@@ -26,7 +26,9 @@
 	<input type="submit" value="Register" />
 </form>
 
-
+<article>
+	<p><a href="../index.php?action=logout">Log Out</a></p>
+</article>
 <?php
 	include('includes/footer.php');
 ?>

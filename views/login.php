@@ -19,15 +19,7 @@
 
 </article>
 <article>
-	<form action="../" method="post" id="logoutForm">
-<h2>Login:</h2><br /><br />
-<input type="hidden" name="action" value="logout">
-			
-				<input type="submit" value="logout" />
-				<!--<a href="#">Lost your password?</a>
-				<a href="#">Register</a>-->
-			</div>
-		</form><!-- form -->	
+	<p><a href="../index.php?action=logout">Log Out</a></p>
 </article>
 
 <?php
