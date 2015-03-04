@@ -3,16 +3,19 @@
 require('/../controllers/dbconnect.php');
 
 function addMember($firstName, $lastName, $nickName, $password){
+	
 	global $db;
 
-	$password = password_hash($nickName, $password);
+	$password = password_hash($password, PASSWORD_DEFAULT);
+
+	
 	$query = 'INSERT INTO user_usr (firstName_usr, lastName_usr, nickName_usr, password_usr)
 		VALUES(:firstName, :lastName, :nickName, :password)';
 		$statement = $db->prepare($query);
-		$statment->bindvalue(':firstName', $firstName);
-		$statment->bindvalue(':lastName', $lastName);
-		$statment->bindvalue(':nickName', $nickName);
-		$statment->bindvalue(':password', $password);
+		$statment->bindValue(':firstName', $firstName);
+		$statment->bindValue(':lastName', $lastName);
+		$statment->bindValue(':nickName', $nickName);
+		$statment->bindValue(':password', $password);
 		$statment->execute();
 		$statment->closeCursor();
 }
@@ -20,11 +23,11 @@ function addMember($firstName, $lastName, $nickName, $password){
 function is_valid_login($nickName, $password)
 {
 	global $db;
-	$password = password_hash($nickName, $password);
+	$password = password_hash($password, PASSWORD_DEFAULT);
 	$query = 'SELECT id_usr FROM user_usr WHERE $nickName = :nickName and $password = :password_usr';
 	$statment = $db->prepare($query);
-	$statment->bindvalue(':nickName, $nickName');
-	$statment->bindvalue(':password, $password');
+	$statment->bindValue(':nickName, $nickName');
+	$statment->bindValue(':password, $password');
 	$statment->execute();
 	$valid = ($statment->rowCount() == 1);
 	$statment->closeCursor();
