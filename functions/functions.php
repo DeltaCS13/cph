@@ -5,17 +5,16 @@ require('/../controllers/dbconnect.php');
 function addMember($firstName, $lastName, $nickName, $password){
 	
 	global $db;
-
+	//validate nickName is unique
+	
 	$password = password_hash($password, PASSWORD_DEFAULT);
 
 	
 	$query = 'INSERT INTO user_usr (firstName_usr, lastName_usr, nickName_usr, password_usr)
 		VALUES(:firstName, :lastName, :nickName, :password)';
-		echo 'query: ';
-		echo $query;
+		
 		$statement = $db->prepare($query);
-		echo '$statement: ';
-		print_r($statement);
+		
 		$statement->bindValue( ':firstName', $firstName);
 		$statement->bindValue( ':lastName', $lastName);
 		$statement->bindValue( ':nickName', $nickName);
@@ -23,6 +22,7 @@ function addMember($firstName, $lastName, $nickName, $password){
 		$statement->execute();
 		$statement->closeCursor();
 		echo $query;
+
 }
 
 function is_valid_login($nickName, $password)
@@ -30,13 +30,27 @@ function is_valid_login($nickName, $password)
 	global $db;
 	$password = password_hash($password, PASSWORD_DEFAULT);
 	$query = 'SELECT id_usr FROM user_usr WHERE $nickName = :nickName and $password = :password_usr';
-	$statment = $db->prepare($query);
-	$statment->bindValue(':nickName, $nickName');
-	$statment->bindValue(':password, $password');
-	$statment->execute();
-	$valid = ($statment->rowCount() == 1);
-	$statment->closeCursor();
+	$statement = $db->prepare($query);
+	$statement->bindValue(':nickName, $nickName');
+	$statement->bindValue(':password, $password');
+	$statement->execute();
+	$valid = ($statement->rowCount() == 1);
+	$statement->closeCursor();
 	return $valid;
+}
+
+function validatNickNameUnique($nickName)
+{
+	global $db;
+
+	$query = "SELECT nickNmae_usr FROM user_usr WHERE '$nickName' = nickName_usr;";
+
+	$statement = $db->prepare($query);
+	$statement->bindValue(':nickName', $nickName);
+	$statement->execute();
+	$valid = ($statement->rowCount() == 1);
+	$statement->closeCursor();
+	return $nickNameValid;	
 }
 
 function getEvents()

@@ -6,7 +6,13 @@
 
 <h1>Registration page</h1>
 
+<?php 
+	if (isset($error_message))
+	{
+		echo $error_message;
+	}
 
+?>
 <form action="index.php" method="post" id="registerForm">
 <h2>Register:</h2>
 
@@ -14,9 +20,9 @@
 
 	<label>First Name:<br><input type="text" name="firstName" value="required" required></label><br>
 
-	<label>Last Name:<br/><input type="text" name="lastName" value="required" required></label><br/>
+	<label>Last Name:<br/><input type="text" name="lastName" value="required" required></label><br>
 
-	<label>Nick Name (User ID):<br/><input type="text" name="nickName" value="required" required></label><br />
+	<label>Nick Name (User ID):<br/><input type="text" name="nickName" value="required" required></label><br>
 
 	<label>Password:<br/><input type="password" name="password" value="required" required></label><br />
 
