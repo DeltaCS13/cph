@@ -7,12 +7,12 @@
 <h1>Registration page</h1>
 
 
-<form action="../" method="post" id="registerForm">
-<h2>Register:</h2><br />
+<form action="index.php" method="post" id="registerForm">
+<h2>Register:</h2>
 
-	<input type="hidden" name="action" value="register"/>
+	<input type="hidden" name="action" value="register">
 
-	<label>First Name:<br/><input type="text" name="firstName" value="required" required></label><br/>
+	<label>First Name:<br><input type="text" name="firstName" value="required" required></label><br>
 
 	<label>Last Name:<br/><input type="text" name="lastName" value="required" required></label><br/>
 
