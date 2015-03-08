@@ -7,5 +7,5 @@
 <h1>Admin Page</h1>
 
 <?php
-	include('../includes/footer.php');
+	include('../includes/adminfooter.php');
 ?>

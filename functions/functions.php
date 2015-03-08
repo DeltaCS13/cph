@@ -7,7 +7,7 @@ function addMember($firstName, $lastName, $nickName, $password){
 	global $db;
 	
 	
-	$password = password_hash($password, PASSWORD_DEFAULT);
+	$password = password_hash($password, PASSWORD_BCRYPT);
 
 	
 	$query = 'INSERT INTO user_usr (firstName_usr, lastName_usr, nickName_usr, password_usr)

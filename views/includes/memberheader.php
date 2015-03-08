@@ -18,7 +18,7 @@
       <li><a href="../public/login.php" title="Login">Login</a>
       <li><a href="../public/register.php" title="Registration">Join Use</a>
       <li><a href="../member/member.php" title="Member's Only">Members Only</a>
-      <li><a href="" title="Administration">Admins Only</a>
+      <li><a href="../admin/admin.php" title="Administration">Admin Only</a>
     </ul>
   </nav>
 </header>
