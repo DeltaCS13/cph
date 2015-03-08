@@ -1,12 +1,13 @@
 <?php
 	include('includes/loginheader.php');
 	require ('../functions/functions.php');
+	
 ?>
 <article>
 
 
 
-<form action="../" method="post" id="loginForm">
+<form action="index.php" method="post" id="loginForm">
 <h2>Login:</h2><br /><br />
 <input type="hidden" name="action" value="login">
 			<label>Nick Name:<br/><input type="text" name="nickName" value="required" required></label><br/>

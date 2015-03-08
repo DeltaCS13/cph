@@ -7,15 +7,16 @@ require_once('../functions/functions.php');
 //get action
 if (isset($_POST['action'])) {
 	$action = $_POST['action'];
+echo 'This is the $_POST  ';
+echo $action;
+
 } else if (isset($_GET['action'])) {
     $action = $_GET['action'];
 } else {
     $action = 'pubhome';
-    echo 'else';
-    echo  $action;
 }
 //if user not loged in
-/*if(!isset($_SESSION['logedIn']))
+/*if(!isset($_SESSION['cphmem']))
 {
 	$action = 'pubhome';
 }*/
@@ -23,36 +24,36 @@ if (isset($_POST['action'])) {
 //perform action
 switch($action) {
     case "login":
-        $nickNmae = $_POST['nickName'];
+        $nickName = $_POST['nickName'];
         $password = $_POST['password'];
         if (is_valid_login($nickName, $password)) {
-            $_SESSION['loggedIn'] = true;
-            include('view/member/member.php');
+           // $_SESSION['cphmem'] = true;
+            echo 'YOu are now logged in!';
+            //include('view/member/member.php');
         } else {
-            $login_message = 'You must login to view this page.';
-            include('view/login.php');
+            echo 'You must login to view this page.';
+            //include('login.php');
         }
         break;
     case "pubhome":
         include('../views/public/pubhome.php');
         break;
     case "register":
-    	echo 'this is register switch';
     	$firstName = $_POST['firstName'];
     	$lastName = $_POST['lastName'];
     	$nickName = $_POST['nickName'];
     	$password = $_POST['password'];
     	
-    	validatNickNameUnique($nickName);
+    	/*validatNickNameUnique($nickName);
     	
-		if ($nickNameValid == 0)
-		{
+		if($nickNameValid == 0)
+		{*/
     	addMember($firstName, $lastName, $nickName, $password);
         include('../views/member/member.php');
-    	}else{
+    	/*}else{
     		$error_message = 'Nick Name is already in use. Please try another.';
-    		include('register.php');
-    	}
+    		include('register.php');*/
+    	//}
         break;
     
     case "logout":

@@ -5,7 +5,7 @@ require('/../controllers/dbconnect.php');
 function addMember($firstName, $lastName, $nickName, $password){
 	
 	global $db;
-	//validate nickName is unique
+	
 	
 	$password = password_hash($password, PASSWORD_DEFAULT);
 
@@ -21,37 +21,61 @@ function addMember($firstName, $lastName, $nickName, $password){
 		$statement->bindValue( ':password', $password);
 		$statement->execute();
 		$statement->closeCursor();
-		echo $query;
+		
+}
 
+function getpwHash($password)
+{
+	global $db;
+
+	$query = 'SELECT pasword_usr FROM user_usr
+				WHERE :password = $password_usr';
+
+			$statement = $db->prepare($query);
+			$statement->bindValue(':password', $password);
+			$statement->execute();
+			$pwHash = ($statement->rowCount() == 1);
+			$statement->closeCursor();
+			return $pwHash;
 }
 
 function is_valid_login($nickName, $password)
 {
 	global $db;
-	$password = password_hash($password, PASSWORD_DEFAULT);
-	$query = 'SELECT id_usr FROM user_usr WHERE $nickName = :nickName and $password = :password_usr';
+
+	$pwHash = getpwHash($password);
+
+	$password = password_verify($password, $pwHash);
+
+	$query = 'SELECT id_usr FROM user_usr WHERE nickName_usr = :nickName and password_usr = :password';
 	$statement = $db->prepare($query);
-	$statement->bindValue(':nickName, $nickName');
-	$statement->bindValue(':password, $password');
+	$statement->bindValue(':nickName', $nickName);
+	$statement->bindValue(':password', $password);
 	$statement->execute();
 	$valid = ($statement->rowCount() == 1);
 	$statement->closeCursor();
+	$_SESSION['cphmem'] = 'true';
 	return $valid;
 }
 
-function validatNickNameUnique($nickName)
+
+
+/*function validatNickNameUnique($nickName)
 {
 	global $db;
 
 	$query = "SELECT nickNmae_usr FROM user_usr WHERE '$nickName' = nickName_usr;";
-
+echo 'this is nn v: ';
+echo $query;
 	$statement = $db->prepare($query);
 	$statement->bindValue(':nickName', $nickName);
 	$statement->execute();
-	$valid = ($statement->rowCount() == 1);
+	$nickNameValid = ($statement->rowCount() == 1);
 	$statement->closeCursor();
+	echo 'This is nickNameValid: ';
+	echo $nickNameValid;
 	return $nickNameValid;	
-}
+}*/
 
 function getEvents()
 {
@@ -63,4 +87,5 @@ function getEvents()
 	$result = $db->query($query);
 	return $result;
 }
+
 
