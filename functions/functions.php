@@ -24,29 +24,40 @@ function addMember($firstName, $lastName, $nickName, $password){
 		
 }
 
-function getpwHash($password)
+function getpwHash($nickName)
 {
 	global $db;
-
-	$query = 'SELECT pasword_usr FROM user_usr
-				WHERE :password = $password_usr';
-
+echo '   Get PW Hash :';
+echo $nickName;
+	$query = 'SELECT password_usr FROM user_usr
+				WHERE nickName_usr = :nickName';
+echo " query Hash    :     ";
+echo $query;
 			$statement = $db->prepare($query);
-			$statement->bindValue(':password', $password);
+			$statement->bindValue(':nickName', $nickName);
 			$statement->execute();
 			$pwHash = ($statement->rowCount() == 1);
 			$statement->closeCursor();
+			echo '   pASSword Hash  :';
+			echo $pwHash;		
 			return $pwHash;
 }
 
 function is_valid_login($nickName, $password)
 {
 	global $db;
-
-	$pwHash = getpwHash($password);
-
-	$password = password_verify($password, $pwHash);
-
+	echo 'In function: ';
+  echo $nickName;
+  echo $password;
+	$pwHash = getpwHash($nickName);
+echo '   PassWORD Hash in validate  :';
+echo $pwHash;
+echo '  paSSWORD after Hash Valid   : ';
+echo $password;
+	password_verify($password, $pwHash);
+ echo '  |after passwORD HASH Validation   :';
+echo $password;
+if ($pwHash == 1){
 	$query = 'SELECT id_usr FROM user_usr WHERE nickName_usr = :nickName and password_usr = :password';
 	$statement = $db->prepare($query);
 	$statement->bindValue(':nickName', $nickName);
@@ -54,8 +65,11 @@ function is_valid_login($nickName, $password)
 	$statement->execute();
 	$valid = ($statement->rowCount() == 1);
 	$statement->closeCursor();
-	$_SESSION['cphmem'] = 'true';
+	$_SESSION['cphmem'] = true;
 	return $valid;
+	}else{
+		return $valid = 0;
+	}
 }
 
 

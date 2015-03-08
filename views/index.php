@@ -16,22 +16,27 @@ echo $action;
     $action = 'pubhome';
 }
 //if user not loged in
-/*if(!isset($_SESSION['cphmem']))
+if(!isset($_SESSION['cphmem']))
 {
 	$action = 'pubhome';
-}*/
+}
 
 //perform action
 switch($action) {
     case "login":
         $nickName = $_POST['nickName'];
+        echo 'NickName: ';
+        echo $nickName;
+
         $password = $_POST['password'];
+        echo 'Password :';
+        echo $password;
         if (is_valid_login($nickName, $password)) {
            // $_SESSION['cphmem'] = true;
             echo 'YOu are now logged in!';
             //include('view/member/member.php');
         } else {
-            echo 'You must login to view this page.';
+            echo '   Really getting tired of failure! You must login to view this page.';
             //include('login.php');
         }
         break;
