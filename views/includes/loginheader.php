@@ -1,4 +1,4 @@
-<?php include_once('/../../functions/session_functions.php');
+<?php require_once('/../../functions/session_functions.php');
 ?>
 <!doctype html>
 <html>

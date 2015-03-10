@@ -2,6 +2,12 @@
 
 require('/../controllers/dbconnect.php');
 
+	function confirm_query($result_set) {
+		if (!$result_set) {
+			die("Database query failed.");
+		}
+	}
+
 function addMember($firstName, $lastName, $nickName, $password){
 	
 	global $db;
@@ -21,75 +27,69 @@ function addMember($firstName, $lastName, $nickName, $password){
 		$statement->bindValue( ':password', $password);
 		$statement->execute();
 		$statement->closeCursor();
+
+		return;
 		
 }
 
-function getpwHash($nickName)
+function find_member($nickName)
 {
 	global $db;
-echo '   Get PW Hash :';
-echo $nickName;
-	$query = 'SELECT password_usr FROM user_usr
-				WHERE nickName_usr = :nickName';
-echo " query Hash    :     ";
-echo $query;
-			$statement = $db->prepare($query);
-			$statement->bindValue(':nickName', $nickName);
-			$statement->execute();
-			$pwHash = ($statement->rowCount() == 1);
-			$statement->closeCursor();
-			echo '   pASSword Hash  :';
-			echo $pwHash;		
-			return $pwHash;
+
+	$query = $sql = "SELECT * FROM user_usr WHERE nickName_usr = '$nickName'";
+
+
+
+	$user_set = $db->query($query);
+	$user_set = $user_set->fetch();
+	
+
+	
+	return $user_set;
 }
+
+function password_check($password, $pwHash)
+{
+	global $db;
+		$hashCheck = password_verify($password, $pwHash);
+
+	if( $hashCheck === true)
+	{
+		return true;
+	} else {
+		return false;
+	}
+
+}
+
 
 function is_valid_login($nickName, $password)
 {
 	global $db;
-	echo 'In function: ';
-  echo $nickName;
-  echo $password;
-	$pwHash = getpwHash($nickName);
-echo '   PassWORD Hash in validate  :';
-echo $pwHash;
-echo '  paSSWORD after Hash Valid   : ';
-echo $password;
-	password_verify($password, $pwHash);
- echo '  |after passwORD HASH Validation   :';
-echo $password;
-if ($pwHash == 1){
-	$query = 'SELECT id_usr FROM user_usr WHERE nickName_usr = :nickName and password_usr = :password';
-	$statement = $db->prepare($query);
-	$statement->bindValue(':nickName', $nickName);
-	$statement->bindValue(':password', $password);
-	$statement->execute();
-	$valid = ($statement->rowCount() == 1);
-	$statement->closeCursor();
-	$_SESSION['cphmem'] = true;
-	return $valid;
+	
+	$user = find_member($nickName);
+
+	if ($user['nickName_usr'] === $nickName) {
+			if (password_check($password, $user["password_usr"])){
+
+				
+		 	$_SESSION['user_id'] = $user['id_usr'];
+            
+            $_SESSION['nickName'] = $user['nickName_usr'];
+            
+            $_SESSION['accessLevel'] = $user['accessLevel_ual_id_ual'];
+           
+
+            
+				return $user;
+			}else{
+			return false;
+
+			}
 	}else{
-		return $valid = 0;
+		return false;
 	}
 }
-
-
-
-/*function validatNickNameUnique($nickName)
-{
-	global $db;
-
-	$query = "SELECT nickNmae_usr FROM user_usr WHERE '$nickName' = nickName_usr;";
-echo 'this is nn v: ';
-echo $query;
-	$statement = $db->prepare($query);
-	$statement->bindValue(':nickName', $nickName);
-	$statement->execute();
-	$nickNameValid = ($statement->rowCount() == 1);
-	$statement->closeCursor();
-	echo 'This is nickNameValid: ';
-	echo $nickNameValid;
-	return $nickNameValid;	
-}*/
 
 function getEvents()
 {
@@ -103,3 +103,4 @@ function getEvents()
 }
 
 
+//Validation Functions

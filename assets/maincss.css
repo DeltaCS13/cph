@@ -139,7 +139,12 @@
       color: #444;
       cursor: default;
     }
-     
+
+    .selected {
+      background-color: #71c4a9 ;
+      color: #2d3539;
+    }
+
     p {
         margin: 1%;
         padding: 1%;
@@ -166,6 +171,8 @@
     .form1 {
         margin: 1% 1% 2% 3%;
         padding: 1%;
+    }
+    }
     }
 
 legend {

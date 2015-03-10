@@ -1,48 +1,61 @@
 <?php
 //start session
-include_once('/functions/session_functions.php');
-require_once('/controllers/dbconnect.php');
-require_once('/functions/functions.php');
+session_start();
+require_once('controllers/dbconnect.php');
+require_once('functions/functions.php');
 
 //get action
 if (isset($_POST['action'])) {
 	$action = $_POST['action'];
-echo 'This is the $_POST  ';
-echo $action;
-
 } else if (isset($_GET['action'])) {
     $action = $_GET['action'];
 } else {
     $action = 'pubhome';
 }
 //if user not loged in
-/*if(!isset($_SESSION['cphmem']))
+ 
+if(!isset($_SESSION['accessLevel']))
 {
-	$action = 'pubhome';
-}*/
+  $_SESSION['accessLevel'] = null;
+}
+
+   
 
 //perform action
 switch($action) {
     case "login":
         $nickName = $_POST['nickName'];
-        echo 'NickName: ';
-        echo $nickName;
-
         $password = $_POST['password'];
-        echo 'Password :';
-        echo $password;
+        
         if (is_valid_login($nickName, $password)) {
-           // $_SESSION['cphmem'] = true;
-            echo 'YOu are now logged in!';
-            //include('view/member/member.php');
-        } else {
-            echo '   Really getting tired of failure! You must login to view this page.';
-            //include('login.php');
+       
+           
+            if($_SESSION['accessLevel'] === '1')
+            {
+               
+               include('admin.php');
+               break;
+            }
+            elseif($_SESSION['accessLevel'] === '2') 
+            {
+                 
+               include('member.php');
+                 break;
+            }
+            else
+            {
+                $_SESSION['error']='You must be a member to access this page.';
+                
+                include('login.php');
+                break; 
+            }
         }
-        break;
+       
+
     case "pubhome":
         include('pubhome.php');
         break;
+
     case "register":
     	$firstName = $_POST['firstName'];
     	$lastName = $_POST['lastName'];
@@ -54,18 +67,46 @@ switch($action) {
 		if($nickNameValid == 0)
 		{*/
     	addMember($firstName, $lastName, $nickName, $password);
-        include('views/member/member.php');
-    	/*}else{
-    		$error_message = 'Nick Name is already in use. Please try another.';
-    		include('register.php');*/
-    	//}
+       
+        include('login.php');
+    	
         break;
-    
+
+    case "member":
+        if($_SESSION['accessLevel'] === '1' )
+        {
+           include('member.php');
+           break; 
+        } elseif($_SESSION['accessLevel'] === '2') {
+
+          include('member.php');
+          break;
+        }else{
+            $_SESSION['error_message']= 'You must be loged in to see the Members section.';
+            include('login.php');
+            break;
+        }
+     
+      case "admin":
+     
+       if($_SESSION['accessLevel'] === '1')
+        {
+           include('admin.php');
+           break; 
+        } else {
+           $_SESSION['error_message'] = 'You must be an Admin member to access the Admin area.';
+            include('login.php');
+            break;
+        }
+           
     case "logout":
-        $_SESSION = array();   // Clear all session data from memory
-        session_destroy();     // Clean up the session ID
-        $login_message = 'You have been logged out.';
-        include('view/public/logout.php');
+    $nickNameLogOut = $_SESSION['nickName'];
+      $_SESSION['nickName'];
+      $_SESSION['user_id'];
+      $_SESSION['accessLevel'];   
+      $_SESSION = array(); 
+      session_destroy();     // Clean up the session ID
+        include('logout.php');
         break;
 }
 

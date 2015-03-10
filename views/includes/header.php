@@ -1,5 +1,4 @@
-<?php include_once('/../../functions/session_functions.php');
-?>
+
 <!doctype html>
 <html>
 <head>
