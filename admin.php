@@ -14,29 +14,51 @@
 <body >
 <header>
   <h1>Couch Potato Hikers</h1>
+
+
   <nav>
     <ul>
       <li><a href="index.php" title="Home">Trail Head</a>
       <li><a href="login.php" title="Login">Login</a>
-      <li><a href="register.php" title="Registration">Join Use</a>
-      <li><a href="index.php?action=member" title="Member's Only">Members Only</a>
-      <li><a class="selected" href="index.php?action=admin" title="Administration">Admin Only</a>
+      <li><a href="register.php" title="Registration">Join Us</a>
+      <li><a href="index.php?action=member" title="Member's Area">Member's Area</a>
+      <li><a class="selected" href="index.php?action=admin" title="Administration">Administration</a>
     </ul>
   </nav>
 </header>
 <div id="contentWrapper">
   <article id="mainContent">
-<article class="content1">
 
-  <?php 
-  if(isset($_SESSION['nickName']))
+ <article class="content1"> <?php if(isset($_SESSION['nickName']))
     {?>
-  <p>Welcome <?php echo htmlentities($_SESSION['nickName']); ?>.<br> Not <?php echo htmlentities($_SESSION['nickName']); ?>, <a href="index.php?action=logout">Please Log Out</a></p><?php } ?>
-</article>
-
-<article class="content1">
+  <p>Welcome <?php echo htmlentities($_SESSION['nickName']); ?>.<br><a href="index.php?action=logout"> Log Out</a></p><?php } ?>
 <h1>Admin Page</h1>
 <p>Welcome back to the trail <?php echo htmlentities($_SESSION['nickName']); ?> nice to have you back.</p>
+
+<table class="table1">
+    <caption>Events</caption>
+    <thead>
+      <tr>
+        <th>First Name</th><th>Last Name</th>
+        <th>Trail Name</th><th>Hiker Level</th><th>Access Level</th>
+      </tr>
+  </thead>
+  <?php 
+  $userID = $_SESSION['user_id'];
+    $userInfo = getMemberByID($userID);
+ 
+  ?>
+    
+    <tbody>
+      <tr>
+        <td><?php echo $userInfo['firstName_usr']; ?></td>
+        <td><?php echo $userInfo['lastName_usr']; ?></td>
+        <td><?php echo $userInfo['nickName_usr']; ?></td>
+        <td><?php echo $userInfo['name_lvl']; ?></td>
+        <td><?php echo $userInfo['accessLvl_ual'] ?></td>
+      </tr>
+     
+  </tbody></table>
 </article>
 
 
@@ -46,8 +68,8 @@
 	  <li><a href="index.php" title="Home">Trail Head</a>
       <li><a href="login.php" title="Login">Login</a>
       <li><a href="register.php" title="Registration">Join Use</a>
-      <li><a href="index.php?action=member" title="Member's Only">Members Only</a>
-      <li><a href="index.php?action=admin" title="Administration">Admin Only</a>
+      <li><a href="index.php?action=member" title="Member's Area">Member's Area</a>
+      <li><a href="index.php?action=admin" title="Administration">Administration</a>
  	</ul>
   
   	<p>&copy;Copyright  Couch Potato Hikers.  All rights reserved. </p>

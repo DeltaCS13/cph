@@ -17,24 +17,18 @@ require_once('/functions/session_functions.php');
     <ul>
       <li><a href="pubhome.php" title="Home">Trail Head</a>
       <li><a href="login.php" title="login">Login</a></li>
-      <li><a class="selected" href="register.php" title="registration">Join Use</a>
-      <li><a href="index.php?action=member" title="Member's Only">Members Only</a>
-      <li><a href="index.php?action=admin" title="Administratoin">Admins Only</a>
+      <li><a class="selected" href="register.php" title="registration">Join Us</a>
+      <li><a href="index.php?action=member" title="Member's Area">Member's Area</a>
+      <li><a href="index.php?action=admin" title="Administration">Administration</a>
     </ul>
   </nav>
 </header>
 <div id="contentWrapper">
 
-<article class="content1">
 
-	<?php 
-	if(isset($_SESSION['nickName']))
-		{?>
-	<p>Welcome <?php echo htmlentities($_SESSION['nickName']); ?>.<br> Not <?php echo htmlentities($_SESSION['nickName']); ?>, <a href="index.php?action=logout">Please Log Out</a></p><?php } ?>
-</article>
   <article id="mainContent">
-
-
+	
+<article class="content1">
 <?php 
 	if (isset($error_message))
 	{
@@ -42,11 +36,10 @@ require_once('/functions/session_functions.php');
 	}
 
 ?>
-
-
-
-	
-<article class="content1">
+<?php 
+	if(isset($_SESSION['nickName']))
+		{?>
+	<p>Welcome <?php echo htmlentities($_SESSION['nickName']); ?>.<br><a href="index.php?action=logout"> Log Out</a></p><?php } ?>
 <div class="form1">	
 
 <form action="index.php" method="post" id="registerForm">
@@ -78,8 +71,8 @@ require_once('/functions/session_functions.php');
 	    <li><a href="pubhome.php" title="Home">Trail Head</a>
       <li><a href="login.php" title="login">Login</a></li>
       <li><a href="register.php" title="registration">Join Use</a>
-      <li><a href="index.php?action=member" title="Member's Only">Members Only</a>
-      <li><a href="index.php?admin" title="Administratoin">Admins Only</a>
+      <li><a href="index.php?action=member" title="Member's Area">Member's Area</a>
+      <li><a href="index.php?action=admin" title="Administration">Administration</a>
  	</ul>
   
   	<p>&copy;Copyright  Couch Potato Hikers.  All rights reserved. </p>

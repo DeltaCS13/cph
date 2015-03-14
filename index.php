@@ -41,15 +41,14 @@ switch($action) {
                  
                include('member.php');
                  break;
-            }
-            else
+            }}
+          else
             {
-                $_SESSION['error']='You must be a member to access this page.';
+                $_SESSION['error_message']='You entered an invalid Trail Name or Password.';
                 
                 include('login.php');
-                break; 
+                break;
             }
-        }
        
 
     case "pubhome":
@@ -83,7 +82,7 @@ switch($action) {
           break;
         }else{
             $_SESSION['error_message']= 'You must be loged in to see the Members section.';
-            include('login.php');
+            include('notloggedinmember.php');
             break;
         }
      
@@ -94,8 +93,8 @@ switch($action) {
            include('admin.php');
            break; 
         } else {
-           $_SESSION['error_message'] = 'You must be an Admin member to access the Admin area.';
-            include('login.php');
+           $_SESSION['error_message'] = 'You must be an Administrator to access the Administration area.';
+            include('notloggedinadmin.php');
             break;
         }
            

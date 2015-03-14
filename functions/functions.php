@@ -102,5 +102,19 @@ function getEvents()
 	return $result;
 }
 
+function getMemberByID($userID)
+{
+	global $db;
+
+	
+		$query = $sql = "SELECT `firstName_usr`, `lastName_usr`, `nickName_usr`, name_lvl, accessLvl_ual
+    FROM user_usr JOIN level_lvl ON level_lvl_id_lvl = id_lvl
+    JOIN accesslevel_ual ON `accessLevel_ual_id_ual` = id_ual
+    WHERE id_usr = '$userID'";
+			$userInfo = $db->query($query);
+			$user=$userInfo->fetch();
+			return $user;
+}
+
 
 //Validation Functions

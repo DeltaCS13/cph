@@ -1,5 +1,5 @@
 <?php
-//session_start();
+session_start();
 	require_once('/functions/functions.php');
 ?>
 <!doctype html>
@@ -25,20 +25,25 @@
   </nav>
 </header>
 <div id="contentWrapper">
+  <article id="mainContent">
+  
+
+	
+
 <article class="content1">
 
-	<?php 
+<?php 
 	if(isset($_SESSION['nickName']))
 		{?>
-	<p>Welcome <?php echo htmlentities($_SESSION['nickName']); ?>.<br> Not <?php echo htmlentities($_SESSION['nickName']); ?>, <a href="index.php?action=logout">Please Log Out</a></p><?php } ?>
-</article>
-  <article id="mainContent">
-<article class="content1">
+	<p>Welcome <?php echo htmlentities($_SESSION['nickName']); ?>.<br><a href="index.php?action=logout"> Log Out</a></p><?php } ?>
+
+
 <?php if(isset($_SESSION['error_message']))
 	{
-		?><h2><?php echo htmlentities($_SESSION['error_message']); ?></h2><?php
+		?><h2><?php echo htmlentities($_SESSION['error_message']); ?></h2>
+		<p>Please try again. Not yet a member? <a href="register.php">Register Here</a> to join the hike.<?php
 	}
-?> 
+  		$_SESSION['error_message'] = null; ?> 
 	<div class="form1">
 		<!-- login form-->
 		<form action="index.php" method="post" id="loginForm">
@@ -64,10 +69,10 @@
  <article class="contentFooter"> 
   	 <ul>
 	    <li><a href="pubhome.php" title="Home">Trail Head</a>
-      <li><a href="login.php" title="login">Login</a></li>
-      <li><a href="register.php" title="registration">Join Use</a>
-      <li><a href="index.php?action=member" title="Member's Only">Members Only</a>
-      <li><a href="index.php?action=admin" title="Administratoin">Admins Only</a>
+      <li><a class="selected" href="login.php" title="login">Login</a></li>
+      <li><a href="register.php" title="registration">Join Us</a>
+      <li><a href="index.php?action=member" title="Member's Area">Member's Area</a>
+      <li><a href="index.php?action=admin" title="Administration">Administration</a>
  	</ul>
   
   	<p>&copy;Copyright  Couch Potato Hikers.  All rights reserved. </p>

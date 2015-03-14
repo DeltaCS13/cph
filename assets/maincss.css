@@ -71,6 +71,7 @@
     table {
     border-collapse:collapse;
     border-spacing:0;
+
     }
     /* change border colour to suit your needs */
     hr {
@@ -162,6 +163,7 @@
     .content1 {
         background-color: #E0F8E0;
         margin: 1%;
+        padding:1% 0 2% 1%;
         border-radius: 10px;
         box-shadow: 10px 10px 5px #020;
        
@@ -204,7 +206,7 @@ input:required:valid{
         margin: 0 auto;
         width: 95%;
         border: 2px solid;
-        padding-bottom: 3%;
+        padding-bottom: 4%;
         margin:0 auto;
         
     }
