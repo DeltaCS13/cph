@@ -174,13 +174,14 @@
         margin: 1% 1% 2% 3%;
         padding: 1%;
     }
-    }
-    }
-
+   
 legend {
     font: bold 1.5em 'Courier New', serf;
 }
 
+input {
+  margin: 1% 0;
+}
 input:focus {
     background: #eaeaea;
 }

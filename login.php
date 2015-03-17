@@ -14,13 +14,27 @@ session_start();
 <body >
 <header>
   <h1>Couch Potato Hikers</h1>
-  <nav>
+<nav>
     <ul>
-      <li><a href="pubhome.php" title="Home">Trail Head</a>
-      <li><a  class="selected" href="login.php" title="login">Login</a></li>
-      <li><a href="register.php" title="registration">Join Use</a>
-        <li><a href="index.php?action=member" title="Member's Only">Members Only</a>
-      <li><a href="index.php?action=admin" title="Administration">Admin Only</a>
+      <li ><a href="index.php?action=pubhome" title="Home">Trail Head</a>
+     
+      <?php 
+	if(isset($_SESSION['user_id']))
+		{?>
+	<li><a href="index.php?action=logout" title="Logout">Welcome <?php echo htmlentities($_SESSION['nickName']);?>, Logout</a><?php }else{?>
+    <li><a class="selected" href="login.php" title="Login">Login</a>
+      <li><a href="register.php" title="registration">Join Us</a>
+    <?php } ?>
+	
+     <?php if(isset($_SESSION['accessLevel'])){
+     		if($_SESSION['accessLevel'] === '1' ){?>
+     	<li><a href="index.php?action=member" title="Member's Area">Member's Area</a>
+     
+      <li><a href="index.php?action=admin" title="Administration">Administration</a>
+     <?php }elseif($_SESSION['accessLevel'] === '2'){?>
+     	<li><a href="index.php?action=member" title="Member's Area">Member's Area</a>
+     	<?php }; }?>
+     
     </ul>
   </nav>
 </header>
@@ -32,10 +46,7 @@ session_start();
 
 <article class="content1">
 
-<?php 
-	if(isset($_SESSION['nickName']))
-		{?>
-	<p>Welcome <?php echo htmlentities($_SESSION['nickName']); ?>.<br><a href="index.php?action=logout"> Log Out</a></p><?php } ?>
+
 
 
 <?php if(isset($_SESSION['error_message']))
@@ -53,13 +64,12 @@ session_start();
 			</fieldset>
 				<input type="hidden" name="action" value="login">
 					<label>Trail Name *:<br>
-					<input type="text" name="nickName" placeholder="User Name" required title="Nick Name (Your User Name/User ID) is a required field" value="<?php if(isset($_POST['nickName'])) echo $_POST['nickName'];?>"><br>
-					<label>Pasword *:<br>
-					<input type="password" name="password" required placeholder="********" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title="Password must be 8 characters long and contain Upercase, Lowercase, Number, and Special Character (ex: !@#$%^)."><br>
-						<input type="submit" value="login" />
-						<!--<a href="#">Lost your password?</a>
-						<a href="#">Register</a>-->
-					</div>
+					<input type="text" name="nickName" required placeholder="User Name"  value="<?php if(isset($_POST['nickName'])) echo $_POST['nickName'];?>" ><br>
+					<label>Password *:<br>
+					<input type="password" name="password" required placeholder="********" ><br>
+						<input type="submit" value="login" >
+					
+					
 		</form><!-- form -->
 	</div><!--/form-->
 </article>
@@ -67,13 +77,27 @@ session_start();
 
 <footer class="pageFooter1">
  <article class="contentFooter"> 
-  	 <ul>
-	    <li><a href="pubhome.php" title="Home">Trail Head</a>
-      <li><a class="selected" href="login.php" title="login">Login</a></li>
+  	<ul>
+      <li ><a href="index.php?action=pubhome" title="Home">Trail Head</a>
+     
+      <?php 
+	if(isset($_SESSION['user_id']))
+		{?>
+	<li><a href="index.php?action=logout" title="Logout">Welcome <?php echo htmlentities($_SESSION['nickName']);?>, Logout</a><?php }else{?>
+    <li><a href="login.php" title="Login">Login</a>
       <li><a href="register.php" title="registration">Join Us</a>
-      <li><a href="index.php?action=member" title="Member's Area">Member's Area</a>
+    <?php } ?>
+	
+     <?php if(isset($_SESSION['accessLevel'])){
+     		if($_SESSION['accessLevel'] === '1' ){?>
+     	<li><a href="index.php?action=member" title="Member's Area">Member's Area</a>
+     
       <li><a href="index.php?action=admin" title="Administration">Administration</a>
- 	</ul>
+     <?php }elseif($_SESSION['accessLevel'] === '2'){?>
+     	<li><a href="index.php?action=member" title="Member's Area">Member's Area</a>
+     	<?php }; }?>
+     
+    </ul>
   
   	<p>&copy;Copyright  Couch Potato Hikers.  All rights reserved. </p>
   </article>

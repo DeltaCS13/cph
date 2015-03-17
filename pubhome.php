@@ -17,10 +17,24 @@
   <nav>
     <ul>
       <li ><a class="selected" href=" " title="Home">Trail Head</a>
-      <li><a href="login.php" title="Login">Login</a>
+     
+      <?php 
+	if(isset($_SESSION['user_id']))
+		{?>
+	<li><a href="index.php?action=logout" title="Logout">Welcome <?php echo htmlentities($_SESSION['nickName']);?>, Logout</a><?php }else{?>
+    <li><a href="login.php" title="Login">Login</a>
       <li><a href="register.php" title="registration">Join Us</a>
-      <li><a href="index.php?action=member" title="Member's Area">Member's Area</a>
+    <?php } ?>
+	
+     <?php if(isset($_SESSION['accessLevel'])){
+     		if($_SESSION['accessLevel'] === '1' ){?>
+     	<li><a href="index.php?action=member" title="Member's Area">Member's Area</a>
+     
       <li><a href="index.php?action=admin" title="Administration">Administration</a>
+     <?php }elseif($_SESSION['accessLevel'] === '2'){?>
+     	<li><a href="index.php?action=member" title="Member's Area">Member's Area</a>
+     	<?php }; }?>
+     
     </ul>
   </nav>
 </header>
@@ -29,10 +43,7 @@
 
   <article id="mainContent">
     <article class="content1">
-	<?php 
-	if(isset($_SESSION['nickName']))
-		{?>
-	<p>Welcome <?php echo htmlentities($_SESSION['nickName']); ?>.<br><a href="index.php?action=logout"> Log Out</a></p><?php } ?>
+	
 
       <h2>About Us</h2>
         <p>Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris. Hi mindless mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium. Qui animated corpse, cricket bat max brucks terribilem incessu zomby. The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus. Zonbi tattered for solum oculi eorum defunctis go lum cerebro. Nescio brains an Undead zombies. Sicut malus putrid voodoo horror. Nigh tofth eliv ingdead.</p>
@@ -73,13 +84,28 @@
 
 <footer class="pageFooter1">
  <article class="contentFooter"> 
-  	 <ul>
-	    <li><a href=" " title="Home">Trail Head</a>
-      	<li><a href="login.php" title="Login">Login</a>
-      	<li><a href="register.php" title="registration">Join Use</a>
-       	<li><a href="index.php?action=member" title="Member's Area">Member's Area</a>
-      	 <li><a href="index.php?action=admin" title="Administration">Administration</a>
- 	</ul>
+  	<ul>
+      <li ><a href=" " title="Home">Trail Head</a>
+     
+      <?php 
+	if(isset($_SESSION['user_id']))
+		{?>
+	<li><a href="index.php?action=logout" title="Logout">Welcome <?php echo htmlentities($_SESSION['nickName']);?>, Logout</a><?php }else{?>
+    <li><a href="login.php" title="Login">Login</a>
+      <li><a href="register.php" title="registration">Join Us</a>
+    <?php } ?>
+	
+     <?php if(isset($_SESSION['accessLevel'])){
+     		if($_SESSION['accessLevel'] === '1' ){?>
+     	<li><a href="index.php?action=member" title="Member's Area">Member's Area</a>
+     
+      <li><a href="index.php?action=admin" title="Administration">Administration</a>
+     <?php }elseif($_SESSION['accessLevel'] === '2'){?>
+     	<li><a href="index.php?action=member" title="Member's Area">Member's Area</a>
+     	<?php }; }?>
+     
+    </ul>
+  
   
   	<p>&copy;Copyright  Couch Potato Hikers.  All rights reserved. </p>
   </article>
