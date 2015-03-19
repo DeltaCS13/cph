@@ -85,11 +85,17 @@
     input, select {
     vertical-align:middle;
     }
+/*end reset*/
 
     body {
         background-color: #565;
-        width:90%;
+        width:100%;
         margin:0 auto;
+    }
+
+    .wrapper {
+      width: 90%;
+      margin: 0 auto;
     }
 
     header {
@@ -100,39 +106,49 @@
     header h1 {
         font-size: 3em;
         text-align: center;
-        text-shadow: 5px 5px 9px ##2EFE2E;
+        text-shadow: 5px 5px 9px #2EFE2E;
     }
+
+    /*Navigation (header)*/
 
     nav ul {
       width:80%;
       margin-bottom: 6%;
       list-style: none;
-      background-color: #444;
       text-align: center;
       padding: 0;
       margin: 0 auto;
       border-radius: 10px;
-      box-shadow: 10px 10px 5px #020;
+      
     }
+
     nav li {
+      padding: 5px 0;
+      margin: 0 5px;
       font-family: 'Oswald', sans-serif;
       font-size: 1.2em;
-      line-height: 40px;
-      height: 40px;
-      border-bottom: 1px solid #888;
-       border-radius: 10px;
+      line-height: 300%;
+      border-bottom: 1px solid #80FF00;
+      border-right: 1px solid #80ff00;
+      border-radius: 10px;
+      display: inline;
+      box-shadow: 10px 10px 5px #020;
+      background-color: #444;
+      display: inline;
     }
      
     nav a {
+      margin: 0;
+      padding: 2% 5%;
       text-decoration: none;
       color: #fff;
-      display: block;
-      transition: .3s background-color;
-       border-radius: 10px;
+      border-radius: 10px;
+      display: inline;
     }
      
     nav a:hover {
       background-color: #005f5f;
+      color: #00ff00;
     }
      
     nav a.active {

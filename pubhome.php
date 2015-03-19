@@ -12,8 +12,12 @@
 </script>
 </head>
 <body >
+
+<div class="wrapper">
 <header>
   <h1>Couch Potato Hikers</h1>
+
+  <!--Header Navigation-->
   <nav>
     <ul>
       <li ><a class="selected" href=" " title="Home">Trail Head</a>
@@ -111,5 +115,6 @@
   </article>
   
 </footer>
+</div><!--/wrapper-->
 </body>
 </html>
