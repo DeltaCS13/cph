@@ -113,7 +113,7 @@
 
     nav ul {
       width:80%;
-      margin-bottom: 6%;
+      margin: 6% 0;
       list-style: none;
       text-align: center;
       padding: 0;
@@ -123,27 +123,27 @@
     }
 
     nav li {
-      padding: 5px 0;
-      margin: 0 5px;
+      text-align: center;
+      padding: 0 ;
+      margin: 3px 5px;
       font-family: 'Oswald', sans-serif;
-      font-size: 1.2em;
-      line-height: 300%;
+      font-size: 1em;
+      line-height: 30px;
       border-bottom: 1px solid #80FF00;
       border-right: 1px solid #80ff00;
       border-radius: 10px;
-      display: inline;
-      box-shadow: 10px 10px 5px #020;
+      display: inline-block;
+      box-shadow: 8px 8px 5px #020;
       background-color: #444;
-      display: inline;
+      
     }
      
     nav a {
-      margin: 0;
-      padding: 2% 5%;
+      padding:0 5px;
       text-decoration: none;
       color: #fff;
       border-radius: 10px;
-      display: inline;
+      display: block;
     }
      
     nav a:hover {
