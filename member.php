@@ -11,6 +11,7 @@
 </script>
 </head>
 <body >
+<div class="wrapper">
 <header>
   <h1>Couch Potato Hikers</h1>
    <nav>
@@ -41,13 +42,10 @@
   <article id="mainContent">
 
 <article class="content1">
-  <?php 
-  if(isset($_SESSION['nickName']))
-    {?>
-  <p>Welcome <?php echo htmlentities($_SESSION['nickName']); ?>.<br><a href="index.php?action=logout"> Log Out</a></p><?php } ?>
+ 
 
 <h1>Member Page</h1>
-<p>Welcome back to the trail <?php echo htmlentities($_SESSION['nickName']); ?> nice to have you back.</p>
+<p>Welcome back to the trail <?php echo htmlentities($_SESSION['nickName']); ?>, nice to have you back.</p>
 
 <table class="table1">
     <caption>Events</caption>
@@ -74,33 +72,7 @@
      
   </tbody></table>
 </article>
-<footer class="pageFooter1">
- <article class="contentFooter"> 
-  <ul>
-      <li ><a href=" " title="Home">Trail Head</a>
-     
-      <?php 
-  if(isset($_SESSION['user_id']))
-    {?>
-  <li><a href="index.php?action=logout" title="Logout">Welcome <?php echo htmlentities($_SESSION['nickName']);?>, Logout</a><?php }else{?>
-    <li><a href="login.php" title="Login">Login</a>
-      <li><a href="register.php" title="registration">Join Us</a>
-    <?php } ?>
-  
-     <?php if(isset($_SESSION['accessLevel'])){
-        if($_SESSION['accessLevel'] === '1' ){?>
-      <li><a href="index.php?action=member" title="Member's Area">Member's Area</a>
-     
-      <li><a href="index.php?action=admin" title="Administration">Administration</a>
-     <?php }elseif($_SESSION['accessLevel'] === '2'){?>
-      <li><a href="index.php?action=member" title="Member's Area">Member's Area</a>
-      <?php }; }?>
-     
-    </ul>
-  
-    <p>&copy;Copyright  Couch Potato Hikers.  All rights reserved. </p>
-  </article>
-  
-</footer>
-</body>
-</html>
+</article>
+<?php include('views/includes/footer.php');
+?>
+</div>

@@ -1,14 +1,28 @@
 <footer class="pageFooter1">
  <article class="contentFooter"> 
   	 <ul>
-	    <li><a href=" " title="Home">Trail Head</a>
-      	<li><a href="views/public/login.php" title="Login">Login</a>
-      	<li><a href="views/public/register.php" title="registration">Join Use</a>
-       	<li><a href="views/member/member.php" title="Member's Only">Members Only</a>
-      	<li><a href="views/admin/admin.php" title="Administratoin">Admins Only</a>
- 	</ul>
+      <li ><a href="index.php?action=pubhome" title="Home">Trail Head</a>
+     
+      <?php 
+	if(!isset($_SESSION['user_id']))
+		{?>
+	
+    <li><a href="login.php" title="Login">Login</a>
+      <li><a href="register.php" title="registration">Join Us</a>
+    <?php } ?>
+	
+     <?php if(isset($_SESSION['accessLevel'])){
+     		if($_SESSION['accessLevel'] === '1' ){?>
+     	<li><a href="index.php?action=member" title="Member's Area">Member's Area</a>
+     
+      <li><a href="index.php?action=admin" title="Administration">Administration</a>
+     <?php }elseif($_SESSION['accessLevel'] === '2'){?>
+     	<li><a href="index.php?action=member" title="Member's Area">Member's Area</a>
+     	<?php }; }?>
+     
+    </ul>
   
-  	<p>&copy;Copyright  Couch Potato Hikers.  All rights reserved. </p>
+  	<p>&copy;Copyright 2015 Couch Potato Hikers.  All rights reserved. </p>
   </article>
   
 </footer>
