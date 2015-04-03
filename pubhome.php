@@ -57,8 +57,17 @@
 </article>
 <!-- Events Table -->
 <article class="contentTable">
+	
+
 	<table class="table1">
+
 		<caption>Events</caption>
+			<form action="index.php" method="post" id="eventSearch">
+			<fieldset>
+				<input type="text" name="eventSearch" placeholder="Search Events">
+					<input type="submit" value="Search">
+					
+			</fieldset>
 		<thead>
 			<tr>
 				<th>Name</th><th>Location</th>
