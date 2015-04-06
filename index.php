@@ -96,7 +96,78 @@ switch($action) {
             include('notloggedinadmin.php');
             break;
         }
-           
+    case "memberUpdate":
+
+        if($_SESSION['accessLevel'] === '1' )
+        {
+           include('memberUpdate.php');
+           break; 
+        } elseif($_SESSION['accessLevel'] === '2') {
+
+          include('memberUpdate.php');
+          break;
+        }else{
+            $_SESSION['error_message']= 'You must be loged in to see the Members section.';
+            include('notloggedinmember.php');
+            break;
+        }
+
+    case "memUpdate":
+      $fName = $_POST['firstName'];
+      $lName = $_POST['lastName'];
+      $nName = $_POST['nickName'];
+      $userID = $_SESSION['user_id'];
+      memUpdate($fName, $lName, $nName);
+
+       $userInfo = getMemberByID($userID);
+
+       $_SESSION['firstName']= $userInfo['firstName_usr'];
+       $_SESSION['lastName']= $userInfo['lastName_usr'];
+       $_SESSION['nickName']= $userInfo['nickName_usr'];
+          include('memberUpdate.php');
+      break;
+
+    case "memPassUpdate":
+      $oldPass = $_POST['oldPass'];
+      $newPass = $_POST['newPass'];
+      $reNewPass = $_POST['reNewPass'];
+
+      changePassword($oldPass, $newPass, $reNewPass);
+
+      include('memberUpdate.php');
+      break;
+
+    case "adminUpdate";
+
+     if($_SESSION['accessLevel'] === '1')
+        {
+           include('adminUpdate.php');
+           break; 
+        } else {
+           $_SESSION['error_message'] = 'You must be an Administrator to access the Administration area.';
+            include('notloggedinadmin.php');
+            break;
+        }
+    case "admUpdate":
+      $fName = $_POST['firstName'];
+      $lName = $_POST['lastName'];
+      $nName = $_POST['nickName'];
+      $hLevel = $_POST['hikerLevel'];
+      $aLevel = $_POST['accessLevel'];
+      $userID = $_SESSION['user_id'];
+      adminUpdate($fName, $lName, $nName, $hlevel, $aLevel);
+
+       $userInfo = getMemberByID($userID);
+
+       $_SESSION['firstName']= $userInfo['firstName_usr'];
+       $_SESSION['lastName']= $userInfo['lastName_usr'];
+       $_SESSION['nickName']= $userInfo['nickName_usr'];
+       $_SESSION['accessLevel']= $userInfo['accessLevel_ual_id_ual'];
+      $_SESSION['userLevel']= $userInfo['Level_lvl_id_lvl'];
+
+          include('adminUpdate.php');
+      break;
+
     case "logout":
     $nickNameLogOut = $_SESSION['nickName'];
       $_SESSION['nickName'];

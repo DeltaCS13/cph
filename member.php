@@ -70,7 +70,18 @@
         <td><?php echo $userInfo['accessLvl_ual'] ?></td>
       </tr>
      
-  </tbody></table>
+  </tbody>
+</table>
+
+<article>
+<h3>Member Actions</h3>
+  <ul class="menu1">
+    <li><a href="index.php?action=memberUpdate" title="Member Update">Update Profile</a>
+    <!--<li><a href="register.php" title="registration">Join Us</a>
+    <li><a href="register.php" title="registration">Join Us</a> 
+    <li><a href="register.php" title="registration">Join Us</a> 
+    <li><a href="register.php" title="registration">Join Us</a> -->  
+</article>
 </article>
 </article>
 <?php include('views/includes/footer.php');

@@ -19,7 +19,7 @@ function form_errors($errors=array())
 		$output .= "<div class=\"error\">";
 		$output .= "Please fix the following errors:";
 		$output .= "<ul>";
-		foreach ($errors as $key => $error)
+		foreach ($errors as $error)
 		{
 			$output .= "<li>{$error}</li>";
 		}
@@ -32,12 +32,9 @@ function form_errors($errors=array())
 function addMember($firstName, $lastName, $nickName, $password){
 	
 	global $db;
-		/*$firstName = $_POST['firstName'];
-    	$lastName = $_POST['lastName'];
-    	$nickName = $_POST['nickName'];
-    	$password = $_POST['password'];*/
+	
 	//Validation
-  /*$required_fields = array('firstName', 'lastName', 'nickName', 'password');
+ $required_fields = array("firstName", "lastName", "nickName", "password");
 
   validate_presences($required_fields);
 
@@ -45,7 +42,7 @@ function addMember($firstName, $lastName, $nickName, $password){
   {
     $_SESSION["errors"] = $errors;
     redirect_to("/../register.php");
-  }*/
+  }
 
 
 	$password = password_hash($password, PASSWORD_BCRYPT);
@@ -71,7 +68,7 @@ function find_member($nickName)
 {
 	global $db;
 
-	$query = $sql = "SELECT * FROM user_usr WHERE nickName_usr = '$nickName'";
+	$query = $sql = "SELECT * FROM user_usr JOIN accesslevel_ual a on a.id_ual = accessLevel_ual_id_ual JOIN level_lvl l on level_lvl_id_lvl = l.id_lvl WHERE nickName_usr = '$nickName'";
 
 
 
@@ -81,6 +78,17 @@ function find_member($nickName)
 
 	
 	return $user_set;
+}
+
+function getAccessName($accNum)
+{
+	global $db;
+
+	$query = $sql = "SELECT accessLvl_ual FROM accesslevel_ual WHERE id_ual = '$accNum'";
+
+	$accResult = $db->query($query);
+	$accResult = $accResult->fetch();
+	return $accResult;
 }
 
 function password_check($password, $pwHash)
@@ -103,16 +111,21 @@ function is_valid_login($nickName, $password)
 	global $db;
 	
 	$user = find_member($nickName);
-
+echo $user['accessLvl_ual'];
 	if ($user['nickName_usr'] === $nickName) {
 			if (password_check($password, $user["password_usr"])){
 
 				
 		 	$_SESSION['user_id'] = $user['id_usr'];
+		 	$_SESSION['firstName'] = $user['firstName_usr'];
+		 	$_SESSION['lastName'] = $user['lastName_usr'];
             
             $_SESSION['nickName'] = $user['nickName_usr'];
-            
+          
             $_SESSION['accessLevel'] = $user['accessLevel_ual_id_ual'];
+
+            $_SESSION['accName'] =  $user['accessLvl_ual']; 
+            $_SESSION['userLevelName'] = $user['name_lvl'];
            
 
             
@@ -125,6 +138,7 @@ function is_valid_login($nickName, $password)
 		return false;
 	}
 }
+
 
 function getEvents()
 {
@@ -151,5 +165,52 @@ function getMemberByID($userID)
 			return $user;
 }
 
+function memUpdate($fName, $lName, $nName)
+{
+	global $db;
+		$query = 'UPDATE user_usr SET firstName_usr = :firstName, lastName_usr = :lastName, nickName_usr = :nickName WHERE id_usr = :user_id';
+		
+		$statement = $db->prepare($query);
+		
+		$statement->bindValue( ':firstName', $fName);
+		$statement->bindValue( ':lastName', $lName);
+		$statement->bindValue( ':nickName', $nName);
+		$statement->bindValue( ':user_id', $_SESSION['user_id']);
+		$statement->execute();
+		$statement->closeCursor();
 
-//Validation Functions
+		return;
+		
+}
+
+function changePassword($oldPass, $newPass, $reNewPass)
+{
+	global $db;
+
+	$nickName = $_SESSION['nickName'];
+	is_valid_login($nickName, $oldPass);
+
+	if ($oldPass === true)
+	{
+		$query = 'UPDATE user_usr SET password_usr = :newPass WHERE id_usr = :user_id';
+		
+		$statement = $db->prepare($query);
+		
+		$statement->bindValue( ':newPass', $newPass);
+		$statement->bindValue( ':user_id', $_SESSION['user_id']);
+		$statement->execute();
+		$statement->closeCursor();
+
+		return;
+	}else{
+		$_SESSION['errors'] = 'IncorccectPassword';
+		return;
+	}
+
+}
+
+
+
+
+
+
