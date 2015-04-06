@@ -1,6 +1,6 @@
 <?php
 //start session
-session_start();
+//session_start();
 require_once('controllers/dbconnect.php');
 require_once('functions/functions.php');
 
@@ -61,10 +61,9 @@ switch($action) {
     	$nickName = $_POST['nickName'];
     	$password = $_POST['password'];
     	
-    	/*validatNickNameUnique($nickName);
-    	
-		if($nickNameValid == 0)
-		{*/
+
+
+  
     	addMember($firstName, $lastName, $nickName, $password);
        
         include('login.php');

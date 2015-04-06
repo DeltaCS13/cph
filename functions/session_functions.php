@@ -9,4 +9,17 @@ function logout()
 	 $_SESSION = array(); 
 	  session_destroy();     // Clean up the session ID
  }
+
+ function errors()
+ {
+ 	if (isset($_SESSION["errors"]))
+ 	{
+ 		$errors = $_SESSION["errors"];
+
+ 		//clear session error
+ 		$_SESSION["errors"] = null;
+
+ 		return $errors;
+ 	}
+ }
 ?>

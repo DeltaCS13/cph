@@ -1,5 +1,7 @@
 <?php 
 require_once('/functions/session_functions.php');
+require_once('/functions/functions.php');
+//require_once('/functions/validation_functions.php');
 ?>
 <!doctype html>
 <html>
@@ -55,8 +57,14 @@ require_once('/functions/session_functions.php');
 <div class="form1">	
 
 <form action="index.php" method="post" id="registerForm">
+<?php
+		$errors = errors();
+		echo form_errors($errors);
+?>
 	<fieldset>New Member Registration</fieldset>
 		<p>Fields marked with an asterisks (*) are requiered.</p>
+
+
 	<input type="hidden" name="action" value="register">
 
 	<label>First Name *:<br>

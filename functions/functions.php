@@ -1,18 +1,53 @@
 <?php
+require_once('session_functions.php');
+require_once('/../controllers/dbconnect.php');
+require_once('validation_functions.php');
 
-require('/../controllers/dbconnect.php');
 
-	function confirm_query($result_set) {
+
+function confirm_query($result_set) {
 		if (!$result_set) {
 			die("Database query failed.");
 		}
 	}
 
+function form_errors($errors=array())
+{
+	$output = "";
+	if(!empty($errors))
+	{
+		$output .= "<div class=\"error\">";
+		$output .= "Please fix the following errors:";
+		$output .= "<ul>";
+		foreach ($errors as $key => $error)
+		{
+			$output .= "<li>{$error}</li>";
+		}
+		$output .= "</ul>";
+		$output .= "</div>";
+	}
+	return $output;
+}
+
 function addMember($firstName, $lastName, $nickName, $password){
 	
 	global $db;
-	
-	
+		/*$firstName = $_POST['firstName'];
+    	$lastName = $_POST['lastName'];
+    	$nickName = $_POST['nickName'];
+    	$password = $_POST['password'];*/
+	//Validation
+  /*$required_fields = array('firstName', 'lastName', 'nickName', 'password');
+
+  validate_presences($required_fields);
+
+  if (!empty($errors))
+  {
+    $_SESSION["errors"] = $errors;
+    redirect_to("/../register.php");
+  }*/
+
+
 	$password = password_hash($password, PASSWORD_BCRYPT);
 
 	
