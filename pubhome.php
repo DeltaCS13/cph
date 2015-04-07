@@ -8,7 +8,7 @@
 <title>Couch Potato Hikers</title>
 <link href="assets/maincss.css" rel="stylesheet" >
 <meta name="viewport" content="initial-scale=1.0" />
-</script>
+
 </head>
 <body >
 
@@ -56,17 +56,18 @@
 </article>
 <!-- Events Table -->
 <article class="contentTable">
-	
-
-	<table class="table1">
-
-		<caption>Events</caption>
-			<form action="index.php" method="post" id="eventSearch">
+		
+	<form class= "eventSearch" action="index.php?eventSearch" method="post" id="eventSearch">
 			<fieldset>
 				<input type="text" name="eventSearch" placeholder="Search Events">
 					<input type="submit" value="Search">
 					
 			</fieldset>
+	</form>	
+	<table class="table1">
+
+		<caption>Events</caption>
+		
 		<thead>
 			<tr>
 				<th>Name</th><th>Location</th>

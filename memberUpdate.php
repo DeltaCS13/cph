@@ -75,8 +75,11 @@ require_once('/functions/functions.php');
 	<br><input type="text" name="nickName" placeholder="Nick Name" required value="<?php if(isset($_SESSION['nickName'])) echo $_SESSION['nickName'];?>"></label><br>
 	<input type="submit" value="Update" />
 </form>
-
 </div><!--/form-->
+	<div class="userInfo">
+		<p>Access Level: <?php echo htmlentities($_SESSION['accName']); ?></p>
+		<p>Hiker Level: <?php echo htmlentities($_SESSION['userLevelName']); ?></p>
+	</div>
 
 <div class="form1">	
 

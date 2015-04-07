@@ -71,46 +71,20 @@ switch($action) {
         break;
 
     case "member":
-        if($_SESSION['accessLevel'] === '1' )
-        {
-           include('member.php');
-           break; 
-        } elseif($_SESSION['accessLevel'] === '2') {
-
-          include('member.php');
-          break;
-        }else{
-            $_SESSION['error_message']= 'You must be loged in to see the Members section.';
-            include('notloggedinmember.php');
-            break;
-        }
+       
+        memberValidate($action);
+        break;
      
       case "admin":
      
-       if($_SESSION['accessLevel'] === '1')
-        {
-           include('admin.php');
-           break; 
-        } else {
-           $_SESSION['error_message'] = 'You must be an Administrator to access the Administration area.';
-            include('notloggedinadmin.php');
+       adminValidate($action);
             break;
-        }
+        
     case "memberUpdate":
 
-        if($_SESSION['accessLevel'] === '1' )
-        {
-           include('memberUpdate.php');
-           break; 
-        } elseif($_SESSION['accessLevel'] === '2') {
 
-          include('memberUpdate.php');
-          break;
-        }else{
-            $_SESSION['error_message']= 'You must be loged in to see the Members section.';
-            include('notloggedinmember.php');
-            break;
-        }
+        memberValidate($action);
+        break;
 
     case "memUpdate":
       $fName = $_POST['firstName'];
@@ -128,6 +102,9 @@ switch($action) {
       break;
 
     case "memPassUpdate":
+
+      memberValidate($action);
+
       $oldPass = $_POST['oldPass'];
       $newPass = $_POST['newPass'];
       $reNewPass = $_POST['reNewPass'];
@@ -139,15 +116,9 @@ switch($action) {
 
     case "adminUpdate";
 
-     if($_SESSION['accessLevel'] === '1')
-        {
-           include('adminUpdate.php');
-           break; 
-        } else {
-           $_SESSION['error_message'] = 'You must be an Administrator to access the Administration area.';
-            include('notloggedinadmin.php');
-            break;
-        }
+     adminValidate($action);
+     break;
+
     case "admUpdate":
       $fName = $_POST['firstName'];
       $lName = $_POST['lastName'];
@@ -167,6 +138,10 @@ switch($action) {
 
           include('adminUpdate.php');
       break;
+
+    case "gear":
+
+
 
     case "logout":
     $nickNameLogOut = $_SESSION['nickName'];

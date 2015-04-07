@@ -215,6 +215,13 @@
       margin: 2%;
       padding: 1%;
   }
+
+  .eventSearch {
+    text-align: right;
+    margin: 0 60px -40px 5px;
+    padding:10px 0 0;
+  }
+
 /*Table*/
   .contentTable {
       background-color: #E0F8E0;

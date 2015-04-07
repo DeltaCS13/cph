@@ -49,7 +49,7 @@
 <p>Welcome back to the trail <?php echo htmlentities($_SESSION['nickName']); ?>, nice to have you back.</p>
 
 <table class="table1">
-    <caption>Events</caption>
+    <caption>User Profile</caption>
     <thead>
       <tr>
         <th>First Name</th><th>Last Name</th>

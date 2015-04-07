@@ -48,7 +48,7 @@
 <p>Welcome back to the trail <?php echo htmlentities($_SESSION['nickName']); ?>, nice to have you back.</p>
 
 <table class="table1">
-    <caption>Events</caption>
+    <caption>User Profile</caption>
     <thead>
       <tr>
         <th>First Name</th><th>Last Name</th>
@@ -77,8 +77,8 @@
 <h3>Member Actions</h3>
   <ul class="menu1">
     <li><a href="index.php?action=memberUpdate" title="Member Update">Update Profile</a>
-    <!--<li><a href="register.php" title="registration">Join Us</a>
-    <li><a href="register.php" title="registration">Join Us</a> 
+    <li><a href="index.php?gear" title="Gear Exchange">Gear Exchange</a>
+   <!-- <li><a href="register.php" title="registration">Join Us</a> 
     <li><a href="register.php" title="registration">Join Us</a> 
     <li><a href="register.php" title="registration">Join Us</a> -->  
 </article>

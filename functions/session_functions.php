@@ -12,12 +12,12 @@ function logout()
 
  function errors()
  {
- 	if (isset($_SESSION["errors"]))
+ 	if (isset($_SESSION['errors']))
  	{
- 		$errors = $_SESSION["errors"];
+ 		$errors = $_SESSION['errors'];
 
  		//clear session error
- 		$_SESSION["errors"] = null;
+ 		$_SESSION['errors'] = null;
 
  		return $errors;
  	}

@@ -1,7 +1,7 @@
 <?php 
 require_once('/functions/session_functions.php');
 require_once('/functions/functions.php');
-//require_once('/functions/validation_functions.php');
+require_once('/functions/validation_functions.php');
 ?>
 <!doctype html>
 <html>

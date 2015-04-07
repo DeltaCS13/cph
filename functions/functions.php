@@ -1,32 +1,21 @@
 <?php
-require_once('session_functions.php');
+require_once('/session_functions.php');
 require_once('/../controllers/dbconnect.php');
-require_once('validation_functions.php');
+require_once('/validation_functions.php');
 
 
+//Admin Functions
 
-function confirm_query($result_set) {
-		if (!$result_set) {
-			die("Database query failed.");
-		}
-	}
-
-function form_errors($errors=array())
+function adminValidate($action)
 {
-	$output = "";
-	if(!empty($errors))
-	{
-		$output .= "<div class=\"error\">";
-		$output .= "Please fix the following errors:";
-		$output .= "<ul>";
-		foreach ($errors as $error)
-		{
-			$output .= "<li>{$error}</li>";
-		}
-		$output .= "</ul>";
-		$output .= "</div>";
-	}
-	return $output;
+	if($_SESSION['accessLevel'] === '1')
+        {
+           include($action.='.php');
+           break; 
+        } else {
+           $_SESSION['error_message'] = 'You must be an Administrator to access the Administration area.';
+            include('notloggedinadmin.php');
+}
 }
 
 function addMember($firstName, $lastName, $nickName, $password){
@@ -64,22 +53,99 @@ function addMember($firstName, $lastName, $nickName, $password){
 		
 }
 
+function getMemberByID($userID)
+{
+	global $db;
+
+	
+		$query = $sql = "SELECT `firstName_usr`, `lastName_usr`, `nickName_usr`, name_lvl, accessLvl_ual
+    FROM user_usr JOIN level_lvl ON level_lvl_id_lvl = id_lvl
+    JOIN accesslevel_ual ON `accessLevel_ual_id_ual` = id_ual
+    WHERE id_usr = '$userID'";
+			$userInfo = $db->query($query);
+			$user=$userInfo->fetch();
+			return $user;
+}
+
 function find_member($nickName)
 {
 	global $db;
 
 	$query = $sql = "SELECT * FROM user_usr JOIN accesslevel_ual a on a.id_ual = accessLevel_ual_id_ual JOIN level_lvl l on level_lvl_id_lvl = l.id_lvl WHERE nickName_usr = '$nickName'";
 
-
-
 	$user_set = $db->query($query);
 	$user_set = $user_set->fetch();
-	
-
 	
 	return $user_set;
 }
 
+function changePassword($oldPass, $newPass, $reNewPass)
+{
+	global $db;
+
+	$nickName = $_SESSION['nickName'];
+	is_valid_login($nickName, $oldPass);
+
+	if ($oldPass === true)
+	{
+		$query = 'UPDATE user_usr SET password_usr = :newPass WHERE id_usr = :user_id';
+		
+		$statement = $db->prepare($query);
+		
+		$statement->bindValue( ':newPass', $newPass);
+		$statement->bindValue( ':user_id', $_SESSION['user_id']);
+		$statement->execute();
+		$statement->closeCursor();
+
+		return;
+	}else{
+		$_SESSION['errors'] = 'IncorccectPassword';
+		return;
+	}
+
+}
+
+//member functions
+
+function memberValidate($action)
+{
+	if($_SESSION['accessLevel'] === '1' )
+        {
+           include($action .='.php');
+           
+        } elseif($_SESSION['accessLevel'] === '2') {
+
+          include($action .='.php');
+         
+        }else{
+            $_SESSION['error_message']= 'You must be loged in to see the Members section.';
+            include('notloggedinmember.php');
+            
+        }
+}
+
+
+function memUpdate($fName, $lName, $nName)
+{
+	global $db;
+		$query = 'UPDATE user_usr SET firstName_usr = :firstName, lastName_usr = :lastName, nickName_usr = :nickName WHERE id_usr = :user_id';
+		
+		$statement = $db->prepare($query);
+		
+		$statement->bindValue( ':firstName', $fName);
+		$statement->bindValue( ':lastName', $lName);
+		$statement->bindValue( ':nickName', $nName);
+		$statement->bindValue( ':user_id', $_SESSION['user_id']);
+		$statement->execute();
+		$statement->closeCursor();
+
+		return;
+		
+}
+
+
+
+//Helper functions
 function getAccessName($accNum)
 {
 	global $db;
@@ -91,6 +157,19 @@ function getAccessName($accNum)
 	return $accResult;
 }
 
+//Miscellaneous Functions
+function getEvents()
+{
+	global $db;
+	$query = $sql = "Select e.name_evt, e.location_evt, s.name_sre,c.country_cou, e.dateTime_evt
+   					FROM events_evt e JOIN subregions_sre s
+  					ON e.subregions_sre_id_sre = s.id_sre
+    				JOIN regions_cou c on s.region_id_sre = c.id_cou";
+	$result = $db->query($query);
+	return $result;
+}
+
+// login functions
 function password_check($password, $pwHash)
 {
 	global $db;
@@ -139,78 +218,29 @@ echo $user['accessLvl_ual'];
 	}
 }
 
+// error handling functions
 
-function getEvents()
-{
-	global $db;
-	$query = $sql = "Select e.name_evt, e.location_evt, s.name_sre,c.country_cou, e.dateTime_evt
-   					FROM events_evt e JOIN subregions_sre s
-  					ON e.subregions_sre_id_sre = s.id_sre
-    				JOIN regions_cou c on s.region_id_sre = c.id_cou";
-	$result = $db->query($query);
-	return $result;
-}
-
-function getMemberByID($userID)
-{
-	global $db;
-
-	
-		$query = $sql = "SELECT `firstName_usr`, `lastName_usr`, `nickName_usr`, name_lvl, accessLvl_ual
-    FROM user_usr JOIN level_lvl ON level_lvl_id_lvl = id_lvl
-    JOIN accesslevel_ual ON `accessLevel_ual_id_ual` = id_ual
-    WHERE id_usr = '$userID'";
-			$userInfo = $db->query($query);
-			$user=$userInfo->fetch();
-			return $user;
-}
-
-function memUpdate($fName, $lName, $nName)
-{
-	global $db;
-		$query = 'UPDATE user_usr SET firstName_usr = :firstName, lastName_usr = :lastName, nickName_usr = :nickName WHERE id_usr = :user_id';
-		
-		$statement = $db->prepare($query);
-		
-		$statement->bindValue( ':firstName', $fName);
-		$statement->bindValue( ':lastName', $lName);
-		$statement->bindValue( ':nickName', $nName);
-		$statement->bindValue( ':user_id', $_SESSION['user_id']);
-		$statement->execute();
-		$statement->closeCursor();
-
-		return;
-		
-}
-
-function changePassword($oldPass, $newPass, $reNewPass)
-{
-	global $db;
-
-	$nickName = $_SESSION['nickName'];
-	is_valid_login($nickName, $oldPass);
-
-	if ($oldPass === true)
-	{
-		$query = 'UPDATE user_usr SET password_usr = :newPass WHERE id_usr = :user_id';
-		
-		$statement = $db->prepare($query);
-		
-		$statement->bindValue( ':newPass', $newPass);
-		$statement->bindValue( ':user_id', $_SESSION['user_id']);
-		$statement->execute();
-		$statement->closeCursor();
-
-		return;
-	}else{
-		$_SESSION['errors'] = 'IncorccectPassword';
-		return;
+function confirm_query($result_set) {
+		if (!$result_set) {
+			die("Database query failed.");
+		}
 	}
 
+function form_errors($errors=array())
+{
+	$output = "";
+	if(!empty($errors))
+	{
+		$output .= "<div class=\"error\">";
+		$output .= "Please fix the following errors:";
+		$output .= "<ul>";
+		foreach ($errors as $error)
+		{
+			$output .= "<li>{$error}</li>";
+		}
+		$output .= "</ul>";
+		$output .= "</div>";
+	}
+	return $output;
 }
-
-
-
-
-
 
