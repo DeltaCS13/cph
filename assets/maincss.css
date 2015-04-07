@@ -187,8 +187,20 @@
         padding:1% 0 2% 1%;
         border-radius: 10px;
         box-shadow: 10px 10px 5px #020;
-       
+    }
 
+       .content2 {
+        float: left;
+        width: 50%;
+        background-color: #E0F8E0;
+        margin: 2% 2% 2% 1%;
+        padding:1% 0 2% 1%;
+        border-radius: 10px;
+        box-shadow: 10px 10px 5px #020;
+    }
+
+    .floatReset {
+      clear: both;
     }
 /*Form Styles*/
   .form1 {
@@ -224,6 +236,8 @@
 
 /*Table*/
   .contentTable {
+    float: left;
+    width: 45%;
       background-color: #E0F8E0;
       margin: 2% 0;
       border-radius: 10px;

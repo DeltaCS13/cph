@@ -45,7 +45,7 @@
 <div id="contentWrapper">
 
   <article id="mainContent">
-    <article class="content1">
+    <article class="content2">
 	
 
       <h2>About Us</h2>
@@ -90,7 +90,7 @@
 	<?php endforeach; ?>		
 	</tbody></table>
 </article>	
-
+<div class="floatReset"></div>
   </article>
   
 </div>
