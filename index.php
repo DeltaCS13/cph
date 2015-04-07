@@ -141,6 +141,8 @@ switch($action) {
 
     case "gear":
 
+        include('gear.php');
+        break;
 
 
     case "logout":
