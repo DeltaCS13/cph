@@ -118,7 +118,7 @@ function memberValidate($action)
           include($action .='.php');
          
         }else{
-            $_SESSION['error_message']= 'You must be loged in to see the Members section.';
+            $_SESSION['error_message']= 'You must be logged in to see the Members section.';
             include('notloggedinmember.php');
             
         }
