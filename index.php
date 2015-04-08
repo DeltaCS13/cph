@@ -19,7 +19,7 @@ if(!isset($_SESSION['accessLevel']))
   $_SESSION['accessLevel'] = null;
 }
 
-   
+$_SESSION['action'] = $action ; 
 
 //perform action
 switch($action) {

@@ -1,30 +1,4 @@
-<?php 
-//session_start();
-?>
-<!doctype html>
-<head>
-<meta charset="UTF-8">
-<title>Couch Potato Hikers</title>
-<link href="assets/maincss.css" rel="stylesheet" >
-<meta name="viewport" content="initial-scale=1.0" />
-</script>
-</head>
-<body >
-<div class="wrapper">
-<header>
-  <h1>Couch Potato Hikers</h1>
-  <nav>
-    <ul>
-      <li><a href="index.php" title="Home">Trail Head</a>
-      <li><a href="login.php" title="Login">Login</a>
-      <li><a href="register.php" title="Registration">Join Us</a>
-      <li><a  href="index.php?action=member" title="Member's Area">Member's Area</a>
-      <li><a class="selected" href="index.php?action=admin" title="Administration">Administration</a>
-    </ul>
-  </nav>
-</header>
-<div id="contentWrapper">
-  <article id="mainContent">
+<?php include('views/includes/header.php');?>
 <article class="content1">
 
 <?php 

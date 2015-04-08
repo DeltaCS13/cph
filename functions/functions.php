@@ -169,6 +169,7 @@ function getEvents()
 	return $result;
 }
 
+
 // login functions
 function password_check($password, $pwHash)
 {
