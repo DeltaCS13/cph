@@ -147,15 +147,21 @@ validate_presences($required_fields);
 
     case "gear":
 
+        
+
         include('gear.php');
         break;
 
+    case "gearItemSearch";
 
+
+        include('gear.php');
+        break;
     case "events":
 
-        include('events.php');
-        break;
-
+    include('events.php');
+    break;
+    
     case "logout":
     $nickNameLogOut = $_SESSION['nickName'];
       $_SESSION['nickName'];

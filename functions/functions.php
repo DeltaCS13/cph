@@ -169,7 +169,29 @@ function getEvents()
 	return $result;
 }
 
+function getGear()
+{
+	global $db;
+	$query = $sql = "Select g.name_gex, g.discription_gex, c.condition_con,u.nickName_usr, g.dateAdded_gex
+   					FROM gearexchange_gex g JOIN condition_con c
+  					ON g.condition_con_id_con = c.id_con
+    				JOIN user_usr u on u.id_usr = g.user_usr_id_usr";
+	$result = $db->query($query);
+	return $result;
+}
 
+function findGear($item)
+{
+	global $db;
+	$query = $sql = "Select g.name_gex, g.discription_gex, c.condition_con,u.nickName_usr, g.dateAdded_gex
+   					FROM gearexchange_gex g JOIN condition_con c
+  					ON g.condition_con_id_con = c.id_con
+    				JOIN user_usr u on u.id_usr = g.user_usr_id_usr
+    				WHERE g.name_gex = '$item'";
+	$result = $db->query($query);
+	return $result;
+
+}
 // login functions
 function password_check($password, $pwHash)
 {
