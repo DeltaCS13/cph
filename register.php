@@ -1,4 +1,7 @@
-<?php include('views/includes/header.php');?>
+<?php 
+require_once('functions/session_functions.php');
+require_once('functions/validation_functions.php');
+include('views/includes/header.php');?>
 	
 <article class="content1">
 <?php 

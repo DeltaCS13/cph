@@ -26,7 +26,7 @@ function validate_presences($required_fields)
 			$errors[$field] = fieldname_as_text($field)." cannot be blank";
 		}
 	}	
-
+	
 }
 
 

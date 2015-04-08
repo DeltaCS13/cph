@@ -189,7 +189,7 @@
         box-shadow: 10px 10px 5px #020;
     }
 
-       .content2 {
+    .content2 {
         float: left;
         width: 50%;
         background-color: #E0F8E0;
@@ -233,9 +233,9 @@
       padding: 1%;
   }
 
-  .eventSearch {
+  .eventLink {
     text-align: right;
-    margin: 0 60px -40px 5px;
+    margin: 0 20px -30px 5px;
     padding:10px 0 0;
   }
 
@@ -250,6 +250,14 @@
       padding-bottom: 2%;
   }
 
+  .contentTable1 {
+      width: 95%;
+      background-color: #E0F8E0;
+      margin: 2% 0;
+      border-radius: 10px;
+      box-shadow: 10px 10px 5px #020;
+      padding: 2%;
+  }
   .table1 {
       margin: 0 auto;
       width: 95%;

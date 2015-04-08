@@ -37,6 +37,8 @@
      <?php }elseif($_SESSION['accessLevel'] === '2'){?>
       <li><a href="index.php?action=member" title="Member's Area">Member's Area</a>
       <?php }; }?>
+
+      <li ><a href="index.php?action=gear " title="Gear Exchange">Gear Exchange</a>
      
     </ul>
   </nav>

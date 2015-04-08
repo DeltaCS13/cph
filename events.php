@@ -1,19 +1,16 @@
   <?php include('views/includes/header.php');?>
 
-   
+   <article class="content1">
+		<h1 class="pageTitle">Events</h1>	
+	</article>
 <!-- Events Table -->
-<article class="contentTable">
-		
-	<form class= "eventSearch" action="index.php?eventSearch" method="post" id="eventSearch">
-			<fieldset>
-				<input type="text" name="eventSearch" placeholder="Search Events">
-					<input type="submit" value="Search">
-					
-			</fieldset>
-	</form>	
+<article class="contentTable1">
+	
+	
+	
 	<table class="table1">
 
-		<caption>Events</caption>
+		<!--<caption>Events</caption>-->
 		
 		<thead>
 			<tr>

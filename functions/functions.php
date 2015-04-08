@@ -23,16 +23,16 @@ function addMember($firstName, $lastName, $nickName, $password){
 	global $db;
 	
 	//Validation
- $required_fields = array("firstName", "lastName", "nickName", "password");
+ //$required_fields = array("firstName", "lastName", "nickName", "password");
 
-  validate_presences($required_fields);
+  //validate_presences($required_fields);
 
-  if (!empty($errors))
+ /* if (!empty($errors))
   {
     $_SESSION["errors"] = $errors;
     redirect_to("/../register.php");
   }
-
+*/
 
 	$password = password_hash($password, PASSWORD_BCRYPT);
 
@@ -235,7 +235,7 @@ function form_errors($errors=array())
 		$output .= "<div class=\"error\">";
 		$output .= "Please fix the following errors:";
 		$output .= "<ul>";
-		foreach ($errors as $error)
+		foreach ($errors as $key => $error)
 		{
 			$output .= "<li>{$error}</li>";
 		}

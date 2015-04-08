@@ -61,11 +61,17 @@ switch($action) {
     	$nickName = $_POST['nickName'];
     	$password = $_POST['password'];
     	
+ $required_fields = array("firstName", "lastName", "nickName", "password");
 
-
-  
+validate_presences($required_fields);
+  if (!empty($errors))
+  {
+    $_SESSION["errors"] = $errors;
+    redirect_to("register.php");
+  }
     	addMember($firstName, $lastName, $nickName, $password);
        
+        
         include('login.php');
     	
         break;
@@ -144,6 +150,11 @@ switch($action) {
         include('gear.php');
         break;
 
+
+    case "events":
+
+        include('events.php');
+        break;
 
     case "logout":
     $nickNameLogOut = $_SESSION['nickName'];
