@@ -21,18 +21,6 @@ function adminValidate($action)
 function addMember($firstName, $lastName, $nickName, $password){
 	
 	global $db;
-	
-	//Validation
- //$required_fields = array("firstName", "lastName", "nickName", "password");
-
-  //validate_presences($required_fields);
-
- /* if (!empty($errors))
-  {
-    $_SESSION["errors"] = $errors;
-    redirect_to("/../register.php");
-  }
-*/
 
 	$password = password_hash($password, PASSWORD_BCRYPT);
 
@@ -164,7 +152,8 @@ function getEvents()
 	$query = $sql = "Select e.name_evt, e.location_evt, s.name_sre,c.country_cou, e.dateTime_evt
    					FROM events_evt e JOIN subregions_sre s
   					ON e.subregions_sre_id_sre = s.id_sre
-    				JOIN regions_cou c on s.region_id_sre = c.id_cou";
+    				JOIN regions_cou c on s.region_id_sre = c.id_cou
+    				ORDER BY dateTime_evt Desc";
 	$result = $db->query($query);
 	return $result;
 }

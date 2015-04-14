@@ -3,6 +3,7 @@
 //session_start();
 require_once('controllers/dbconnect.php');
 require_once('functions/functions.php');
+require_once('functions/validation_functions.php');
 
 //get action
 if (isset($_POST['action'])) {
@@ -12,7 +13,7 @@ if (isset($_POST['action'])) {
 } else {
     $action = 'pubhome';
 }
-//if user not loged in
+//if user not logged in
  
 if(!isset($_SESSION['accessLevel']))
 {
@@ -26,7 +27,15 @@ switch($action) {
     case "login":
         $nickName = $_POST['nickName'];
         $password = $_POST['password'];
-        
+        $required_fields = array('nickName', 'password');
+
+validate_presences($required_fields);
+  if (!empty($errors))
+  {
+    $_SESSION["errors"] = $errors;
+    include("login.php");
+    break;
+  }
         if (is_valid_login($nickName, $password)) {
        
            
@@ -56,18 +65,20 @@ switch($action) {
         break;
 
     case "register":
+
     	$firstName = $_POST['firstName'];
     	$lastName = $_POST['lastName'];
     	$nickName = $_POST['nickName'];
     	$password = $_POST['password'];
-    	
- $required_fields = array("firstName", "lastName", "nickName", "password");
+    
+ $required_fields = array('firstName', 'lastName', 'nickName', 'password');
 
 validate_presences($required_fields);
   if (!empty($errors))
   {
     $_SESSION["errors"] = $errors;
-    redirect_to("register.php");
+    include("register.php");
+    break;
   }
     	addMember($firstName, $lastName, $nickName, $password);
        
@@ -104,7 +115,7 @@ validate_presences($required_fields);
        $_SESSION['firstName']= $userInfo['firstName_usr'];
        $_SESSION['lastName']= $userInfo['lastName_usr'];
        $_SESSION['nickName']= $userInfo['nickName_usr'];
-          include('memberUpdate.php');
+          include('member.php');
       break;
 
     case "memPassUpdate":
@@ -117,7 +128,7 @@ validate_presences($required_fields);
 
       changePassword($oldPass, $newPass, $reNewPass);
 
-      include('memberUpdate.php');
+      include('member.php');
       break;
 
     case "adminUpdate";
@@ -142,7 +153,7 @@ validate_presences($required_fields);
        $_SESSION['accessLevel']= $userInfo['accessLevel_ual_id_ual'];
       $_SESSION['userLevel']= $userInfo['Level_lvl_id_lvl'];
 
-          include('adminUpdate.php');
+          include('admin.php');
       break;
 
     case "gear":
@@ -171,7 +182,15 @@ validate_presences($required_fields);
       session_destroy();     // Clean up the session ID
         include('logout.php');
         break;
+
+    case "eventDetails":
+
+      $eventDetail = $_SESSION['eventDiscName'];
+
+      getEventDetails($eventDetail);
+
+      include('events.php');
+      break;
+
 }
-
-
 ?>

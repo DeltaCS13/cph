@@ -1,7 +1,9 @@
 <?php 
 require_once('functions/session_functions.php');
 require_once('functions/validation_functions.php');
-include('views/includes/header.php');?>
+include('views/includes/header.php');
+
+?>
 	
 <article class="content1">
 <?php 
@@ -13,12 +15,13 @@ include('views/includes/header.php');?>
 ?>
 
 <div class="form1">	
-
-<form action="index.php" method="post" id="registerForm">
 <?php
+		//Field Validation
 		$errors = errors();
 		echo form_errors($errors);
 ?>
+<form action="index.php" method="post" id="registerForm">
+
 	<fieldset><h2>New Member Registration</h2></fieldset>
 		<p>Fields marked with an asterisks (*) are requiered.</p>
 
@@ -26,7 +29,7 @@ include('views/includes/header.php');?>
 	<input type="hidden" name="action" value="register">
 
 	<label>First Name *:<br>
-	<input type="text" name="firstName" placeholder="John" required autofocus value="<?php if(isset($_POST['firstName'])) echo $_POST['firstName'];?>"></label><br>
+	<input type="text" name="firstName" placeholder="John" required value="<?php if(isset($_POST['firstName'])) echo $_POST['firstName'];?>"></label><br>
 
 	<label>Last Name *:<br>
 	<input type="text" name="lastName" placeholder="Doe" required value="<?php if(isset($_POST['lastName'])) echo $_POST['lastName'];?>"></label><br>

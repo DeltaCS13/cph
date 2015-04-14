@@ -1,12 +1,6 @@
 <?php include('views/includes/header.php');?>
-  
-
-	
 
 <article class="content1">
-
-
-
 
 <?php if(isset($_SESSION['error_message']))
 	{
@@ -16,6 +10,11 @@
   		$_SESSION['error_message'] = null; ?> 
 	<div class="form1">
 		<!-- login form-->
+	<?php
+		//Field Validation
+		$errors = errors();
+		echo form_errors($errors);
+	?>
 		<form action="index.php" method="post" id="loginForm">
 			<fieldset>
 				<legend><h2>CPH Member Login</h2></legend>

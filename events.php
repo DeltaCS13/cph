@@ -25,7 +25,7 @@
 		
 		<tbody>
 			<tr>
-				<td><?php echo $event['name_evt']; ?></td>
+				<td><a href="index.php?action=eventDetails"><?php echo $event['name_evt']; $_SESSION['eventDiscName'] = $event['name_evt']?></a></td>
 				<td><?php echo $event['location_evt']; ?></td>
 				<td><?php echo $event['name_sre']; ?></td>
 				<td><?php echo $event['country_cou']; ?></td>
@@ -35,6 +35,18 @@
 	</tbody></table>
 </article>	
 <div class="floatReset"></div>
+
+<article>
+	<?php
+		if(isset($_SESSION['eventDetail']))
+		{
+			?><h2><?php echo htmlentities($eventDetail['name_evt'])?></h2>
+			<p><?php echo htmlentities($eventDetail['dateTime_evt'])?><br>
+			<?php echo htmlentities($eventDetail['discription_evt'])?></p>
+	<?php }
+		
+	?>
+</article>
   </article>
   
 </div>

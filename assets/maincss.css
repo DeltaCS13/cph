@@ -110,12 +110,7 @@
         box-shadow: 8px 8px 5px #020;
     }
 
-    header h1 {
-        font-size: 3.2em;
-        text-align: center;
-        color: #0F9FAB;
-        text-shadow: -2px -2px 0 #382006, 3px 3px 0 #382006, -2px -2px 0 #382006, 3px 3px 0 #382006;/* for outline*/
-    }
+    
 
     
   /*General Styling */
@@ -302,6 +297,12 @@
 
 @media screen and (min-width: 802px){
 
+    header h1 {
+          font-size: 3.2em;
+          text-align: center;
+          color: #182f21;
+          text-shadow: -1px -1px 0 #0f9fa8, 2px 2px 0 #0f9fa8, -1px -1px 0 #0f9fa8, 2px 2px 0 #0f9fa8;/* for outline*/
+    }
 /*Navigation (header)*/
 
     nav ul {
