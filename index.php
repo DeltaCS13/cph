@@ -73,13 +73,13 @@ validate_presences($required_fields);
     
  $required_fields = array('firstName', 'lastName', 'nickName', 'password');
 
-validate_presences($required_fields);
+/*validate_presences($required_fields);
   if (!empty($errors))
   {
     $_SESSION["errors"] = $errors;
     include("register.php");
     break;
-  }
+  }*/
     	addMember($firstName, $lastName, $nickName, $password);
        
         
@@ -185,9 +185,11 @@ validate_presences($required_fields);
 
     case "eventDetails":
 
-      $eventDetail = $_SESSION['eventDiscName'];
-
-      getEventDetails($eventDetail);
+      
+      $eventName = $_POST['eventName'];
+      $_POST['eventName'] = NULL;
+      $_SESSION['eventDetail'] = $eventName;
+      //$eventDetail = getEventDetails($eventName);
 
       include('events.php');
       break;

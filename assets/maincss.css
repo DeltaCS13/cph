@@ -214,7 +214,7 @@
       }/*Table*/
       .contentTable {
           background-color: #E0F8E0;
-         
+          padding-top: 2%;
           border-radius: 10px;
           box-shadow: 10px 10px 5px #020;
           
@@ -222,7 +222,7 @@
 
       .contentTable1 {
           background-color: #E0F8E0;
-         
+          padding-top: 2%;
           border-radius: 10px;
           box-shadow: 10px 10px 5px #020;
          
@@ -373,13 +373,13 @@
         box-shadow: 10px 10px 5px #020;
     }/*Table*/
   .contentTable {
-    float: left;
-    width: 45%;
+      float: left;
+      width: 45%;
       background-color: #E0F8E0;
       margin: 2% 0;
       border-radius: 10px;
       box-shadow: 10px 10px 5px #020;
-      padding-bottom: 3% ;
+      padding: 2% 0;
   }
 
   .contentTable1 {
@@ -458,7 +458,13 @@
 
     .pageTitle {
       text-align: center;
-      font-size: 2em;
+      font-size: 2.5em;
+    }
+
+    .pageTitleH2
+    {
+      text-align: center;
+      font-size: 1.8em;
     }
 /*Form Styles*/
   .form1 {
@@ -498,7 +504,7 @@
       width: 95%;
       border: 2px solid;
       padding-bottom: 4%;
-      margin:0 auto;
+      
   }
 
   .table1 tr {

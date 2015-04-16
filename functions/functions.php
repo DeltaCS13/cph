@@ -146,17 +146,7 @@ function getAccessName($accNum)
 }
 
 //Miscellaneous Functions
-function getEvents()
-{
-	global $db;
-	$query = $sql = "Select e.name_evt, e.location_evt, s.name_sre,c.country_cou, e.dateTime_evt
-   					FROM events_evt e JOIN subregions_sre s
-  					ON e.subregions_sre_id_sre = s.id_sre
-    				JOIN regions_cou c on s.region_id_sre = c.id_cou
-    				ORDER BY dateTime_evt Desc";
-	$result = $db->query($query);
-	return $result;
-}
+
 
 function getGear()
 {
@@ -256,3 +246,32 @@ function form_errors($errors=array())
 	return $output;
 }
 
+
+//Event Functions
+
+function getEvents()
+{
+	global $db;
+	$query = $sql = "Select e.name_evt, e.location_evt, s.name_sre,c.country_cou, e.dateTime_evt
+   					FROM events_evt e JOIN subregions_sre s
+  					ON e.subregions_sre_id_sre = s.id_sre
+    				JOIN regions_cou c on s.region_id_sre = c.id_cou
+    				ORDER BY dateTime_evt Desc";
+	$result = $db->query($query);
+	return $result;
+}
+
+function  getEventDetails($eventDetail)
+{
+	global $db;
+	$query = $sql = "Select e.name_evt, e.location_evt, s.name_sre,e.discription_evt, c.country_cou, e.dateTime_evt
+   					FROM events_evt e JOIN subregions_sre s
+  					ON e.subregions_sre_id_sre = s.id_sre
+    				JOIN regions_cou c on s.region_id_sre = c.id_cou
+    				WHERE e.name_evt = '$eventDetail'";
+	$result = $db->query($query);
+	$_SESSION['eventDetail'] = $eventDetail;
+	
+	return $result;
+
+}
