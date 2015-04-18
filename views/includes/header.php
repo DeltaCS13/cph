@@ -10,7 +10,7 @@
 <meta name="viewport" content="initial-scale=1.0" />
 
 </head>
-<body >
+<body>
 
 <div class="wrapper">
 <header>

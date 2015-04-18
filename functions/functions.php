@@ -192,7 +192,7 @@ function is_valid_login($nickName, $password)
 	global $db;
 	
 	$user = find_member($nickName);
-echo $user['accessLvl_ual'];
+
 	if ($user['nickName_usr'] === $nickName) {
 			if (password_check($password, $user["password_usr"])){
 

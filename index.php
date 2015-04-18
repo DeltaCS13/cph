@@ -1,6 +1,4 @@
 <?php
-//start session
-//session_start();
 require_once('controllers/dbconnect.php');
 require_once('functions/functions.php');
 require_once('functions/validation_functions.php');
@@ -50,7 +48,7 @@ validate_presences($required_fields);
                  
                include('member.php');
                  break;
-            }}
+            }
           else
             {
                 $_SESSION['error_message']='You entered an invalid Trail Name or Password.';
@@ -58,7 +56,7 @@ validate_presences($required_fields);
                 include('login.php');
                 break;
             }
-       
+       }
 
     case "pubhome":
         include('pubhome.php');
@@ -73,13 +71,7 @@ validate_presences($required_fields);
     
  $required_fields = array('firstName', 'lastName', 'nickName', 'password');
 
-/*validate_presences($required_fields);
-  if (!empty($errors))
-  {
-    $_SESSION["errors"] = $errors;
-    include("register.php");
-    break;
-  }*/
+
     	addMember($firstName, $lastName, $nickName, $password);
        
         
@@ -158,16 +150,14 @@ validate_presences($required_fields);
 
     case "gear":
 
-        
-
         include('gear.php');
         break;
 
     case "gearItemSearch";
 
-
         include('gear.php');
         break;
+
     case "events":
 
     include('events.php');
