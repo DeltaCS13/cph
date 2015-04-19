@@ -99,7 +99,7 @@ function memberValidate($action)
 {
 	if($_SESSION['accessLevel'] === '1' )
         {
-           include($action .='.php');
+           include('views/includes/members/member.php');
            
         } elseif($_SESSION['accessLevel'] === '2') {
 
