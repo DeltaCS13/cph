@@ -46,7 +46,7 @@ validate_presences($required_fields);
             elseif($_SESSION['accessLevel'] === '2') 
             {
                  
-               include('member.php');
+               include('views/includes/members/member.php');
                  break;
             }
           else
@@ -91,11 +91,13 @@ validate_presences($required_fields);
         
     case "memberUpdate":
 
-
+      $_SESSION['memberUpdates'] = $action;
         memberValidate($action);
         break;
 
     case "memUpdate":
+
+
       $fName = $_POST['firstName'];
       $lName = $_POST['lastName'];
       $nName = $_POST['nickName'];
@@ -107,7 +109,7 @@ validate_presences($required_fields);
        $_SESSION['firstName']= $userInfo['firstName_usr'];
        $_SESSION['lastName']= $userInfo['lastName_usr'];
        $_SESSION['nickName']= $userInfo['nickName_usr'];
-          include('member.php');
+          include('views/includes/members/member.php');
       break;
 
     case "memPassUpdate":
@@ -120,7 +122,7 @@ validate_presences($required_fields);
 
       changePassword($oldPass, $newPass, $reNewPass);
 
-      include('member.php');
+      include('views/includes/members/member.php');
       break;
 
     case "adminUpdate";

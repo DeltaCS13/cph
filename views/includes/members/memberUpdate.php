@@ -1,16 +1,21 @@
-<?php include('views/includes/header.php');?>
-	
-<article class="content1">
-<?php 
-	if (isset($error_message))
-	{
-		echo $error_message;
-	}
 
+<?php
+if (!isset($_SESSION['memberUpdates'])){
+	?>
+	<article class="content2">
+
+<h2 class="pageTitleH2">Member Actions</h2>
+  <ul class="menu1">
+    <li><a href="index.php?action=memberUpdate" title="Member Update">Update Profile</a>
+    <li><a href="index.php?action=gear" title="Gear Exchange">Gear Exchange</a>
+  </ul>
+</article>
+<?php
+}elseif($_SESSION['memberUpdates'] === 'memberUpdate'){
 ?>
-
+<article class="content2">
 <div class="form1">	
-<h2>Update Your Profile</h2>
+<h2 class="pageTitleH2">Update Your Profile</h2>
 <form action="index.php" method="post" id="memUpdateForm">
 <?php
 		$errors = errors();
@@ -55,7 +60,8 @@
 	<input type="submit" name="newPassword" value="Submit Password">-->
 </article>
 
-<?php include('views/includes/footer.php');
+<?php }
+
 ?>
 
 </div><!--wrapper-->

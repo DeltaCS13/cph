@@ -103,7 +103,7 @@ function memberValidate($action)
            
         } elseif($_SESSION['accessLevel'] === '2') {
 
-          include($action .='.php');
+          include('views/includes/members/member.php');
          
         }else{
             $_SESSION['error_message']= 'You must be logged in to see the Members section.';
@@ -115,6 +115,7 @@ function memberValidate($action)
 
 function memUpdate($fName, $lName, $nName)
 {
+	
 	global $db;
 		$query = 'UPDATE user_usr SET firstName_usr = :firstName, lastName_usr = :lastName, nickName_usr = :nickName WHERE id_usr = :user_id';
 		
@@ -126,7 +127,7 @@ function memUpdate($fName, $lName, $nName)
 		$statement->bindValue( ':user_id', $_SESSION['user_id']);
 		$statement->execute();
 		$statement->closeCursor();
-
+		$_SESSION['memberUpdates'] = NULL;
 		return;
 		
 }
