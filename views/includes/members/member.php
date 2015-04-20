@@ -1,12 +1,11 @@
 <?php include('/../../includes/header.php');?>
 
-<!--<article class="content1">-->
- 
+
 <article class="content1">
   <h1 class="pageTitle">Member Page</h1>
 </article>
 
-
+<!-- show member info -->
   <article class="contentTable">
 
   <table class="table1">
@@ -35,8 +34,10 @@
     </tbody>
   </table>
 </article>
-
-<?php include('memberUpdate.php'); ?>
+<!-- member update links/forms-->
+<?php 
+  include('memberUpdate.php'); 
+?>
 </article>
 <div class="floatReset"></div>
 <?php include('/../../includes/footer.php');

@@ -10,12 +10,37 @@ function adminValidate($action)
 {
 	if($_SESSION['accessLevel'] === '1')
         {
-           include($action.='.php');
-           break; 
+           include('views/includes/admin/admin.php');
+            
         } else {
            $_SESSION['error_message'] = 'You must be an Administrator to access the Administration area.';
             include('notloggedinadmin.php');
 }
+}
+
+function admUpdate($fName, $lName, $nName, $hLevel,
+					$aLevel)
+{
+	$hikerLevel = getHikerLevelID($hLevel);
+	
+	$accessLevel = getAccessLevelID($aLevel);
+
+	global $db;
+		$query = 'UPDATE user_usr SET firstName_usr = :firstName, lastName_usr = :lastName, nickName_usr = :nickName, level_lvl_id_lvl= :hikerLevel, accessLevel_ual_id_ual = :accessLevel  WHERE id_usr = :user_id';
+		
+		$statement = $db->prepare($query);
+		
+		$statement->bindValue( ':firstName', $fName);
+		$statement->bindValue( ':lastName', $lName);
+		$statement->bindValue( ':nickName', $nName);
+		$statement->bindValue( ':hikerLevel', $hikerLevel['id_lvl']);
+		$statement->bindValue( ':accessLevel', $accessLevel['id_ual']);
+		$statement->bindValue( ':user_id', $_SESSION['user_id']);
+		$statement->execute();
+		$statement->closeCursor();
+		$_SESSION['adminUpdates'] = NULL;
+		return;
+		
 }
 
 function addMember($firstName, $lastName, $nickName, $password){
@@ -46,7 +71,7 @@ function getMemberByID($userID)
 	global $db;
 
 	
-		$query = $sql = "SELECT `firstName_usr`, `lastName_usr`, `nickName_usr`, name_lvl, accessLvl_ual
+		$query = $sql = "SELECT `firstName_usr`, `lastName_usr`, `nickName_usr`, name_lvl, accessLvl_ual, accessLevel_ual_id_ual, level_lvl_id_lvl
     FROM user_usr JOIN level_lvl ON level_lvl_id_lvl = id_lvl
     JOIN accesslevel_ual ON `accessLevel_ual_id_ual` = id_ual
     WHERE id_usr = '$userID'";
@@ -147,7 +172,43 @@ function getAccessName($accNum)
 }
 
 //Miscellaneous Functions
+function allHikerLevels()
+{
+	global $db;
+		$query = $sql = "SELECT * FROM level_lvl";
+		$hikerLevels = $db->query($query);
+		
+		return $hikerLevels;
+}
 
+function allAccessLevels()
+{
+	global $db;
+		$query = $sql = "SELECT * FROM accesslevel_ual";
+		$accessLevels = $db->query($query);
+
+		return $accessLevels;
+}
+function getHikerLevelID($hLevel)
+{ 
+	global $db;
+		$query = $sql = "SELECT id_lvl from level_lvl WHERE name_lvl = '$hLevel'";
+		$hikerLevel = $db->query($query);
+		$hikerLevel = $hikerLevel->fetch();
+		
+		return $hikerLevel;
+		
+}
+
+function getAccessLevelID($aLevel)
+{
+		global $db;
+		$query = $sql = "SELECT id_ual FROM accesslevel_ual WHERE accessLvl_ual = '$aLevel'";
+		$accessLevel = $db->query($query);
+		$accessLevel = $accessLevel->fetch();
+		return $accessLevel;
+
+}
 
 function getGear()
 {

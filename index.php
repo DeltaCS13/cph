@@ -40,7 +40,7 @@ validate_presences($required_fields);
             if($_SESSION['accessLevel'] === '1')
             {
                
-               include('admin.php');
+               include('views/includes/admin/admin.php');
                break;
             }
             elseif($_SESSION['accessLevel'] === '2') 
@@ -126,7 +126,7 @@ validate_presences($required_fields);
       break;
 
     case "adminUpdate";
-
+      $_SESSION['adminUpdates'] = $action;
      adminValidate($action);
      break;
 
@@ -137,7 +137,8 @@ validate_presences($required_fields);
       $hLevel = $_POST['hikerLevel'];
       $aLevel = $_POST['accessLevel'];
       $userID = $_SESSION['user_id'];
-      adminUpdate($fName, $lName, $nName, $hlevel, $aLevel);
+      admUpdate($fName, $lName, $nName, $hLevel, $aLevel);
+
 
        $userInfo = getMemberByID($userID);
 
@@ -145,12 +146,12 @@ validate_presences($required_fields);
        $_SESSION['lastName']= $userInfo['lastName_usr'];
        $_SESSION['nickName']= $userInfo['nickName_usr'];
        $_SESSION['accessLevel']= $userInfo['accessLevel_ual_id_ual'];
-      $_SESSION['userLevel']= $userInfo['Level_lvl_id_lvl'];
+       $_SESSION['userLevel']= $userInfo['level_lvl_id_lvl'];
 
-          include('admin.php');
+          include('views/includes/admin/admin.php');
       break;
 
-    case "gear":
+       case "gear":
 
         include('gear.php');
         break;

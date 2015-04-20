@@ -1,13 +1,11 @@
-<?php include('views/includes/header.php');?>
+<?php include('/../../includes/header.php');?>
 
-<!--<article class="content1">-->
- 
-<article class="content1">
-<h1 class="pageTitle">Member Page</h1>
-<p>Welcome back to the trail <?php echo htmlentities($_SESSION['nickName']); ?>, nice to have you back.</p>
+<article class="content1">  
+  <h1 class="pageTitle">Admin Page</h1>
 </article>
+<!-- show Admin info -->
+<article class="contentTable">
 
-<article class="contentTable1">
   <table class="table1">
       <caption>User Profile</caption>
       <thead>
@@ -31,18 +29,14 @@
           <td><?php echo $userInfo['accessLvl_ual'] ?></td>
         </tr>
        
-    </tbody>
-  </table>
+    </tbody></table>
 </article>
 
-<article class="content1">
-<h3>Member Actions</h3>
-  <ul class="menu1">
-    <li><a href="index.php?action=memberUpdate" title="Member Update">Update Profile</a>
-    <li><a href="index.php?action=gear" title="Gear Exchange">Gear Exchange</a>
-  </ul>
-</article>
-</article>
-<?php include('views/includes/footer.php');
+<?php 
+  include('adminUpdate.php');
 ?>
-</div>
+</article>
+<div class="floatReset"></div>
+<?php include('/../../includes/footer.php');
+?>
+</div><!--/wrapper-->

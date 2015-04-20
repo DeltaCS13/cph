@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Couch Potato Hikers</title>
-<link href="assets/maincss.css" rel="stylesheet" >
+<link href="css/maincss.css" rel="stylesheet" >
 <meta name="viewport" content="initial-scale=1.0" />
 
 </head>

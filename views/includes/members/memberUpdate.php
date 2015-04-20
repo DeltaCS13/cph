@@ -21,7 +21,7 @@ if (!isset($_SESSION['memberUpdates'])){
 		$errors = errors();
 		echo form_errors($errors);
 ?>
-	<!--<fieldset>Update Your Profile</fieldset>-->
+
 		
 	<input type="hidden" name="action" value="memUpdate">
 
