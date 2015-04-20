@@ -167,7 +167,9 @@ validate_presences($required_fields);
     break;
     
     case "logout":
-    $nickNameLogOut = $_SESSION['nickName'];
+
+      $nickNameLogOut = $_SESSION['nickName'];
+      
       $_SESSION['nickName'];
       $_SESSION['user_id'];
       $_SESSION['accessLevel'];   

@@ -131,10 +131,10 @@
 
   header h1 {
         padding: .5%;
-        font-size: 2em;
+        font-size: 3em;
         text-align: center;
-        color: #182f21;
-        text-shadow: -1px -1px 0 #0f9fa8, 2px 2px 0 #0f9fa8, -1px -1px 0 #0f9fa8, 2px 2px 0 #0f9fa8;/* for outline*/
+        color: #daa520;
+        text-shadow: -2px -2px 0 #000, 3px 3px 0 #000, -2px -2px 0 #000, 3px 3px 0 #000;/* for outline*/
   }
       /*Navigation (header)*/
 
@@ -298,10 +298,10 @@
 @media screen and (min-width: 802px){
 
     header h1 {
-          font-size: 3.2em;
+          font-size: 4em;
           text-align: center;
-          color: #182f21;
-          text-shadow: -1px -1px 0 #0f9fa8, 2px 2px 0 #0f9fa8, -1px -1px 0 #0f9fa8, 2px 2px 0 #0f9fa8;/* for outline*/
+          color: #daa520;
+          text-shadow: -2px -2px 0 #000, 3px 3px 0 #000, -2px -2px 0 #000, 3px 3px 0 #000;/* for outline*/
     }
 /*Navigation (header)*/
 

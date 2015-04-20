@@ -6,6 +6,15 @@ require_once('/validation_functions.php');
 
 //Admin Functions
 
+/********************************
+*function name: adminValisdate 	*
+*arguments: $action            	*
+*returned data:
+*discription: directs to 		*
+*	admin page based on access  *
+*	level 						*
+*Dependencies:
+*********************************/
 function adminValidate($action)
 {
 	if($_SESSION['accessLevel'] === '1')
@@ -18,6 +27,17 @@ function adminValidate($action)
 }
 }
 
+/********************************
+*function name: admUpdate 		*
+*arguments: $fName, $lName, 	*
+*			$nName, $hLevel,	*
+*			$aLevel            	*
+*returned data: 				*
+*discription: Updates Admin		*
+*	information based on user   *
+*	input. 						*
+*Dependencies:					*
+*********************************/
 function admUpdate($fName, $lName, $nName, $hLevel,
 					$aLevel)
 {
@@ -43,6 +63,136 @@ function admUpdate($fName, $lName, $nName, $hLevel,
 		
 }
 
+
+//member functions
+
+/********************************
+*function name: memberValidate	*
+*arguments: $action            	*
+*returned data: 				*
+*discription: Directs user to 	*
+*	member's area page if 		*
+* 	they are a valid member or 	*
+*	admin.						*
+*Dependencies:					*
+*********************************/
+function memberValidate($action)
+{
+	if($_SESSION['accessLevel'] === '1' )
+        {
+           include('views/includes/members/member.php');
+           
+        } elseif($_SESSION['accessLevel'] === '2') {
+
+          include('views/includes/members/member.php');
+         
+        }else{
+            $_SESSION['error_message']= 'You must be logged in to see the Members section.';
+            include('notloggedinmember.php');
+            
+        }
+}
+
+/********************************
+*function name: memberUpdate	*
+*arguments: $fName, $lName, 	*
+*			$nName            	*
+*returned data: 				*
+*discription: User enters First *
+*	name, last name, and 		*
+*		nickname to update 		*
+* 		profile 			 	*
+*Dependencies:					*
+*********************************/
+function memUpdate($fName, $lName, $nName)
+{
+	
+	global $db;
+		$query = 'UPDATE user_usr SET firstName_usr = :firstName, lastName_usr = :lastName, nickName_usr = :nickName WHERE id_usr = :user_id';
+		
+		$statement = $db->prepare($query);
+		
+		$statement->bindValue( ':firstName', $fName);
+		$statement->bindValue( ':lastName', $lName);
+		$statement->bindValue( ':nickName', $nName);
+		$statement->bindValue( ':user_id', $_SESSION['user_id']);
+		$statement->execute();
+		$statement->closeCursor();
+		$_SESSION['memberUpdates'] = NULL;
+		return;
+		
+}
+
+//Member and Admin functions (functions used for both)
+
+/********************************
+*function name: getMemberByID	*
+*arguments: $userID            	*
+*returned data: First name, Last*
+*	nick name, user level (name *
+	and ID), access level (name *
+	and ID)						*
+*discription: returns user info *
+*	for use in the member's and *
+*		administrator's areas by*
+* 		using the user ID.
+*Dependencies:					*
+*********************************/
+function getMemberByID($userID)
+{
+	global $db;
+
+	
+		$query = $sql = "SELECT `firstName_usr`, `lastName_usr`, `nickName_usr`, name_lvl, accessLvl_ual, accessLevel_ual_id_ual, level_lvl_id_lvl
+    FROM user_usr JOIN level_lvl ON level_lvl_id_lvl = id_lvl
+    JOIN accesslevel_ual ON `accessLevel_ual_id_ual` = id_ual
+    WHERE id_usr = '$userID'";
+			$userInfo = $db->query($query);
+			$user=$userInfo->fetch();
+			return $user;
+}
+
+/********************************
+*function name: find_member		*
+*arguments: $nickName           *
+*returned data: First name, Last*
+*	nick name, user level (name *
+*	and ID), access level (name *
+*	and ID)						*
+*discription: returns user info *
+*	for use in the member's and *
+*		administrator's areas 	*
+*		using the user's 		*
+*		nick name 				*
+*Dependencies:					*
+*********************************/
+function find_member($nickName)
+{
+	global $db;
+
+	$query = $sql = "SELECT * FROM user_usr JOIN accesslevel_ual a on a.id_ual = accessLevel_ual_id_ual JOIN level_lvl l on level_lvl_id_lvl = l.id_lvl WHERE nickName_usr = '$nickName'";
+
+	$user_set = $db->query($query);
+	$user_set = $user_set->fetch();
+	
+	return $user_set;
+}
+
+
+//Public Functions
+
+/********************************
+*function name: addMember 		*
+*arguments: $firstName, 		*
+*	$lastName, $nickName, 		*
+*	$password           		*
+*returned data: 				*
+*discription: On successful 	*
+*	registration, user is added *
+*	to database and redirected	*
+* 	to the login page. 			*			*
+*Dependencies:					*
+*********************************/
 function addMember($firstName, $lastName, $nickName, $password){
 	
 	global $db;
@@ -66,31 +216,8 @@ function addMember($firstName, $lastName, $nickName, $password){
 		
 }
 
-function getMemberByID($userID)
-{
-	global $db;
 
-	
-		$query = $sql = "SELECT `firstName_usr`, `lastName_usr`, `nickName_usr`, name_lvl, accessLvl_ual, accessLevel_ual_id_ual, level_lvl_id_lvl
-    FROM user_usr JOIN level_lvl ON level_lvl_id_lvl = id_lvl
-    JOIN accesslevel_ual ON `accessLevel_ual_id_ual` = id_ual
-    WHERE id_usr = '$userID'";
-			$userInfo = $db->query($query);
-			$user=$userInfo->fetch();
-			return $user;
-}
 
-function find_member($nickName)
-{
-	global $db;
-
-	$query = $sql = "SELECT * FROM user_usr JOIN accesslevel_ual a on a.id_ual = accessLevel_ual_id_ual JOIN level_lvl l on level_lvl_id_lvl = l.id_lvl WHERE nickName_usr = '$nickName'";
-
-	$user_set = $db->query($query);
-	$user_set = $user_set->fetch();
-	
-	return $user_set;
-}
 
 function changePassword($oldPass, $newPass, $reNewPass)
 {
@@ -118,44 +245,6 @@ function changePassword($oldPass, $newPass, $reNewPass)
 
 }
 
-//member functions
-
-function memberValidate($action)
-{
-	if($_SESSION['accessLevel'] === '1' )
-        {
-           include('views/includes/members/member.php');
-           
-        } elseif($_SESSION['accessLevel'] === '2') {
-
-          include('views/includes/members/member.php');
-         
-        }else{
-            $_SESSION['error_message']= 'You must be logged in to see the Members section.';
-            include('notloggedinmember.php');
-            
-        }
-}
-
-
-function memUpdate($fName, $lName, $nName)
-{
-	
-	global $db;
-		$query = 'UPDATE user_usr SET firstName_usr = :firstName, lastName_usr = :lastName, nickName_usr = :nickName WHERE id_usr = :user_id';
-		
-		$statement = $db->prepare($query);
-		
-		$statement->bindValue( ':firstName', $fName);
-		$statement->bindValue( ':lastName', $lName);
-		$statement->bindValue( ':nickName', $nName);
-		$statement->bindValue( ':user_id', $_SESSION['user_id']);
-		$statement->execute();
-		$statement->closeCursor();
-		$_SESSION['memberUpdates'] = NULL;
-		return;
-		
-}
 
 
 
