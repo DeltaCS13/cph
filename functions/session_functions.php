@@ -1,25 +1,47 @@
 <?php
 session_start();
 
-function logout()
-{
-	$_SESSION['nickName'];
-	$_SESSION['user_id'];
-	$_SESSION['accessLevel'];	
-	 $_SESSION = array(); 
-	  session_destroy();     // Clean up the session ID
- }
+//login/out functions
 
- function errors()
- {
- 	if (isset($_SESSION['errors']))
- 	{
- 		$errors = $_SESSION['errors'];
+	/********************************
+	*function name: logout 	 		*
+	*arguments: 	           		*
+	*returned data: 				*
+	*description: logs out current 	*
+	*	logged in member and clears *
+	*	session variables. 		*
+	*Dependencies:					*
+	*********************************/
+	function logout()
+	{
+		$_SESSION['nickName'];
+		$_SESSION['user_id'];
+		$_SESSION['accessLevel'];	
+		 $_SESSION = array(); 
+		  session_destroy();     // Clean up the session ID
+	 }
 
- 		//clear session error
- 		$_SESSION['errors'] = null;
+//Error handling functions
+	/********************************
+	*function name: errors 			*
+	*arguments: 	           		*
+	*returned data: $errors			*
+	*description: 					*
+	*	if $_SESSION['errors'] is 	*
+	*	set, $errors is set and 	*
+	* 	returned. 					*
+	*Dependencies:					*
+	*********************************/
+	 function errors()
+	 {
+	 	if (isset($_SESSION['errors']))
+	 	{
+	 		$errors = $_SESSION['errors'];
 
- 		return $errors;
- 	}
- }
-?>
+	 		//clear session error
+	 		$_SESSION['errors'] = null;
+
+	 		return $errors;
+	 	}
+	 }
+	?>
