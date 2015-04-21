@@ -3,426 +3,570 @@ require_once('/session_functions.php');
 require_once('/../controllers/dbconnect.php');
 require_once('/validation_functions.php');
 
+// error handling functions
+	/********************************
+	*function name: confirm_query 	*
+	*arguments: $result_set        	*
+	*returned data:  				*
+	*description: determines if a   *
+	*	query returned a result. 	* 						*
+	*Dependencies: 					*
+	*********************************/
+	function confirm_query($result_set) {
+			if (!$result_set) {
+				die("Database query failed.");
+			}
+		}
+
+	/********************************
+	*function name: form_errors 	*
+	*arguments: $errors (array)    	*
+	*returned data: if error returns*
+	*  	error message. 				*
+	*description: if errors in for 	*
+	*	are found, returns error 	*
+	*		message.				*
+	*Dependencies: 					*
+	*********************************/
+	function form_errors($errors=array())
+	{
+		$output = "";
+		if(!empty($errors))
+		{
+			$output .= "<div class=\"error\">";
+			$output .= "Please fix the following errors:";
+			$output .= "<ul>";
+			foreach ($errors as $key => $error)
+			{
+				$output .= "<li>{$error}</li>";
+			}
+			$output .= "</ul>";
+			$output .= "</div>";
+		}
+		return $output;
+	}
+
+// login functions
+
+	/********************************
+	*function name: password_check 	*
+	*arguments: $password, $pwHash 	*
+	*returned data: 				*
+	*description: checks entered 	*
+	*	 password against stored 	*
+	*	 password. 					*
+	*Dependencies: 					*
+	*********************************/
+	function password_check($password, $pwHash)
+	{
+		global $db;
+			$hashCheck = password_verify($password, $pwHash);
+
+		if( $hashCheck === true)
+		{
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
+	/********************************
+	*function name: is_valid_login 	*
+	*arguments: $password, $nickname*
+	*returned data: user information*
+	*description: checks entered 	*
+	*	 password  and userID(Nick 	*
+	*	 Name) against stored 	 	*
+	*	 password and userID, if  	*
+	*	passed, returns user  		*
+	*	information and sets related*
+	*	session	variables. 			*
+	*Dependencies: 					*
+	*********************************/
+	function is_valid_login($nickName, $password)
+	{
+		global $db;
+		
+		$user = find_member($nickName);
+
+		if ($user['nickName_usr'] === $nickName) {
+				if (password_check($password, $user["password_usr"])){
+
+					
+			 	$_SESSION['user_id'] = $user['id_usr'];
+			 	$_SESSION['firstName'] = $user['firstName_usr'];
+			 	$_SESSION['lastName'] = $user['lastName_usr'];
+	            
+	            $_SESSION['nickName'] = $user['nickName_usr'];
+	          
+	            $_SESSION['accessLevel'] = $user['accessLevel_ual_id_ual'];
+
+	            $_SESSION['accName'] =  $user['accessLvl_ual']; 
+	            $_SESSION['userLevelName'] = $user['name_lvl'];
+	           
+
+	            
+					return $user;
+				}else{
+				return false;
+
+				}
+		}else{
+			return false;
+		}
+	}
 
 //Admin Functions
 
-/********************************
-*function name: adminValisdate 	*
-*arguments: $action            	*
-*returned data:
-*discription: directs to 		*
-*	admin page based on access  *
-*	level 						*
-*Dependencies:
-*********************************/
-function adminValidate($action)
-{
-	if($_SESSION['accessLevel'] === '1')
-        {
-           include('views/includes/admin/admin.php');
-            
-        } else {
-           $_SESSION['error_message'] = 'You must be an Administrator to access the Administration area.';
-            include('notloggedinadmin.php');
-}
-}
+	/********************************
+	*function name: adminValisdate 	*
+	*arguments: $action            	*
+	*returned data:
+	*description: directs to 		*
+	*	admin page based on access  *
+	*	level 						*
+	*Dependencies:
+	*********************************/
+	function adminValidate($action)
+	{
+		if($_SESSION['accessLevel'] === '1')
+	        {
+	           include('views/includes/admin/admin.php');
+	            
+	        } else {
+	           $_SESSION['error_message'] = 'You must be an Administrator to access the Administration area.';
+	            include('notloggedinadmin.php');
+	}
+	}
 
-/********************************
-*function name: admUpdate 		*
-*arguments: $fName, $lName, 	*
-*			$nName, $hLevel,	*
-*			$aLevel            	*
-*returned data: 				*
-*discription: Updates Admin		*
-*	information based on user   *
-*	input. 						*
-*Dependencies:					*
-*********************************/
-function admUpdate($fName, $lName, $nName, $hLevel,
-					$aLevel)
-{
-	$hikerLevel = getHikerLevelID($hLevel);
-	
-	$accessLevel = getAccessLevelID($aLevel);
+	/********************************
+	*function name: admUpdate 		*
+	*arguments: $fName, $lName, 	*
+	*			$nName, $hLevel,	*
+	*			$aLevel            	*
+	*returned data: 				*
+	*description: Updates Admin		*
+	*	information based on user   *
+	*	input. 						*
+	*Dependencies:					*
+	*********************************/
+	function admUpdate($fName, $lName, $nName, $hLevel,
+						$aLevel)
+	{
+		$hikerLevel = getHikerLevelID($hLevel);
+		
+		$accessLevel = getAccessLevelID($aLevel);
 
-	global $db;
-		$query = 'UPDATE user_usr SET firstName_usr = :firstName, lastName_usr = :lastName, nickName_usr = :nickName, level_lvl_id_lvl= :hikerLevel, accessLevel_ual_id_ual = :accessLevel  WHERE id_usr = :user_id';
-		
-		$statement = $db->prepare($query);
-		
-		$statement->bindValue( ':firstName', $fName);
-		$statement->bindValue( ':lastName', $lName);
-		$statement->bindValue( ':nickName', $nName);
-		$statement->bindValue( ':hikerLevel', $hikerLevel['id_lvl']);
-		$statement->bindValue( ':accessLevel', $accessLevel['id_ual']);
-		$statement->bindValue( ':user_id', $_SESSION['user_id']);
-		$statement->execute();
-		$statement->closeCursor();
-		$_SESSION['adminUpdates'] = NULL;
-		return;
-		
-}
+		global $db;
+			$query = 'UPDATE user_usr SET firstName_usr = :firstName, lastName_usr = :lastName, nickName_usr = :nickName, level_lvl_id_lvl= :hikerLevel, accessLevel_ual_id_ual = :accessLevel  WHERE id_usr = :user_id';
+			
+			$statement = $db->prepare($query);
+			
+			$statement->bindValue( ':firstName', $fName);
+			$statement->bindValue( ':lastName', $lName);
+			$statement->bindValue( ':nickName', $nName);
+			$statement->bindValue( ':hikerLevel', $hikerLevel['id_lvl']);
+			$statement->bindValue( ':accessLevel', $accessLevel['id_ual']);
+			$statement->bindValue( ':user_id', $_SESSION['user_id']);
+			$statement->execute();
+			$statement->closeCursor();
+			$_SESSION['adminUpdates'] = NULL;
+			return;
+			
+	}
 
 
 //member functions
 
-/********************************
-*function name: memberValidate	*
-*arguments: $action            	*
-*returned data: 				*
-*discription: Directs user to 	*
-*	member's area page if 		*
-* 	they are a valid member or 	*
-*	admin.						*
-*Dependencies:					*
-*********************************/
-function memberValidate($action)
-{
-	if($_SESSION['accessLevel'] === '1' )
-        {
-           include('views/includes/members/member.php');
-           
-        } elseif($_SESSION['accessLevel'] === '2') {
+	/********************************
+	*function name: memberValidate	*
+	*arguments: $action            	*
+	*returned data: 				*
+	*description: Directs user to 	*
+	*	member's area page if 		*
+	* 	they are a valid member or 	*
+	*	admin.						*
+	*Dependencies:					*
+	*********************************/
+	function memberValidate($action)
+	{
+		if($_SESSION['accessLevel'] === '1' )
+	        {
+	           include('views/includes/members/member.php');
+	           
+	        } elseif($_SESSION['accessLevel'] === '2') {
 
-          include('views/includes/members/member.php');
-         
-        }else{
-            $_SESSION['error_message']= 'You must be logged in to see the Members section.';
-            include('notloggedinmember.php');
-            
-        }
-}
+	          include('views/includes/members/member.php');
+	         
+	        }else{
+	            $_SESSION['error_message']= 'You must be logged in to see the Members section.';
+	            include('notloggedinmember.php');
+	            
+	        }
+	}
 
-/********************************
-*function name: memberUpdate	*
-*arguments: $fName, $lName, 	*
-*			$nName            	*
-*returned data: 				*
-*discription: User enters First *
-*	name, last name, and 		*
-*		nickname to update 		*
-* 		profile 			 	*
-*Dependencies:					*
-*********************************/
-function memUpdate($fName, $lName, $nName)
-{
-	
-	global $db;
-		$query = 'UPDATE user_usr SET firstName_usr = :firstName, lastName_usr = :lastName, nickName_usr = :nickName WHERE id_usr = :user_id';
+	/********************************
+	*function name: memberUpdate	*
+	*arguments: $fName, $lName, 	*
+	*			$nName            	*
+	*returned data: 				*
+	*description: User enters First *
+	*	name, last name, and 		*
+	*		nickname to update 		*
+	* 		profile 			 	*
+	*Dependencies:					*
+	*********************************/
+	function memUpdate($fName, $lName, $nName)
+	{
 		
-		$statement = $db->prepare($query);
-		
-		$statement->bindValue( ':firstName', $fName);
-		$statement->bindValue( ':lastName', $lName);
-		$statement->bindValue( ':nickName', $nName);
-		$statement->bindValue( ':user_id', $_SESSION['user_id']);
-		$statement->execute();
-		$statement->closeCursor();
-		$_SESSION['memberUpdates'] = NULL;
-		return;
-		
-}
+		global $db;
+			$query = 'UPDATE user_usr SET firstName_usr = :firstName, lastName_usr = :lastName, nickName_usr = :nickName WHERE id_usr = :user_id';
+			
+			$statement = $db->prepare($query);
+			
+			$statement->bindValue( ':firstName', $fName);
+			$statement->bindValue( ':lastName', $lName);
+			$statement->bindValue( ':nickName', $nName);
+			$statement->bindValue( ':user_id', $_SESSION['user_id']);
+			$statement->execute();
+			$statement->closeCursor();
+			$_SESSION['memberUpdates'] = NULL;
+			return;
+			
+	}
 
 //Member and Admin functions (functions used for both)
 
-/********************************
-*function name: getMemberByID	*
-*arguments: $userID            	*
-*returned data: First name, Last*
-*	nick name, user level (name *
-	and ID), access level (name *
-	and ID)						*
-*discription: returns user info *
-*	for use in the member's and *
-*		administrator's areas by*
-* 		using the user ID.
-*Dependencies:					*
-*********************************/
-function getMemberByID($userID)
-{
-	global $db;
+	/********************************
+	*function name: getMemberByID	*
+	*arguments: $userID            	*
+	*returned data: First name, Last*
+	*	nick name, user level (name *
+		and ID), access level (name *
+		and ID)						*
+	*description: returns user info *
+	*	for use in the member's and *
+	*		administrator's areas by*
+	* 		using the user ID.
+	*Dependencies:					*
+	*********************************/
+	function getMemberByID($userID)
+	{
+		global $db;
 
-	
-		$query = $sql = "SELECT `firstName_usr`, `lastName_usr`, `nickName_usr`, name_lvl, accessLvl_ual, accessLevel_ual_id_ual, level_lvl_id_lvl
-    FROM user_usr JOIN level_lvl ON level_lvl_id_lvl = id_lvl
-    JOIN accesslevel_ual ON `accessLevel_ual_id_ual` = id_ual
-    WHERE id_usr = '$userID'";
-			$userInfo = $db->query($query);
-			$user=$userInfo->fetch();
-			return $user;
-}
+		
+			$query = $sql = "SELECT `firstName_usr`, `lastName_usr`, `nickName_usr`, name_lvl, accessLvl_ual, accessLevel_ual_id_ual, level_lvl_id_lvl
+	    FROM user_usr JOIN level_lvl ON level_lvl_id_lvl = id_lvl
+	    JOIN accesslevel_ual ON `accessLevel_ual_id_ual` = id_ual
+	    WHERE id_usr = '$userID'";
+				$userInfo = $db->query($query);
+				$user=$userInfo->fetch();
+				return $user;
+	}
 
-/********************************
-*function name: find_member		*
-*arguments: $nickName           *
-*returned data: First name, Last*
-*	nick name, user level (name *
-*	and ID), access level (name *
-*	and ID)						*
-*discription: returns user info *
-*	for use in the member's and *
-*		administrator's areas 	*
-*		using the user's 		*
-*		nick name 				*
-*Dependencies:					*
-*********************************/
-function find_member($nickName)
-{
-	global $db;
+	/********************************
+	*function name: find_member		*
+	*arguments: $nickName           *
+	*returned data: First name, Last*
+	*	nick name, user level (name *
+	*	and ID), access level (name *
+	*	and ID)						*
+	*description: returns user info *
+	*	for use in the member's and *
+	*		administrator's areas 	*
+	*		using the user's 		*
+	*		nick name 				*
+	*Dependencies:					*
+	*********************************/
+	function find_member($nickName)
+	{
+		global $db;
 
-	$query = $sql = "SELECT * FROM user_usr JOIN accesslevel_ual a on a.id_ual = accessLevel_ual_id_ual JOIN level_lvl l on level_lvl_id_lvl = l.id_lvl WHERE nickName_usr = '$nickName'";
+		$query = $sql = "SELECT * FROM user_usr JOIN accesslevel_ual a on a.id_ual = accessLevel_ual_id_ual JOIN level_lvl l on level_lvl_id_lvl = l.id_lvl WHERE nickName_usr = '$nickName'";
 
-	$user_set = $db->query($query);
-	$user_set = $user_set->fetch();
-	
-	return $user_set;
-}
+		$user_set = $db->query($query);
+		$user_set = $user_set->fetch();
+		
+		return $user_set;
+	}
 
+
+	/********************************
+	*function name: changePassword	*
+	*arguments: $oldPass, $newPass, *
+	*			 $reNewPass    		*
+	*returned data: 				*
+	*description: On successful 	*
+	*	entering of old password,   *
+	*	users new choice for 		*
+	* 	will be entered into 		*
+	*	 database 					*
+	*Dependencies:					*
+	*********************************/
+	function changePassword($oldPass, $newPass, $reNewPass)
+	{
+		global $db;
+
+		$nickName = $_SESSION['nickName'];
+		is_valid_login($nickName, $oldPass);
+
+		if ($oldPass === true)
+		{
+			$query = 'UPDATE user_usr SET password_usr = :newPass WHERE id_usr = :user_id';
+			
+			$statement = $db->prepare($query);
+			
+			$statement->bindValue( ':newPass', $newPass);
+			$statement->bindValue( ':user_id', $_SESSION['user_id']);
+			$statement->execute();
+			$statement->closeCursor();
+
+			return;
+		}else{
+			$_SESSION['errors'] = 'IncorccectPassword';
+			return;
+		}
+
+	}
 
 //Public Functions
 
-/********************************
-*function name: addMember 		*
-*arguments: $firstName, 		*
-*	$lastName, $nickName, 		*
-*	$password           		*
-*returned data: 				*
-*discription: On successful 	*
-*	registration, user is added *
-*	to database and redirected	*
-* 	to the login page. 			*			*
-*Dependencies:					*
-*********************************/
-function addMember($firstName, $lastName, $nickName, $password){
-	
-	global $db;
-
-	$password = password_hash($password, PASSWORD_BCRYPT);
-
-	
-	$query = 'INSERT INTO user_usr (firstName_usr, lastName_usr, nickName_usr, password_usr)
-		VALUES(:firstName, :lastName, :nickName, :password)';
+	/********************************
+	*function name: addMember 		*
+	*arguments: $firstName, 		*
+	*	$lastName, $nickName, 		*
+	*	$password           		*
+	*returned data: 				*
+	*description: On successful 	*
+	*	registration, user is added *
+	*	to database and redirected	*
+	* 	to the login page. 			*
+	*Dependencies:					*
+	*********************************/
+	function addMember($firstName, $lastName, $nickName, $password){
 		
-		$statement = $db->prepare($query);
-		
-		$statement->bindValue( ':firstName', $firstName);
-		$statement->bindValue( ':lastName', $lastName);
-		$statement->bindValue( ':nickName', $nickName);
-		$statement->bindValue( ':password', $password);
-		$statement->execute();
-		$statement->closeCursor();
-
-		return;
-		
-}
-
-
-
-
-function changePassword($oldPass, $newPass, $reNewPass)
-{
-	global $db;
-
-	$nickName = $_SESSION['nickName'];
-	is_valid_login($nickName, $oldPass);
-
-	if ($oldPass === true)
-	{
-		$query = 'UPDATE user_usr SET password_usr = :newPass WHERE id_usr = :user_id';
-		
-		$statement = $db->prepare($query);
-		
-		$statement->bindValue( ':newPass', $newPass);
-		$statement->bindValue( ':user_id', $_SESSION['user_id']);
-		$statement->execute();
-		$statement->closeCursor();
-
-		return;
-	}else{
-		$_SESSION['errors'] = 'IncorccectPassword';
-		return;
-	}
-
-}
-
-
-
-
-//Helper functions
-function getAccessName($accNum)
-{
-	global $db;
-
-	$query = $sql = "SELECT accessLvl_ual FROM accesslevel_ual WHERE id_ual = '$accNum'";
-
-	$accResult = $db->query($query);
-	$accResult = $accResult->fetch();
-	return $accResult;
-}
-
-//Miscellaneous Functions
-function allHikerLevels()
-{
-	global $db;
-		$query = $sql = "SELECT * FROM level_lvl";
-		$hikerLevels = $db->query($query);
-		
-		return $hikerLevels;
-}
-
-function allAccessLevels()
-{
-	global $db;
-		$query = $sql = "SELECT * FROM accesslevel_ual";
-		$accessLevels = $db->query($query);
-
-		return $accessLevels;
-}
-function getHikerLevelID($hLevel)
-{ 
-	global $db;
-		$query = $sql = "SELECT id_lvl from level_lvl WHERE name_lvl = '$hLevel'";
-		$hikerLevel = $db->query($query);
-		$hikerLevel = $hikerLevel->fetch();
-		
-		return $hikerLevel;
-		
-}
-
-function getAccessLevelID($aLevel)
-{
 		global $db;
-		$query = $sql = "SELECT id_ual FROM accesslevel_ual WHERE accessLvl_ual = '$aLevel'";
-		$accessLevel = $db->query($query);
-		$accessLevel = $accessLevel->fetch();
-		return $accessLevel;
 
-}
+		$password = password_hash($password, PASSWORD_BCRYPT);
 
-function getGear()
-{
-	global $db;
-	$query = $sql = "Select g.name_gex, g.discription_gex, c.condition_con,u.nickName_usr, g.dateAdded_gex
-   					FROM gearexchange_gex g JOIN condition_con c
-  					ON g.condition_con_id_con = c.id_con
-    				JOIN user_usr u on u.id_usr = g.user_usr_id_usr";
-	$result = $db->query($query);
-	return $result;
-}
+		
+		$query = 'INSERT INTO user_usr (firstName_usr, lastName_usr, nickName_usr, password_usr)
+			VALUES(:firstName, :lastName, :nickName, :password)';
+			
+			$statement = $db->prepare($query);
+			
+			$statement->bindValue( ':firstName', $firstName);
+			$statement->bindValue( ':lastName', $lastName);
+			$statement->bindValue( ':nickName', $nickName);
+			$statement->bindValue( ':password', $password);
+			$statement->execute();
+			$statement->closeCursor();
 
-function findGear($item)
-{
-	global $db;
-	$query = $sql = "Select g.name_gex, g.discription_gex, c.condition_con,u.nickName_usr, g.dateAdded_gex
-   					FROM gearexchange_gex g JOIN condition_con c
-  					ON g.condition_con_id_con = c.id_con
-    				JOIN user_usr u on u.id_usr = g.user_usr_id_usr
-    				WHERE g.name_gex = '$item'";
-	$result = $db->query($query);
-	return $result;
+			return;
+			
+	}
 
-}
-// login functions
-function password_check($password, $pwHash)
-{
-	global $db;
-		$hashCheck = password_verify($password, $pwHash);
 
-	if( $hashCheck === true)
+//gear exchange functions
+
+	/********************************
+	*function name: getGear 		*
+	*arguments:						*
+	*returned data: All Gear Listing*
+	*description: returns all 		*
+	* 	rows in gearExchange_gex 	*
+	*	table. 						*
+	*Dependencies:					*
+	*********************************/
+	function getGear()
 	{
-		return true;
-	} else {
-		return false;
+		global $db;
+		$query = $sql = "Select g.name_gex, g.description_gex, c.condition_con,u.nickName_usr, g.dateAdded_gex
+	   					FROM gearexchange_gex g JOIN condition_con c
+	  					ON g.condition_con_id_con = c.id_con
+	    				JOIN user_usr u on u.id_usr = g.user_usr_id_usr";
+		$result = $db->query($query);
+		return $result;
 	}
 
-}
-
-
-function is_valid_login($nickName, $password)
-{
-	global $db;
-	
-	$user = find_member($nickName);
-
-	if ($user['nickName_usr'] === $nickName) {
-			if (password_check($password, $user["password_usr"])){
-
-				
-		 	$_SESSION['user_id'] = $user['id_usr'];
-		 	$_SESSION['firstName'] = $user['firstName_usr'];
-		 	$_SESSION['lastName'] = $user['lastName_usr'];
-            
-            $_SESSION['nickName'] = $user['nickName_usr'];
-          
-            $_SESSION['accessLevel'] = $user['accessLevel_ual_id_ual'];
-
-            $_SESSION['accName'] =  $user['accessLvl_ual']; 
-            $_SESSION['userLevelName'] = $user['name_lvl'];
-           
-
-            
-				return $user;
-			}else{
-			return false;
-
-			}
-	}else{
-		return false;
-	}
-}
-
-// error handling functions
-
-function confirm_query($result_set) {
-		if (!$result_set) {
-			die("Database query failed.");
-		}
-	}
-
-function form_errors($errors=array())
-{
-	$output = "";
-	if(!empty($errors))
+	/********************************
+	*function name: findGear 		*
+	*arguments: $item          		*
+	*returned data: search results	*
+	*description: search 			*
+	* 	gearExchange_gex for gear 	*
+	*	listing based on item name 	*
+	*	inputed by user.			*
+	*Dependencies:					*
+	*********************************/
+	function findGear($item)
 	{
-		$output .= "<div class=\"error\">";
-		$output .= "Please fix the following errors:";
-		$output .= "<ul>";
-		foreach ($errors as $key => $error)
-		{
-			$output .= "<li>{$error}</li>";
-		}
-		$output .= "</ul>";
-		$output .= "</div>";
-	}
-	return $output;
-}
+		global $db;
+		$query = $sql = "Select g.name_gex, g.description_gex, c.condition_con,u.nickName_usr, g.dateAdded_gex
+	   					FROM gearexchange_gex g JOIN condition_con c
+	  					ON g.condition_con_id_con = c.id_con
+	    				JOIN user_usr u on u.id_usr = g.user_usr_id_usr
+	    				WHERE g.name_gex = '$item'";
+		$result = $db->query($query);
+		return $result;
 
+	}
 
 //Event Functions
 
-function getEvents()
-{
-	global $db;
-	$query = $sql = "Select e.name_evt, e.location_evt, s.name_sre,c.country_cou, e.dateTime_evt
-   					FROM events_evt e JOIN subregions_sre s
-  					ON e.subregions_sre_id_sre = s.id_sre
-    				JOIN regions_cou c on s.region_id_sre = c.id_cou
-    				ORDER BY dateTime_evt Desc";
-	$result = $db->query($query);
-	return $result;
-}
+	/********************************
+	*function name: getEvents 		*
+	*arguments: 	           		*
+	*returned data: all events from *
+	*	events_evt table			*
+	*description: returns all 		*
+	*	information from events_evt *
+	*	table to populate lists.	*
+	*Dependencies:					*
+	*********************************/
+	function getEvents()
+	{
+		global $db;
+		$query = $sql = "Select e.name_evt, e.location_evt, s.name_sre,c.country_cou, e.dateTime_evt
+	   					FROM events_evt e JOIN subregions_sre s
+	  					ON e.subregions_sre_id_sre = s.id_sre
+	    				JOIN regions_cou c on s.region_id_sre = c.id_cou
+	    				ORDER BY dateTime_evt Desc";
+		$result = $db->query($query);
+		return $result;
+	}
 
-function  getEventDetails($eventDetail)
-{
-	global $db;
-	$query = $sql = "Select e.name_evt, e.location_evt, s.name_sre,e.discription_evt, c.country_cou, e.dateTime_evt
-   					FROM events_evt e JOIN subregions_sre s
-  					ON e.subregions_sre_id_sre = s.id_sre
-    				JOIN regions_cou c on s.region_id_sre = c.id_cou
-    				WHERE e.name_evt = '$eventDetail'";
-	$result = $db->query($query);
-	$_SESSION['eventDetail'] = $eventDetail;
-	
-	return $result;
+	/********************************
+	*function name: getEventDetails	*
+	*arguments:$eventDetail    		*
+	*returned data: all information	*
+	*		from one record in 		*
+	*		events_evt table. 		*
+	*description: returns 	 		*
+	*	information from events_evt *
+	*	table based on selected  	*
+	*		event name.				*
+	*Dependencies:					*
+	*********************************/
+	function  getEventDetails($eventDetail)
+	{
+		global $db;
+		$query = $sql = "Select e.name_evt, e.location_evt, s.name_sre,e.description_evt, c.country_cou, e.dateTime_evt
+	   					FROM events_evt e JOIN subregions_sre s
+	  					ON e.subregions_sre_id_sre = s.id_sre
+	    				JOIN regions_cou c on s.region_id_sre = c.id_cou
+	    				WHERE e.name_evt = '$eventDetail'";
+		$result = $db->query($query);
+		$_SESSION['eventDetail'] = $eventDetail;
+		
+		return $result;
 
-}
+	}
+
+
+//Miscellaneous Functions
+
+	/********************************
+	*function name: getAccessName	*
+	*arguments: $accNum    			*
+	*returned data: name of access 	*
+	*	associated with the ID  	*
+	*	number	associated with the *
+	*	users access level 			*
+	*description: Takes the ID 		*
+	*	number associated with ID 	*
+	*	and returns the access level*
+	*	name. 						*
+	*Dependencies:					*
+	*********************************/
+	function getAccessName($accNum)
+	{
+		global $db;
+
+		$query = $sql = "SELECT accessLvl_ual FROM accesslevel_ual WHERE id_ual = '$accNum'";
+
+		$accResult = $db->query($query);
+		$accResult = $accResult->fetch();
+		return $accResult;
+	}
+
+	/********************************
+	*function name: allHikerLevels	*
+	*arguments: 	    			*
+	*returned data: all fields from *
+	*	the level_lvl table 		*
+	*	description: returns all 	*
+	*	fields in level_lvl table 	*
+	*	for	populating lists.		*
+	*Dependencies:					*
+	*********************************/
+	function allHikerLevels()
+	{
+		global $db;
+			$query = $sql = "SELECT * FROM level_lvl";
+			$hikerLevels = $db->query($query);
+			
+			return $hikerLevels;
+	}
+
+	/********************************
+	*function name: allAccessLevels	*
+	*arguments: 	    			*
+	*returned data: all fields from *
+	*	the accesslevel_ual table	*
+	*	description: returns all 	*
+	*	fields in accesslevel_ual 	* 
+	*	table for populating lists.	*
+	*Dependencies:					*
+	*********************************/
+	function allAccessLevels()
+	{
+		global $db;
+			$query = $sql = "SELECT * FROM accesslevel_ual";
+			$accessLevels = $db->query($query);
+
+			return $accessLevels;
+	}
+
+	/********************************
+	*function name: getHikerLevelID *
+	*arguments: $hLevel	    		*
+	*returned data: id number from 	*
+	* 		hike level name 	 	*
+	*	description: gets ID # of  	*
+	*	hiker level from hike level *
+	*	name.						*
+	*Dependencies:					*
+	*********************************/
+	function getHikerLevelID($hLevel)
+	{ 
+		global $db;
+			$query = $sql = "SELECT id_lvl from level_lvl WHERE name_lvl = '$hLevel'";
+			$hikerLevel = $db->query($query);
+			$hikerLevel = $hikerLevel->fetch();
+			
+			return $hikerLevel;
+			
+	}
+
+	/********************************
+	*function name: getAccessLevelID*
+	*arguments: $aLevel	    		*
+	*returned data: access level ID#*
+	*description: ID # from access 	* 
+	* 	level name 					*
+	*Dependencies:					*
+	*********************************/
+	function getAccessLevelID($aLevel)
+	{
+			global $db;
+			$query = $sql = "SELECT id_ual FROM accesslevel_ual WHERE accessLvl_ual = '$aLevel'";
+			$accessLevel = $db->query($query);
+			$accessLevel = $accessLevel->fetch();
+			return $accessLevel;
+
+	}
+
+
+
