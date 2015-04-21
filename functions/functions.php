@@ -132,7 +132,8 @@ require_once('/validation_functions.php');
 	{
 		if($_SESSION['accessLevel'] === '1')
 	        {
-	           include('views/includes/admin/admin.php');
+	        	$action = 'admin';
+	           include('/views/includes/admin/admin.php');
 	            
 	        } else {
 	           $_SESSION['error_message'] = 'You must be an Administrator to access the Administration area.';
@@ -450,7 +451,7 @@ require_once('/validation_functions.php');
 	*Dependencies:					*
 	*********************************/
 	function  getEventDetails($eventDetail)
-	{
+	{ 
 		global $db;
 		$query = $sql = "Select e.name_evt, e.location_evt, s.name_sre,e.description_evt, c.country_cou, e.dateTime_evt
 	   					FROM events_evt e JOIN subregions_sre s
@@ -458,8 +459,7 @@ require_once('/validation_functions.php');
 	    				JOIN regions_cou c on s.region_id_sre = c.id_cou
 	    				WHERE e.name_evt = '$eventDetail'";
 		$result = $db->query($query);
-		$_SESSION['eventDetail'] = $eventDetail;
-		
+				
 		return $result;
 
 	}

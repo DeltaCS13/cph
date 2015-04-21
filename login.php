@@ -20,7 +20,7 @@
 				<legend><h2>CPH Member Login</h2></legend>
 					<p>Fields marked with an asterisks (*) are requiered.</p>
 			</fieldset>
-				<input type="hidden" name="action" value="login">
+				<input type="hidden" name="action" value="logMeIn">
 					<label>Trail Name *:<br>
 					<input type="text" name="nickName" required placeholder="User Name"  value="<?php if(isset($_POST['nickName'])) echo $_POST['nickName'];?>" ></label><br>
 					<label>Password *:<br>

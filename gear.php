@@ -37,7 +37,7 @@ include('views/includes/header.php');?>
 		
 		<thead>
 			<tr>
-				<th>Item</th><th>Discription</th>
+				<th>Item</th><th>Description</th>
 				<th>Condition</th><th>Listing Member</th><th>Date Listed</th>
 			</tr>
 	</thead>
@@ -54,7 +54,7 @@ include('views/includes/header.php');?>
 		<tbody>
 			<tr>
 				<td><?php echo $gear['name_gex']; ?></td>
-				<td><?php echo $gear['discription_gex']; ?></td>
+				<td><?php echo $gear['description_gex']; ?></td>
 				<td><?php echo $gear['condition_con']; ?></td>
 				<td><?php echo $gear['nickName_usr']; ?></td>
 				<td><?php echo $gear['dateAdded_gex'] ?></td>

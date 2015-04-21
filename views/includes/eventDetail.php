@@ -1,10 +1,12 @@
-<?php
+<?php 
 		if(isset($_SESSION['eventDetail']))
 		{ ?>
 		<article class="content2">
 	<?php
+			
 			$_SESSION['eventDetail'] = $eventName;
-			$eventDetails = getEventDetails($eventName); 
+			$eventDetails = getEventDetails($eventName);
+			 
 			foreach ($eventDetails as $key => $eventDetail):
 				
 		
@@ -16,7 +18,7 @@
 				<p><?php echo htmlentities($eventDetail['location_evt']); ?><br><?php echo htmlentities($eventDetail['name_sre']);echo ', ';
 				 echo htmlentities($eventDetail['country_cou']);?></p>
 			<h3>Description:</h3>
-			<p><?php echo htmlentities($eventDetail['discription_evt'])?></p>
+			<p><?php echo htmlentities($eventDetail['description_evt'])?></p>
 	<?php endforeach;
 	}
 	$_SESSION['eventDetail'] = NULL;
