@@ -26,7 +26,7 @@ include('views/includes/header.php');
 		<p>Fields marked with an asterisks (*) are requiered.</p>
 
 
-	<input type="hidden" name="action" value="register">
+	<input type="hidden" name="action" value="newRegister">
 
 	<label>First Name *:<br>
 	<input type="text" name="firstName" placeholder="John" required value="<?php if(isset($_POST['firstName'])) echo $_POST['firstName'];?>"></label><br>

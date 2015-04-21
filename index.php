@@ -45,21 +45,21 @@ require_once('functions/session_functions.php');
              
               if($_SESSION['accessLevel'] === '1')
               {
-                 $action ='admin';
-                 include('/views/includes/admin/admin.php');
+                 //$action ='admin';
+                 header('Location:index.php?action=admin');
                  break;
               }
               elseif($_SESSION['accessLevel'] === '2') 
               {
-                   $action = 'member';
-                 include('/views/includes/members/member.php');
+                   //$action = 'member';
+                 header('Location:index.php?action=member');
                    break;
               }
             else
               {
                   $_SESSION['error_message']='You entered an invalid Trail Name or Password.';
                   
-                  include('login.php');
+                  header('Location:index.php?action=login');
                   break;
               }
          }
@@ -73,19 +73,25 @@ require_once('functions/session_functions.php');
       case "register":
 
         include('register.php');
+        break;
+
+      case "newRegister":
 
       	$firstName = $_POST['firstName'];
       	$lastName = $_POST['lastName'];
       	$nickName = $_POST['nickName'];
       	$password = $_POST['password'];
-      
+      $_SESSION['nickName']= $nickName;
+
+      echo 'in index :  '.$_SESSION['nickName'];
         $required_fields = array('firstName', 'lastName', 'nickName', 'password');
 
 
       	addMember($firstName, $lastName, $nickName, $password);
          
         
-          include('index.php?action=login');
+        
+        header('Location:index.php?action=login');
       	
           break;
 
@@ -178,7 +184,7 @@ require_once('functions/session_functions.php');
 
       case "events":
       $_SESSION['selected']= 'events';
-          include('events.php');
+          include('views/includes/events/events.php');
           break;
        
       case "eventDetails":
@@ -189,7 +195,7 @@ require_once('functions/session_functions.php');
         $_POST['eventName'] = NULL;
         $_SESSION['eventDetail'] = $eventName;
         $action = 'events';
-        include('events.php');
+        include('views/includes/events/events.php');
         break;
 
       case "logout":

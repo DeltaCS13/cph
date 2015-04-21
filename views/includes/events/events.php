@@ -47,7 +47,7 @@
 
 <!-- Event Details-->
 <?php
-include('views/includes/eventDetail.php');
+include('views/includes/events/eventDetail.php');
 ?>
 	
   </article>

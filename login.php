@@ -22,7 +22,7 @@
 			</fieldset>
 				<input type="hidden" name="action" value="logMeIn">
 					<label>Trail Name *:<br>
-					<input type="text" name="nickName" required placeholder="User Name"  value="<?php if(isset($_POST['nickName'])) echo $_POST['nickName'];?>" ></label><br>
+					<input type="text" name="nickName" required placeholder="User Name"  value="<?php if(isset($_SESSION['nickName'])) echo $_SESSION['nickName'];?>" ></label><br>
 					<label>Password *:<br>
 					<input type="password" name="password" required placeholder="********" ><br></label>
 						<input type="submit" value="login" >

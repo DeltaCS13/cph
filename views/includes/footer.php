@@ -7,8 +7,8 @@
 	if(!isset($_SESSION['user_id']))
 		{?>
 	
-    <li><a href="login.php" title="Login">Login</a>
-      <li><a href="register.php" title="registration">Join Us</a>
+    <li><a href="index.php?action=login" title="Login">Login</a>
+      <li><a href="index.php?action=register" title="registration">Join Us</a>
     <?php } ?>
 	
      <?php if(isset($_SESSION['accessLevel'])){
