@@ -9,7 +9,7 @@ require_once('/validation_functions.php');
 	*arguments: $result_set        	*
 	*returned data:  				*
 	*description: determines if a   *
-	*	query returned a result. 	* 						*
+	*	query returned a result. 	* 						
 	*Dependencies: 					*
 	*********************************/
 	function confirm_query($result_set) {
@@ -89,6 +89,7 @@ require_once('/validation_functions.php');
 	function is_valid_login($nickName, $password)
 	{
 		global $db;
+		$action = $_POST['action'];
 
 		$user = find_member($nickName);
 

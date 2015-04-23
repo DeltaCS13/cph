@@ -52,8 +52,7 @@ include('views/includes/events/eventDetail.php');
 	
   </article>
   
-</div>
+
 <div class="floatReset"></div>
 <?php include('views/includes/footer.php');
 ?>
-</div>

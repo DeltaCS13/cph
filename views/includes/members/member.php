@@ -27,8 +27,7 @@
 <?php 
   include('memberUpdate.php'); 
 ?>
-</article>
+
 <div class="floatReset"></div>
 <?php include('/../../includes/footer.php');
 ?>
-</div>

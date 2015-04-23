@@ -5,7 +5,7 @@
 <?php if(isset($_SESSION['error_message']))
 	{
 		?><h2><?php echo htmlentities($_SESSION['error_message']); ?></h2>
-		<p>Please try again. Not yet a member? <a href="register.php">Register Here</a> to join the hike.</p><?php
+		<p>Please try again. Not yet a member? <a href="index.php?action=register">Register Here</a> to join the hike.</p><?php
 	}
   		$_SESSION['error_message'] = null; ?> 
 	<div class="form1">
@@ -22,7 +22,7 @@
 			</fieldset>
 				<input type="hidden" name="action" value="logMeIn">
 					<label>Trail Name *:<br>
-					<input type="text" name="nickName" required placeholder="User Name"  value="<?php if(isset($_SESSION['nickName'])) echo $_SESSION['nickName'];?>" ></label><br>
+					<input type="text" name="trail_Name" required placeholder="User Name"  value="<?php if(isset($_SESSION['trail_Name'])) {echo $_SESSION['trail_Name'];}?>" ></label><br>
 					<label>Password *:<br>
 					<input type="password" name="password" required placeholder="********" ><br></label>
 						<input type="submit" value="login" >
@@ -31,7 +31,7 @@
 		</form><!-- form -->
 	</div><!--/form-->
 </article>
-</article>
+
 <?php include('views/includes/footer.php');
 ?>
 </div><!--/wrapper-->

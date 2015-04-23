@@ -50,10 +50,11 @@
 	</tbody></table>
 </article>	
 <div class="floatReset"></div>
-  </article>
   
-</div>
+  
+
 
 <?php include('views/includes/footer.php');
 ?>
-</div>
+
+

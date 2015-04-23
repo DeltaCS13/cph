@@ -64,7 +64,7 @@ include('views/includes/header.php');?>
 </article>
 
 <div class="floatReset"></div>
-  </article>
+ 
 
 
 <?php include('views/includes/footer.php');

@@ -27,5 +27,6 @@
   </article>
   
 </footer>
+</div> <!--/wrapper-->
 </body>
 </html>

@@ -29,10 +29,10 @@ require_once('functions/session_functions.php');
 
       case "logMeIn":
 
-          $nickName = $_POST['nickName'];
+          $nickName = $_POST['trail_Name'];
           $password = $_POST['password'];
 
-          $required_fields = array('nickName', 'password');
+          $required_fields = array('trail_Name', 'password');
 
             validate_presences($required_fields);
               if (!empty($errors))
@@ -69,27 +69,34 @@ require_once('functions/session_functions.php');
 
       case "newRegister":
 
-      	$firstName = $_POST['firstName'];
-      	$lastName = $_POST['lastName'];
-      	$nickName = $_POST['nickName'];
+      	$firstName = $_POST['first_Name'];
+      	$lastName = $_POST['last_Name'];
+      	$nickName = $_POST['trail_Name'];
       	$password = $_POST['password'];
-      $_SESSION['nickName']= $nickName;
+     
 
-      echo 'in index :  '.$_SESSION['nickName'];
-        $required_fields = array('firstName', 'lastName', 'nickName', 'password');
+      
+        $required_fields = array('first_Name', 'last_Name', 'trail_Name', 'password');
 
+        validate_presences($required_fields);
+              if (!empty($errors))
+              { 
+                $_SESSION["errors"] = $errors;
+                include('register.php');
+              } else {
 
       	addMember($firstName, $lastName, $nickName, $password);
          
-        
+        $_SESSION['trail_Name'] = $nickName;
         
         header('Location:index.php?action=login');
-      	
+      	}
           break;
 
       case "member":
          
           memberValidate($action);
+
           break;
        
       case "admin":

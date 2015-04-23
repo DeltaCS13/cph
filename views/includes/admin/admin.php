@@ -29,4 +29,3 @@
 <div class="floatReset"></div>
 <?php include('/../../includes/footer.php');
 ?>
-</div><!--/wrapper-->

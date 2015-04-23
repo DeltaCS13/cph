@@ -59,8 +59,8 @@ if (!isset($_SESSION['adminUpdates'])){
 	</form>
 
 	</div><!--/form-->
-</article>
-<div class="form1">	
+
+<!--<div class="form1">	-->
 
 <!--<form action="index.php" method="post" id="memPassUpdateForm">
 <?php

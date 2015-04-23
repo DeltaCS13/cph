@@ -404,18 +404,20 @@
 
     .content2 {
         float: left;
-        width: 45%;
+        width: 42%;
         background-color: #E0F8E0;
         margin: 2% ;
-        padding:2% 3% 5% 3%;
+        padding:2% 2% 5% 2%;
         border-radius: 10px;
         box-shadow: 10px 10px 5px #020;
-    }/*Table*/
+    }
+
+/*Table*/
   .contentTable {
       float: left;
       width: 45%;
       background-color: #E0F8E0;
-      margin: 2% 0;
+      margin: 2% ;
       border-radius: 10px;
       box-shadow: 10px 10px 5px #020;
       padding: 2% 0;

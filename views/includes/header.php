@@ -44,12 +44,10 @@
           if(isset($_SESSION['user_id']))
         {?>
       <li><a <?php if ($action === 'logout'){?> class="selected" <?php } ?> href="index.php?action=logout" title="Logout">Welcome <?php echo htmlentities($_SESSION['nickName']);?>, Logout</a><?php }else{?>
-        <li><a <?php if ($action === 'login'){?> class="selected" <?php } ?> href="index.php?action=login" title="Login">Login</a> <?php } ?>
+        <li><a <?php if ($action === 'login' || $action === 'LogMeIn'){?> class="selected" <?php } ?> href="index.php?action=login" title="Login">Login</a> <?php } ?>
     </ul>
   </nav>
 </header>
 
-<div id="contentWrapper">
 
-  <article id="mainContent">
    
