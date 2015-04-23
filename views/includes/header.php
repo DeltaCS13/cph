@@ -34,7 +34,7 @@
 
       <li ><a <?php if ($action === 'gear'){?> class="selected" <?php } ?>href="index.php?action=gear " title="Gear Exchange">Gear Exchange</a>
 
-      <li ><a <?php if ($action === 'events'){?> class="selected" <?php } ?>href="index.php?action=events " title="Events Page">Events Page</a>
+      <li ><a <?php if ($action === 'events'){?> class="selected" <?php } ?>href="index.php?action=events " title="Events Page">Events</a>
       
       <?php if(!isset($_SESSION['user_id'])){?>
       <li><a <?php if ($action === 'register'){?> class="selected" <?php } ?> href="index.php?action=register" title="registration">Join Us</a>
