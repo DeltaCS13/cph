@@ -14,7 +14,7 @@ require_once('functions/session_functions.php');
   }
 //if user not logged in
  
-  if(!isset($_SESSION['accessLevel']))
+  if(!isset($_SESSION['nickName']))
   {
     $_SESSION['accessLevel'] = null;
   }
@@ -27,42 +27,44 @@ require_once('functions/session_functions.php');
 
         include('login.php');
         break;
+
       case "logMeIn":
 
+          
           $nickName = $_POST['nickName'];
           $password = $_POST['password'];
           $required_fields = array('nickName', 'password');
 
-  validate_presences($required_fields);
-    if (!empty($errors))
-    {
-      $_SESSION["errors"] = $errors;
-      include("login.php");
-      break;
-    }
-          if (is_valid_login($nickName, $password)) {
-         
-             
-              if($_SESSION['accessLevel'] === '1')
+            validate_presences($required_fields);
+              if (!empty($errors))
               {
-                 //$action ='admin';
-                 header('Location:index.php?action=admin');
-                 break;
+                $_SESSION["errors"] = $errors;
+                include('login.php');
+                
               }
-              elseif($_SESSION['accessLevel'] === '2') 
-              {
-                   //$action = 'member';
-                 header('Location:index.php?action=member');
-                   break;
-              }
-            else
-              {
-                  $_SESSION['error_message']='You entered an invalid Trail Name or Password.';
-                  
-                  header('Location:index.php?action=login');
-                  break;
-              }
-         }
+                    if (is_valid_login($nickName, $password)) {
+                   
+                       
+                        if($_SESSION['accessLevel'] === '1')
+                        {
+                           //$action ='admin';
+                           header('Location:index.php?action=admin');
+                           break;
+                        }
+                        elseif($_SESSION['accessLevel'] === '2') 
+                        {
+                             //$action = 'member';
+                           header('Location:index.php?action=member');
+                             break;
+                        }
+                      elseif($_SESSION['accessLevel'] === NULL)
+                        { 
+                            $_SESSION['error_message']='You entered an invalid Trail Name or Password.';
+                            $action = 'login';
+                            include('login.php');
+                            break;
+                        }
+                   }
 
       case "pubhome":
           
