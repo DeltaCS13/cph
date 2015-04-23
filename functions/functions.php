@@ -66,7 +66,9 @@ require_once('/validation_functions.php');
 		{
 			return true;
 		} else {
-			return false;
+			$_SESSION['error_message']='You entered an invalid Trail Name or Password.';
+                        $action = 'login';
+                        include('login.php');
 		}
 
 	}
@@ -87,7 +89,7 @@ require_once('/validation_functions.php');
 	function is_valid_login($nickName, $password)
 	{
 		global $db;
-		
+
 		$user = find_member($nickName);
 
 		if ($user['nickName_usr'] === $nickName) {
@@ -113,7 +115,11 @@ require_once('/validation_functions.php');
 
 				}
 		}else{
-			return false;
+			 $_SESSION['error_message']='You entered an invalid Trail Name or Password.';
+                        $action = 'login';
+                        include('login.php');
+                       
+			
 		}
 	}
 

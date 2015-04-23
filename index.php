@@ -20,7 +20,6 @@ require_once('functions/session_functions.php');
   }
 
   $_SESSION['action'] = $action ; 
-
 //perform action
   switch($action) {
       case "login":
@@ -30,41 +29,32 @@ require_once('functions/session_functions.php');
 
       case "logMeIn":
 
-          
           $nickName = $_POST['nickName'];
           $password = $_POST['password'];
+
           $required_fields = array('nickName', 'password');
 
             validate_presences($required_fields);
               if (!empty($errors))
-              {
+              { 
                 $_SESSION["errors"] = $errors;
                 include('login.php');
-                
-              }
-                    if (is_valid_login($nickName, $password)) {
-                   
-                       
-                        if($_SESSION['accessLevel'] === '1')
-                        {
-                           //$action ='admin';
-                           header('Location:index.php?action=admin');
-                           break;
-                        }
-                        elseif($_SESSION['accessLevel'] === '2') 
-                        {
-                             //$action = 'member';
-                           header('Location:index.php?action=member');
-                             break;
-                        }
-                      elseif($_SESSION['accessLevel'] === NULL)
-                        { 
-                            $_SESSION['error_message']='You entered an invalid Trail Name or Password.';
-                            $action = 'login';
-                            include('login.php');
-                            break;
-                        }
-                   }
+              } 
+                if (is_valid_login($nickName, $password)) {
+               
+                    if($_SESSION['accessLevel'] === '1')
+                    { 
+                       $action ='admin';
+                       include('views/includes/admin/admin.php');
+                       break;
+                    }
+                    elseif($_SESSION['accessLevel'] === '2') 
+                    { 
+                         $action = 'member';
+                       include('views/includes/members/member.php');
+                         break;
+                    }
+               } break;
 
       case "pubhome":
           

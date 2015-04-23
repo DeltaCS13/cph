@@ -40,7 +40,7 @@ if (!isset($_SESSION['adminUpdates'])){
 			<?php $hikerLevels = allHikerLevels();
 			
 				foreach ($hikerLevels as $hikerLevel): ?>
-					<option value="<?php echo htmlentities($hikerLevel['name_lvl'])?>"><?php echo htmlentities($hikerLevel['name_lvl']);?>, <?php echo htmlentities($hikerLevel['description_lvl']);?></option>
+					<option value="<?php echo htmlentities($hikerLevel['name_lvl'])?>"><?php echo htmlentities($hikerLevel['name_lvl']).' ( '. htmlentities($hikerLevel['description_lvl']).' )';?></option>
 				<?php endforeach;?>
 			</select>
 		</label>
@@ -81,3 +81,4 @@ if (!isset($_SESSION['adminUpdates'])){
 
 <?php }
 ?>
+
