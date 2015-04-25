@@ -521,11 +521,21 @@
     margin: 1% 0;
   }
   input:focus {
-      background: #eaeaea;
+      background: #5f9f1f;
+      box-shadow: 7px 7px 10px #1f6f1f;
   }
 
-  input:required:valid{
-      background-color:#FF0;
+  input:required:valid {
+      background-color:#5fff1f;
+  }
+
+  select {
+     background-color:#cfcfcf;
+  }
+
+  select:focus{
+      background: #5f9f1f;
+      box-shadow: 7px 7px 10px #1f6f1f;
   }
 
   h2 {

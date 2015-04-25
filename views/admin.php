@@ -1,4 +1,4 @@
-<?php include('/../../includes/header.php');?>
+<?php include('includes/header.php');?>
 
 <article class="content1">  
   <h1 class="pageTitle">Admin Page</h1>
@@ -23,9 +23,9 @@
 </article>
 
 <?php 
-  include('adminUpdate.php');
+  include('includes/admin/adminUpdate.php');
 ?>
 </article>
 <div class="floatReset"></div>
-<?php include('/../../includes/footer.php');
+<?php include('includes/footer.php');
 ?>

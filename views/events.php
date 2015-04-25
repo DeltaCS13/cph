@@ -1,4 +1,4 @@
-  <?php include('views/includes/header.php');?>
+  <?php include('includes/header.php');?>
 
    <article class="content1">
 		<h1 class="pageTitle">Events</h1>	
@@ -47,12 +47,12 @@
 
 <!-- Event Details-->
 <?php
-include('views/includes/events/eventDetail.php');
+include('includes/events/eventDetail.php');
 ?>
 	
   </article>
   
 
 <div class="floatReset"></div>
-<?php include('views/includes/footer.php');
+<?php include('includes/footer.php');
 ?>

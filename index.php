@@ -24,7 +24,7 @@ require_once('functions/session_functions.php');
   switch($action) {
       case "login":
 
-        include('login.php');
+        include('views/login.php');
         break;
 
       case "logMeIn":
@@ -38,20 +38,20 @@ require_once('functions/session_functions.php');
               if (!empty($errors))
               { 
                 $_SESSION["errors"] = $errors;
-                include('login.php');
+                include('views/login.php');
               } 
                 if (is_valid_login($nickName, $password)) {
                
                     if($_SESSION['accessLevel'] === '1')
                     { 
                        $action ='admin';
-                       include('views/includes/admin/admin.php');
+                       include('views/admin.php');
                        break;
                     }
                     elseif($_SESSION['accessLevel'] === '2') 
                     { 
                          $action = 'member';
-                       include('views/includes/members/member.php');
+                       include('views/member.php');
                          break;
                     }
                } break;
@@ -59,12 +59,12 @@ require_once('functions/session_functions.php');
       case "pubhome":
           
           $_SESSION['selected'] = 'home';
-          include('pubhome.php');
+          include('views/pubhome.php');
           break;
 
       case "register":
 
-        include('register.php');
+        include('views/register.php');
         break;
 
       case "newRegister":
@@ -127,7 +127,7 @@ require_once('functions/session_functions.php');
          $_SESSION['nickName']= $userInfo['nickName_usr'];
         
         $action = 'member';
-        include('views/includes/members/member.php');
+        include('views/member.php');
         break;
 
       case "memPassUpdate":
@@ -140,7 +140,7 @@ require_once('functions/session_functions.php');
 
         changePassword($oldPass, $newPass, $reNewPass);
 
-        include('views/includes/members/member.php');
+        include('views/member.php');
         break;
 
       case "adminUpdate";
@@ -168,7 +168,7 @@ require_once('functions/session_functions.php');
          $_SESSION['userLevel']= $userInfo['level_lvl_id_lvl'];
 
         $action = 'admin';
-         include('views/includes/admin/admin.php');
+         include('views/admin.php');
          break;
 
       case "gear":
@@ -183,7 +183,7 @@ require_once('functions/session_functions.php');
 
       case "events":
       $_SESSION['selected']= 'events';
-          include('views/includes/events/events.php');
+          include('views/events.php');
           break;
        
       case "eventDetails":
@@ -194,19 +194,15 @@ require_once('functions/session_functions.php');
         $_POST['eventName'] = NULL;
         $_SESSION['eventDetail'] = $eventName;
         $action = 'events';
-        include('views/includes/events/events.php');
+        include('views/events.php');
         break;
 
       case "logout":
 
           $nickNameLogOut = $_SESSION['nickName'];
           logout();
-         /* $_SESSION['nickName'];
-          $_SESSION['user_id'];
-          $_SESSION['accessLevel'];   
-          $_SESSION = array(); 
-          session_destroy();     // Clean up the session */
-          include('logout.php');
+   
+          include('views/logout.php');
           break;
 
      

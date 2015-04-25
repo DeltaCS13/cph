@@ -14,6 +14,7 @@ require_once('/validation_functions.php');
 	*********************************/
 	function confirm_query($result_set) {
 			if (!$result_set) {
+				$_SESSION['error_message'] = 'No results found';
 				die("Database query failed.");
 			}
 		}
@@ -68,7 +69,7 @@ require_once('/validation_functions.php');
 		} else {
 			$_SESSION['error_message']='You entered an invalid Trail Name or Password.';
                         $action = 'login';
-                        include('login.php');
+                        include('views/login.php');
 		}
 
 	}
@@ -118,7 +119,7 @@ require_once('/validation_functions.php');
 		}else{
 			 $_SESSION['error_message']='You entered an invalid Trail Name or Password.';
                         $action = 'login';
-                        include('login.php');
+                        include('views/login.php');
                        
 			
 		}
@@ -140,11 +141,11 @@ require_once('/validation_functions.php');
 		if($_SESSION['accessLevel'] === '1')
 	        {
 	        	$action = 'admin';
-	           include('/views/includes/admin/admin.php');
+	           include('/views/admin.php');
 	            
 	        } else {
 	           $_SESSION['error_message'] = 'You must be an Administrator to access the Administration area.';
-	            include('notloggedinadmin.php');
+	            include('views/includes/errors/notloggedinadmin.php');
 	}
 	}
 
@@ -201,15 +202,15 @@ require_once('/validation_functions.php');
 	{
 		if($_SESSION['accessLevel'] === '1' )
 	        {
-	           include('views/includes/members/member.php');
+	           include('views/member.php');
 	           
 	        } elseif($_SESSION['accessLevel'] === '2') {
 
-	          include('views/includes/members/member.php');
+	          include('views/member.php');
 	         
 	        }else{
 	            $_SESSION['error_message']= 'You must be logged in to see the Members section.';
-	            include('notloggedinmember.php');
+	            include('views/includes/errors/notloggedinmember.php');
 	            
 	        }
 	}
@@ -332,7 +333,7 @@ require_once('/validation_functions.php');
 
 			return;
 		}else{
-			$_SESSION['errors'] = 'IncorccectPassword';
+			$_SESSION['errors'] = 'Incorrect Password';
 			return;
 		}
 
