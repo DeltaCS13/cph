@@ -22,7 +22,7 @@ include('views/includes/header.php');
 ?>
 <form action="index.php" method="post" id="registerForm">
 
-	<fieldset><h2>New Member Registration</h2></fieldset>
+	<fieldset><h1>New Member Registration</h1></fieldset>
 		<p>Fields marked with an asterisks (*) are requiered.</p>
 
 

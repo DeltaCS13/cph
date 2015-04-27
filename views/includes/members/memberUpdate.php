@@ -6,8 +6,8 @@ if (!isset($_SESSION['memberUpdates'])){
 
 <h2 class="pageTitleH2">Member Actions</h2>
   <ul class="menu1">
-    <li><a href="index.php?action=memberUpdate" title="Member Update">Update Profile</a>
-    <li><a href="index.php?action=gear" title="Gear Exchange">Gear Exchange</a>
+    <li><a class="link" href="index.php?action=memberUpdate" title="Member Update">Update Profile</a>
+    <li><a class="link" href="index.php?action=gear" title="Gear Exchange">Gear Exchange</a>
   </ul>
 </article>
 <?php

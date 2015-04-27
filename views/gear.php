@@ -4,7 +4,7 @@
 
 <article class="content1">
 	
-	<h2 class="pageTitle">Gear Exchange</h2>
+	<h1>Gear Exchange</h1>
 
 	<div>	
 

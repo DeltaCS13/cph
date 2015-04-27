@@ -17,7 +17,7 @@
 	?>
 		<form action="index.php" method="post" id="loginForm">
 			<fieldset>
-				<legend><h2>CPH Member Login</h2></legend>
+				<h1>CPH Member Login</h1>
 					<p>Fields marked with an asterisks (*) are requiered.</p>
 			</fieldset>
 				<input type="hidden" name="action" value="logMeIn">

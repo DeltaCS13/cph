@@ -7,7 +7,7 @@
 	
 
       <h2>About Us</h2>
-        <p>Like many American families, we spend far too much time sitting whether it be on the couch watching TV or playing video games, or in front of a computer working, surfing the internet, or playing. We sit and &quotvegetate&quot, relax and chill, but rarely get up and out to see the sun, feel the breeze, and sense the earth under our feet. </p>
+        <p>Like many families, we spend far too much time sitting whether it be on the couch watching TV or playing video games, or in front of a computer working, surfing the internet, or playing. We sit and &quotvegetate&quot, relax and chill, but rarely get up and out to see the sun, feel the breeze, and sense the earth under our feet. </p>
 
         <p>This is where the Couch Potato Hikers comes in. Started as a lark to motivate ourselves to get up off the couch and explore this big wonderful world we live in, CPH is growing into a commuity of like minded people that want to get out of the house and explore. Like our community, the CPH website is always growing and improving.</p>
 
@@ -17,7 +17,7 @@
 <!-- Events Table -->
 <article class="contentTable">
 	<p class="eventLink">For more information,<br>
-	Vist the <a href="index.php?action=events">Events page</a></p>	
+	Vist the <a class="link" href="index.php?action=events">Events page</a></p>	
 
 	<table>
 		<caption>Events</caption>
