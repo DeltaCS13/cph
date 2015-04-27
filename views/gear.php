@@ -1,5 +1,5 @@
 <?php 
-	include('views/includes/header.php');
+	include('includes/header.php');
 ?>
 
 <article class="content1">
@@ -26,7 +26,7 @@
 		<input type="submit" value="Search Gear" />
 	</form>
 	
-	<table class="table1">
+	<table>
 		
 	<tr>
 		<th>Item</th><th>Description</th>

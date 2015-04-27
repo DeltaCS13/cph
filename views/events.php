@@ -13,11 +13,7 @@
 	<?php
 	}?>	
 	
-	
-	<table class="table1">
-
-		<!--<caption>Events</caption>-->
-		
+	<table>
 		<thead>
 			<tr>
 				<th>Name</th><th>Location</th>

@@ -173,12 +173,12 @@ require_once('functions/session_functions.php');
 
       case "gear":
 
-          include('views/includes/gearEx/gear.php');
+          include('views/gear.php');
           break;
 
       case "gearItemSearch";
           $action = 'gear';
-          include('views/includes/gearEx/gear.php');
+          include('views/gear.php');
           break;
 
       case "events":

@@ -90,26 +90,36 @@
 
 
     body {
-        background: url('../images/bgTexture.jpg') no-repeat fixed ;
+        background: url('../images/bgLeaf.jpg') 100% 100% no-repeat fixed;
+        background-size: cover;
         width:100%;
-        margin:0 auto;
+        
     }
 
     .wrapper {
       
-      width: 90%;
-      margin: 0 auto;
+      width: 95%;
+     margin: 0 auto;
     }
 
     header {
-        margin: 2% auto;
-        width:100%;
+        margin: 0 auto;
+        margin-top: 5%;
+        width:95%;
         background: url('../images/headpath.jpg') no-repeat center center ;
-        padding-bottom: 3%;
+        padding: 3%;
         border-radius: 10px;
         box-shadow: 8px 8px 5px #020;
     }
 
+    header div {
+        background-color: #14370d;
+        width: 65%;
+        margin: 2% auto;
+        padding: 2% 0;
+        border-radius: 10px;
+        box-shadow: 10px 10px 5px #020;
+    }
     
 
     
@@ -165,12 +175,13 @@
      }
     
 @media screen and (max-width: 800px){
-
+  
   header h1 {
         padding: .5%;
         font-size: 3em;
         text-align: center;
         color: #daa520;
+        width: 95%;
         text-shadow: -2px -2px 0 #000, 3px 3px 0 #000, -2px -2px 0 #000, 3px 3px 0 #000;/* for outline*/
   }
       /*Navigation (header)*/
@@ -195,7 +206,7 @@
       border-radius: 7px;
       display: inline-block;
       box-shadow: 1px 1px 8px #000;
-      background-color: #3B2006;
+      background-color: #171c15;
       
     }
      
@@ -230,28 +241,23 @@
     
       .content1, .content2, .contentTable1, .contentTable {
         clear: both;
-        margin: 2% 1%;
+        margin: 2% auto;
         width: 95%;
         padding: 2px 2px 10px 10px;
-
-      }
+        background-color: #b1f88e;
+      }   
       .content1 {
-        background-color: #E0F8E0;
-        
-       
         border-radius: 10px;
         box-shadow: 10px 10px 5px #020;
       }
       .content2 {
-        padding-left: 15px;
-        background-color: #E0F8E0;
-        
-       
+        padding-left: 10px;
         border-radius: 10px;
         box-shadow: 10px 10px 5px #020;
-      }/*Table*/
+      }
+
+      /*Table*/
       .contentTable {
-          background-color: #E0F8E0;
           padding-top: 2%;
           border-radius: 10px;
           box-shadow: 10px 10px 5px #020;
@@ -259,7 +265,7 @@
       }
 
       .contentTable1 {
-          background-color: #E0F8E0;
+          background-color: #b1f88e;
           padding-top: 2%;
           border-radius: 10px;
           box-shadow: 10px 10px 5px #020;
@@ -324,7 +330,7 @@
     }
 
      .contentFooter {
-        background-color: #E0F8E0;
+        background-color: #b1f88e;
         margin: 2% ;
         padding-top: 1%;
         border-radius: 10px;
@@ -334,7 +340,7 @@
 
     }
 
-@media screen and (min-width: 802px){
+@media screen and (min-width: 800px){
 
     header h1 {
           font-size: 4em;
@@ -364,7 +370,7 @@
       border-radius: 10px;
       display: inline-block;
       box-shadow: 1px 1px 8px #000;
-      background-color: #3B2006;
+      background-color: #171c15;
       
     }
      
@@ -395,9 +401,10 @@
       color: #2d3539;
     }
     .content1 {
-        background-color: #E0F8E0;
-        margin: 2% 0;
+        background-color: #b1f88e;
+        margin: 2% auto;
         padding:2% 0 2% 1%;
+        width: 100%;
         border-radius: 10px;
         box-shadow: 10px 10px 5px #020;
     }
@@ -405,7 +412,7 @@
     .content2 {
         float: left;
         width: 42%;
-        background-color: #E0F8E0;
+         background-color: #b1f88e;
         margin: 2% ;
         padding:2% 2% 5% 2%;
         border-radius: 10px;
@@ -416,7 +423,7 @@
   .contentTable {
       float: left;
       width: 45%;
-      background-color: #E0F8E0;
+      background-color: #b1f88e;
       margin: 2% ;
       border-radius: 10px;
       box-shadow: 10px 10px 5px #020;
@@ -425,7 +432,7 @@
 
   .contentTable1 {
       width: 95%;
-      background-color: #E0F8E0;
+      background-color: #b1f88e;
       margin: 2% 0;
       border-radius: 10px;
       box-shadow: 10px 10px 5px #020;
@@ -484,7 +491,7 @@
     }
 
      .contentFooter {
-        background-color: #E0F8E0;
+        background-color: #b1f88e;
         margin: 2% 10%;
         padding-top: 1%;
         border-radius: 10px;
@@ -518,24 +525,32 @@
   }
 
   input {
-    margin: 1% 0;
+    margin: 1% 1%;
+    box-shadow: 2px 2px 2px #1f6f1f;
   }
+
   input:focus {
-      background: #5f9f1f;
+      background: radial-gradient(rgb(155, 242, 187), rgb(255, 255, 4));
       box-shadow: 7px 7px 10px #1f6f1f;
   }
 
   input:required:valid {
-      background-color:#5fff1f;
+      background:radial-gradient( rgb(255, 255, 4), rgb(155, 242, 187));
   }
 
   select {
-     background-color:#cfcfcf;
+      margin: 1%;
+      background:radial-gradient( rgb(255, 255, 4), rgb(155, 242, 187));
+      box-shadow: 3px 3px 7px #1f6f1f;
   }
 
   select:focus{
-      background: #5f9f1f;
+      background: radial-gradient(rgb(155, 242, 187), rgb(255, 255, 4));
       box-shadow: 7px 7px 10px #1f6f1f;
+  }
+
+  select option {
+      background:#fff;
   }
 
   h2 {
@@ -550,7 +565,7 @@
   }
 
 
-  .table1 {
+  table {
       margin: 0 auto;
       width: 95%;
       border: 2px solid;
@@ -558,8 +573,8 @@
       
   }
 
-  .table1 tr {
-    background-color: #9BF2BB;
+  table tr {
+    background-color: #68cd4d;
   }
 
   caption {
