@@ -17,6 +17,8 @@
       <p><?php echo htmlentities($userInfo['nickName_usr']);?></p>
     <h3>Hiker Level:</h3>
       <p><?php echo htmlentities($userInfo['name_lvl']);?></p>
+    <h3>Email:</h3>
+      <p><?php echo htmlentities($userInfo['email_uad']);?></p>
     <h3>Access Level:</h3>
       <p><?php echo htmlentities($userInfo['accessLvl_ual']);?></p>
      

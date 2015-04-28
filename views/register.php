@@ -34,8 +34,8 @@ include('views/includes/header.php');
 	<label>Last Name *:<br>
 	<input type="text" name="last_Name" placeholder="Doe" required value="<?php if(isset($_POST['last_Name'])) echo $_POST['last_Name'];?>"></label><br>
 
-	<label>Trail Name (User ID) *:
-	<br><input type="text" name="trail_Name" placeholder="Nick Name" required value="<?php if(isset($_POST['trail_Name'])) echo $_POST['trail_Name'];?>"></label><br>
+	<label>Trail Name (User ID) *:<br>
+	<input type="text" name="trail_Name" placeholder="Nick Name" required value="<?php if(isset($_POST['trail_Name'])) echo $_POST['trail_Name'];?>"></label><br>
 
 	<label>Password *:<br>
 	<input type="password" name="password" required placeholder="********" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title="Password must be at least 8 characters long and contain Upercase, Lowercase, Number, and Special Character (ex: ! @ # $ % ^ )."><br></label>

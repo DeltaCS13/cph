@@ -188,7 +188,7 @@
   }
 
   input:focus {
-      background: radial-gradient(rgb(155, 242, 187), rgb(255, 255, 4));
+      /*background: radial-gradient(rgb(155, 242, 187), rgb(255, 255, 4));*/
       box-shadow: 7px 7px 10px #1f6f1f;
   }
 
@@ -255,7 +255,7 @@
   }
 
 
-     footer div {
+  footer div {
       margin-left: 10px;
       font-size: .75em;
      }
@@ -294,8 +294,7 @@
     }
      
     nav a {
-      font-family: 'Philosopher', sans-serif;
-      font-size: .70em;
+      font:bold .75em 'Philosopher', sans-serif;
       padding:0 3px;
       text-decoration: none;
       color: #b1f88e;
@@ -391,7 +390,7 @@
      }
 
     footer ul li a {
-      font: .75em 'Philosopher', sans-serif;
+      font: bold .85em 'Philosopher', sans-serif;
       margin-bottom:5px;
       background-color: #171c15;
       text-decoration: none;
@@ -460,7 +459,7 @@
     }
      
     nav a {
-      font: .85em 'Philosopher', sans-serif;
+      font: bold .95em 'Philosopher', sans-serif;
       padding:2px 9px;
       text-decoration: none;
       color: #b1f88e;
@@ -555,7 +554,7 @@
     }
 
     footer ul li a {
-      font: .75em 'Philosopher', sans-serif;
+      font: bold .85em 'Philosopher', sans-serif;
       background-color: #171c15;
       text-decoration: none;
       color: #b1f88e;

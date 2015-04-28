@@ -160,12 +160,37 @@ require_once('functions/session_functions.php');
 
 
          $userInfo = getMemberByID($userID);
-
+         $_SESSION['userID'] = $userInfo['id_usr'];
          $_SESSION['firstName']= $userInfo['firstName_usr'];
          $_SESSION['lastName']= $userInfo['lastName_usr'];
          $_SESSION['nickName']= $userInfo['nickName_usr'];
          $_SESSION['accessLevel']= $userInfo['accessLevel_ual_id_ual'];
          $_SESSION['userLevel']= $userInfo['level_lvl_id_lvl'];
+         $_SESSION['email'] = $userInfo['email_uad'];
+         
+        $action = 'admin';
+         include('views/admin.php');
+         break;
+
+      case "addAddress":
+
+        $email= $_POST['email'];
+        
+
+        $address = addAddress( $email);
+        $_SESSION['email'] = $address['email_uad'];
+        
+        $action = 'admin';
+         include('views/admin.php');
+         break;
+
+      case "addressUpdate":
+
+        $email= $_POST['email'];
+        $usrID = $_SESSION['userID'];
+
+        $address = updateAddress($usrID, $email);
+        $_SESSION['email'] = $address['email_uad'];
 
         $action = 'admin';
          include('views/admin.php');

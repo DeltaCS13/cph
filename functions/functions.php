@@ -265,9 +265,10 @@ require_once('/validation_functions.php');
 		global $db;
 
 		
-			$query = $sql = "SELECT `firstName_usr`, `lastName_usr`, `nickName_usr`, name_lvl, accessLvl_ual, accessLevel_ual_id_ual, level_lvl_id_lvl
+			$query = $sql = "SELECT *
 	    FROM user_usr JOIN level_lvl ON level_lvl_id_lvl = id_lvl
 	    JOIN accesslevel_ual ON `accessLevel_ual_id_ual` = id_ual
+	    JOIN useraddress_uad ON user_usr_id_usr = id_usr
 	    WHERE id_usr = '$userID'";
 				$userInfo = $db->query($query);
 				$user=$userInfo->fetch();
@@ -300,6 +301,57 @@ require_once('/validation_functions.php');
 		return $user_set;
 	}
 
+/********************************
+*function name: updateAddress	*
+*arguments: $email          	*
+*returned data: 				*
+*description: User enters email *
+*	 	to update profile 	 	*
+*Dependencies:					*
+*********************************/
+	function addAddress( $email)
+	{
+		
+		global $db;
+			$query = 'INSERT INTO (useraddress_uad) VALUES(email_uad = :email)';
+			
+			$statement = $db->prepare($query);
+			
+			$statement->bindValue( ':email', $email);
+			
+			$statement->execute();
+			$statement->closeCursor();
+			
+			return;
+			
+	}
+
+	/********************************
+	*function name: updateAddress	*
+	*arguments: $email          	*
+	*returned data: 				*
+	*description: User enters email *
+	*	 	to update profile 	 	*
+	*Dependencies:					*
+	*********************************/
+	function updateAddress($email)
+	{
+		$userID = $_SESSION['user_id'];
+
+		echo 'in function  '.$userID;
+		global $db;
+			$query = $sql = 'UPDATE useraddress_uad SET email_uad = :email WHERE user_usr_id_usr = :userID';
+			
+			$statement = $db->prepare($query);
+			
+			$statement->bindValue( ':email', $email);
+			$statement->bindValue( ':userId', $userID);
+			$statement->execute();
+			$statement->closeCursor();
+			
+			return;
+			
+	}
 
 	/********************************
 	*function name: changePassword	*
@@ -372,6 +424,7 @@ require_once('/validation_functions.php');
 			$statement->execute();
 			$statement->closeCursor();
 
+		
 			return;
 			
 	}

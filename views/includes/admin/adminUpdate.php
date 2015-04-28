@@ -60,23 +60,25 @@ if (!isset($_SESSION['adminUpdates'])){
 
 	</div><!--/form-->
 
-<!--<div class="form1">	-->
-
-<!--<form action="index.php" method="post" id="memPassUpdateForm">
+<div class="form1">
+<form action="index.php" method="post" id="addAddress">
+	<input type="hidden" name="action" value="addAddress">
+	<input type="submit" value="Add Address"/>
+</form>
+<form action="index.php" method="post" id="memAddressUpdateForm">
 <?php
-		/*$errors = errors();
-		echo form_errors($errors);*/
+		$errors = errors();
+		echo form_errors($errors);
 ?>
-<fieldset>Update Your Password</fieldset>
-<input type="hidden" name="action" value="adminPassUpdate">
-	<label>Old Password:<br>
-	<input type="password" name="oldPass" required placeholder="********" ></label><br>
+	<input type="hidden" name="action" value="addressUpdate">
 
-	<label>New Password:<br>
-	<input type="password" name="newPass"  placeholder="********" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title="Password must be 8 characters long and contain Upercase, Lowercase, Number, and Special Character (ex: !@#$%^)."><br></label>
-	<label>Retype New Password<br>
-	<input type="password" name="reNewPass"  placeholder="********" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title="Password must be 8 characters long and contain Upercase, Lowercase, Number, and Special Character (ex: !@#$%^)."><br></label>
-	<input type="submit" name="newPassword" value="Submit Password">-->
+		<label>Email:<br>
+		<input type="text" name="email" required autofocus value="<?php if(isset($_SESSION['email'])) echo $_SESSION['email'];?>" placeholder="name@email.com" ></label><br>
+
+		<input type="submit" value="Update"/>
+	</form>
+</div><!--/form-->
+
 </article>
 
 <?php }
