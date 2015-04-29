@@ -40,7 +40,7 @@ include('views/includes/header.php');
 	<label>Password *:<br>
 	<input type="password" name="password" required placeholder="********" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title="Password must be at least 8 characters long and contain Upercase, Lowercase, Number, and Special Character (ex: ! @ # $ % ^ )."><br></label>
 
-	<input type="submit" value="Register" />
+	<input type="submit" value="Next" />
 </form>
 
 </div><!--/form-->

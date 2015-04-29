@@ -198,7 +198,7 @@
 
   select {
       margin: 1%;
-      background:radial-gradient( rgb(255, 255, 4), rgb(155, 242, 187));
+      
       box-shadow: 3px 3px 7px #1f6f1f;
   }
 

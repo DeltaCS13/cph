@@ -89,9 +89,84 @@ require_once('functions/session_functions.php');
          
         $_SESSION['trail_Name'] = $nickName;
         
-        header('Location:index.php?action=login');
+        include('views/regAddress.php');
       	}
           break;
+
+      case "registerAddress":
+
+        $email = $_POST['email'];
+
+        if(!isset($_POST['address1']))
+          {
+            $address1 = 'No Entry';
+          }else{
+            $address1 = $_POST['address1'];
+          }
+echo "index ".$address1;
+           if(!isset($_POST['address2']))
+          {
+            $address2 = 'null';
+          }else{
+           $address2 = $_POST['address2'];
+          }
+
+           if(!isset($_POST['address3']))
+          {
+            $address3 = 'null';
+          }else{
+            $address3 = $_POST['address3'];
+          }
+
+           if(!isset($_POST['city']))
+          {
+            $city = 'null';
+          }else{
+            $city = $_POST['city'];
+          }
+
+           if(!isset($_POST['zipCode']))
+          {
+            $zipCode = 'null';
+          }else{
+            $zipCode = $_POST['zipCode'];
+          }
+
+           if(!isset($_POST['region']))
+          {
+            $region = 'null';
+          }else{
+            $region = $_POST['region'];
+          }
+
+           if(!isset($_POST['country']))
+          {
+            $country = 'null';
+          }else{
+            $country = $_POST['country'];
+          }
+
+           if(!isset($_POST['type']))
+          {
+            $type = 'null';
+          }else{
+            $type = $_POST['type'];
+          }
+
+         $required_fields = array('email');
+
+        validate_presences($required_fields);
+              if (!empty($errors))
+              { 
+                $_SESSION["errors"] = $errors;
+                include('regAddress.php');
+              } else {
+                addAddress( $email, $type, $address1, $address2, $address3, $city, $zipCode, $region);
+              
+
+              include('views/login.php');
+              }
+              break;
 
       case "member":
          

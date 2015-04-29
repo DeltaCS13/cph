@@ -302,21 +302,39 @@ require_once('/validation_functions.php');
 	}
 
 /********************************
-*function name: updateAddress	*
-*arguments: $email          	*
+*function name: addAddress 		*
+*arguments: $email, $address1, 	*
+*	 $address2, $address3, 		*
+*	$city, $zipCode, $region, 	*
+*	 		        			*
 *returned data: 				*
-*description: User enters email *
+*description: User enters 		*
+*	address info to entrer into *
+*		database 				*
 *	 	to update profile 	 	*
 *Dependencies:					*
 *********************************/
-	function addAddress( $email)
+	function addAddress( $email, $type, $address1, $address2, $address3, $city, $zipCode, $region)
 	{
-		
+		$nickName = $_SESSION['trail_Name'];
+		$user = find_member($nickName);
+		$userID = $user['id_usr'];
+
+	echo "in function ".$email.$type.$address1.$address2.$address3.$city.$zipCode.$region;
+
 		global $db;
-			$query = 'INSERT INTO (useraddress_uad) VALUES(email_uad = :email)';
+			$query = "INSERT INTO useraddress_uad(`user_usr_id_usr`, `type_uad`, `address1_uad`, `address2_uad`, `address3_uad`, `city_uad`, `subregions_sre_id_sre`, `postalCode_uad`, `email_uad`) VALUES (:userID,:type,:add1,:add2,:add3,:city,:subReg,:zip,:email)";
 			
 			$statement = $db->prepare($query);
 			
+			$statement->bindValue( ':userID', $userID);
+			$statement->bindValue( ':type', $type);
+			$statement->bindValue( ':add1', $address1);
+			$statement->bindValue( ':add2', $address2);
+			$statement->bindValue( ':add3', $address3);
+			$statement->bindValue( ':city', $city);
+			$statement->bindValue( ':subReg', $region);
+			$statement->bindValue( ':zip', $zipCode);
 			$statement->bindValue( ':email', $email);
 			
 			$statement->execute();
@@ -338,7 +356,7 @@ require_once('/validation_functions.php');
 	{
 		$userID = $_SESSION['user_id'];
 
-		echo 'in function  '.$userID;
+		
 		global $db;
 			$query = $sql = 'UPDATE useraddress_uad SET email_uad = :email WHERE user_usr_id_usr = :userID';
 			
@@ -429,6 +447,44 @@ require_once('/validation_functions.php');
 			
 	}
 
+	/********************************
+	*function name: allCountrys 	*
+	*arguments:	$regionID			*
+	*returned data: All Regions 	*
+	*				 Listing 		*
+	*description: returns all 		*
+	* 	rows in regions_cou		 	*
+	*	table. 						*
+	*Dependencies:					*
+	*********************************/
+	function allCountrys()
+	{
+		global $db;
+		$query = $sql = "Select * FROM regions_cou ORDER BY country_cou DESC";
+
+	    $result = $db->query($query);
+		return $result;
+	}
+
+	/********************************
+	*function name: allRegions	 	*
+	*arguments:	$regionID			*
+	*returned data: All Regions 	*
+	*				 Listing 		*
+	*description: returns all 		*
+	* 	rows in regions_cou		 	*
+	*	table. 						*
+	*Dependencies:					*
+	*********************************/
+	function allRegions()
+	{
+		global $db;
+		$query = $sql = "Select * FROM subregions_sre ORDER BY name_sre";
+
+				
+		$result = $db->query($query);
+		return $result;
+	}
 
 //gear exchange functions
 
