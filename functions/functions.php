@@ -265,13 +265,15 @@ require_once('/validation_functions.php');
 		global $db;
 
 		
-			$query = $sql = "SELECT *
+			$query = $sql = "SELECT firstName_usr, lastName_usr, nickName_usr, email_uad, name_lvl, accessLvl_ual
 	    FROM user_usr JOIN level_lvl ON level_lvl_id_lvl = id_lvl
 	    JOIN accesslevel_ual ON `accessLevel_ual_id_ual` = id_ual
 	    JOIN useraddress_uad ON user_usr_id_usr = id_usr
 	    WHERE id_usr = '$userID'";
+
 				$userInfo = $db->query($query);
 				$user=$userInfo->fetch();
+			
 				return $user;
 	}
 

@@ -8,10 +8,8 @@
 <!-- show member info -->
   <article class="content2">
   <?php 
-    $userID = $_SESSION['user_id'];
+     $userID = $_SESSION['user_id'];
       $userInfo = getMemberByID($userID);
-
-      echo $userInfo['firstName_usr'];
     ?>
   
   <h2>User Profile</h2>
