@@ -9,7 +9,7 @@ require_once('/validation_functions.php');
 	*arguments: $result_set        	*
 	*returned data:  				*
 	*description: determines if a   *
-	*	query returned a result. 	* 						
+	*	query returned a result. 	* 				
 	*Dependencies: 					*
 	*********************************/
 	function confirm_query($result_set) {
@@ -356,9 +356,9 @@ require_once('/validation_functions.php');
 	*********************************/
 	function updateAddress( $email, $type, $address1, $address2, $address3, $city, $zipCode, $region, $userID)
 	{
-		
+		echo 'in function: '.$_SESSION['user_id'];
 		global $db;
-			$query = $sql = "UPDATE useraddress_uad SET type_uad = :type, address1_uad = :add1, address2_uad = :add2, address3_uad = :add3, city_uad = :city, subregions_sre_id_sre = :subReg, postalCode_uad = :zip, email_uad = :email WHERE user_usr_id_usr = :userID";
+			$query = $sql = "UPDATE useraddress_uad SET user_usr_id_usr = :userID, type_uad = :type, address1_uad = :add1, address2_uad = :add2, address3_uad = :add3, city_uad = :city, subregions_sre_id_sre = :subReg, postalCode_uad = :zip, email_uad = :email WHERE user_usr_id_usr = :userID";
 			
 			$statement = $db->prepare($query);
 			
@@ -391,7 +391,7 @@ require_once('/validation_functions.php');
 	*Dependencies:					*
 	*********************************/
 	function getUserAddress($userID)
-	{
+	{echo 'in get address function :'.$userID;
 		global $db;
 
 		$query = $sql = "SELECT * FROM useraddress_uad JOIN subregions_sre ON subregions_sre_id_sre = id_sre JOIN regions_cou ON region_id_sre = id_cou WHERE user_usr_id_usr = '$userID'";

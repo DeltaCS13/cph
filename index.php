@@ -20,7 +20,7 @@ require_once('functions/session_functions.php');
   }
 
   $_SESSION['action'] = $action ; 
-
+echo 'action before switch: '.$action;
 //perform action
   switch($action) {
       case "login":
@@ -204,21 +204,19 @@ require_once('functions/session_functions.php');
 
       case "updateAddress":
           $_SESSION['memberUpdates'] = $action;
-  
-          memberValidate($action);
+  echo 'in updateAddress in case: '.$action;
+         $action='member';
+      include('views/member.php');
           break;
 
-      case "addUpdate":
+      case "addUp":
+echo 'in case addUpdate: '.$action.$_POST['email'];
+
 
         $email = $_POST['email'];
         $address1 = $_POST['address1'];
-       $address2 = $_POST['address2'];
-      
-
-        if(isset($_POST['address3'])){
-          $address3 = $_POST['address3'];
-          }else{$address3 = 'null';}
-        
+        $address2 = $_POST['address2'];
+        $address3 = $_POST['address3'];
         $city = $_POST['city'];
         $zipCode = $_POST['zipCode'];
         $region = $_POST['region'];
@@ -233,7 +231,7 @@ require_once('functions/session_functions.php');
         header('location:index.php?action=admin');
        }elseif($_SESSION['accessLevel'] === '2')
        {
-         
+         $_SESSION['memberUpdates'] = null;
           header('location:index.php?action=member');
          
        }

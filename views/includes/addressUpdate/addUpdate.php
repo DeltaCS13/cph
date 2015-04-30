@@ -2,6 +2,7 @@
 <div class="form1">	
 <?php 
 	$userID = $_SESSION['user_id'];
+	echo '$_session user_id: '.$userID;
 	$userAddress = getUserAddress($userID);
 	$_SESSION['memberUpdates']= null;
 ?>
@@ -12,14 +13,14 @@
 		echo form_errors($errors);
 ?>
 
-	<input type="hidden" name="action" value="addUpdate">
+	<input type="hidden" name="action" value="addUp">
 	
 
 		<label>Email:<br>
 		<input type="text" name="email" required autofocus value="<?php echo htmlentities($userAddress['email_uad']);?>" placeholder="name@email.com" ></label><br>
 
 		<label>Address Type:<br>
-		<select name="type" required>
+		<select name="type">
 			<option selected><?php echo htmlentities($userAddress['type_uad']);?></option>
 			<option value="home">Home</option>
 			<option value="business">Business</option>

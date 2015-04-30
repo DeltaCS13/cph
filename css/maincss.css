@@ -112,7 +112,7 @@
         background: url('../images/headpath.jpg') no-repeat center center ;
         background-size: cover;
         padding: 3%;
-        border-radius: 10px;
+        border-radius: 6px;
         box-shadow: 8px 8px 5px #020;
     }
 
@@ -121,7 +121,7 @@
         width: 65%;
         margin: 2% auto;
         padding: 2% 0;
-        border-radius: 10px;
+        border-radius: 6px;
         box-shadow: 10px 10px 5px #020;
     }
 
@@ -331,19 +331,19 @@
         background-color: #b1f88e;
       }   
       .content1 {
-        border-radius: 10px;
+        border-radius: 6px;
         box-shadow: 10px 10px 5px #020;
       }
       .content2 {
         padding-left: 10px;
-        border-radius: 10px;
+        border-radius: 6px;
         box-shadow: 10px 10px 5px #020;
       }
 
       /*Table*/
       .contentTable {
           padding-top: 2%;
-          border-radius: 10px;
+          border-radius: 6px;
           box-shadow: 10px 10px 5px #020;
           
       }
@@ -351,7 +351,7 @@
       .contentTable1 {
           background-color: #b1f88e;
           padding-top: 2%;
-          border-radius: 10px;
+          border-radius: 6px;
           box-shadow: 10px 10px 5px #020;
          
       }
@@ -365,7 +365,7 @@
       background: url("../images/footPath.jpg") no-repeat center center ;
        background-size: cover;
       padding: 8px;
-      border-radius: 10px;
+      border-radius: 6px;
       box-shadow: 8px 8px 5px #020;
 
         
@@ -419,7 +419,7 @@
         background-color: #b1f88e;
         margin: 2% ;
         padding-top: 1%;
-        border-radius: 10px;
+        border-radius: 6px;
         box-shadow: 10px 10px 5px #020;
      }
 
@@ -491,7 +491,7 @@
         margin: 2% auto;
         padding:2% 0 2% 1%;
         width: 100%;
-        border-radius: 10px;
+        border-radius: 6px;
         box-shadow: 10px 10px 5px #020;
     }
 
@@ -501,7 +501,7 @@
          background-color: #b1f88e;
         margin: 2% ;
         padding:2% 2% 5% 2%;
-        border-radius: 10px;
+        border-radius: 6px;
         box-shadow: 10px 10px 5px #020;
     }
 
@@ -511,7 +511,7 @@
       width: 45%;
       background-color: #b1f88e;
       margin: 2% ;
-      border-radius: 10px;
+      border-radius: 6px;
       box-shadow: 10px 10px 5px #020;
       padding: 2% 0;
   }
@@ -520,7 +520,7 @@
       width: 95%;
       background-color: #b1f88e;
       margin: 2% 0;
-      border-radius: 10px;
+      border-radius: 6px;
       box-shadow: 10px 10px 5px #020;
       padding: 2%;
   }
@@ -533,7 +533,7 @@
       background: url("../images/footPath.jpg") no-repeat center center ;
        background-size: cover;
       padding: 10px;
-      border-radius: 10px;
+      border-radius: 6px;
       box-shadow: 8px 8px 5px #020;
         
   }
