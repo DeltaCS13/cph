@@ -322,7 +322,7 @@ require_once('/validation_functions.php');
 		$user = find_member($nickName);
 		$userID = $user['id_usr'];
 
-	echo "in function ".$email.$type.$address1.$address2.$address3.$city.$zipCode.$region;
+	
 
 		global $db;
 			$query = "INSERT INTO useraddress_uad(`user_usr_id_usr`, `type_uad`, `address1_uad`, `address2_uad`, `address3_uad`, `city_uad`, `subregions_sre_id_sre`, `postalCode_uad`, `email_uad`) VALUES (:userID,:type,:add1,:add2,:add3,:city,:subReg,:zip,:email)";
@@ -354,24 +354,56 @@ require_once('/validation_functions.php');
 	*	 	to update profile 	 	*
 	*Dependencies:					*
 	*********************************/
-	function updateAddress($email)
+	function updateAddress( $email, $type, $address1, $address2, $address3, $city, $zipCode, $region, $userID)
 	{
-		$userID = $_SESSION['user_id'];
-
 		
 		global $db;
-			$query = $sql = 'UPDATE useraddress_uad SET email_uad = :email WHERE user_usr_id_usr = :userID';
+			$query = $sql = "UPDATE useraddress_uad SET type_uad = :type, address1_uad = :add1, address2_uad = :add2, address3_uad = :add3, city_uad = :city, subregions_sre_id_sre = :subReg, postalCode_uad = :zip, email_uad = :email WHERE user_usr_id_usr = :userID";
 			
 			$statement = $db->prepare($query);
 			
+			$statement->bindValue( ':userID', $userID);
+			$statement->bindValue( ':type', $type);
+			$statement->bindValue( ':add1', $address1);
+			$statement->bindValue( ':add2', $address2);
+			$statement->bindValue( ':add3', $address3);
+			$statement->bindValue( ':city', $city);
+			$statement->bindValue( ':subReg', $region);
+			$statement->bindValue( ':zip', $zipCode);
 			$statement->bindValue( ':email', $email);
-			$statement->bindValue( ':userId', $userID);
+			
 			$statement->execute();
 			$statement->closeCursor();
 			
 			return;
 			
+			
 	}
+
+	/********************************
+	*function name: getUserAddress	*
+	*arguments: 		          	*
+	*returned data: all user address*
+	* 				Info. 			*
+	*description: gets all user 	* 
+	*   	address information		*
+	*     according to user ID 		*
+	*Dependencies:					*
+	*********************************/
+	function getUserAddress($userID)
+	{
+		global $db;
+
+		$query = $sql = "SELECT * FROM useraddress_uad JOIN subregions_sre ON subregions_sre_id_sre = id_sre JOIN regions_cou ON region_id_sre = id_cou WHERE user_usr_id_usr = '$userID'";
+
+		$user_set = $db->query($query);
+		$userAddress = $user_set->fetch();
+
+		return $userAddress; 
+
+	}
+
+
 
 	/********************************
 	*function name: changePassword	*

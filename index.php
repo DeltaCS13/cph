@@ -20,6 +20,7 @@ require_once('functions/session_functions.php');
   }
 
   $_SESSION['action'] = $action ; 
+
 //perform action
   switch($action) {
       case "login":
@@ -96,70 +97,23 @@ require_once('functions/session_functions.php');
       case "registerAddress":
 
         $email = $_POST['email'];
+        $address1 = $_POST['address1'];
+        $address2 = $_POST['address2'];
+        $address3 = $_POST['address3'];
+        $city = $_POST['city'];
+        $zipCode = $_POST['zipCode'];
+        $region = $_POST['region'];
+        $country = $_POST['country'];
+        $type = $_POST['type'];
+        
 
-        if(!isset($_POST['address1']))
-          {
-            $address1 = 'No Entry';
-          }else{
-            $address1 = $_POST['address1'];
-          }
-echo "index ".$address1;
-           if(!isset($_POST['address2']))
-          {
-            $address2 = 'null';
-          }else{
-           $address2 = $_POST['address2'];
-          }
-
-           if(!isset($_POST['address3']))
-          {
-            $address3 = 'null';
-          }else{
-            $address3 = $_POST['address3'];
-          }
-
-           if(!isset($_POST['city']))
-          {
-            $city = 'null';
-          }else{
-            $city = $_POST['city'];
-          }
-
-           if(!isset($_POST['zipCode']))
-          {
-            $zipCode = 'null';
-          }else{
-            $zipCode = $_POST['zipCode'];
-          }
-
-           if(!isset($_POST['region']))
-          {
-            $region = 'null';
-          }else{
-            $region = $_POST['region'];
-          }
-
-           if(!isset($_POST['country']))
-          {
-            $country = 'null';
-          }else{
-            $country = $_POST['country'];
-          }
-
-           if(!isset($_POST['type']))
-          {
-            $type = 'null';
-          }else{
-            $type = $_POST['type'];
-          }
-
-         $required_fields = array('email');
+         $required_fields = array('email', 'address1', 'city', 'zipCode', 'region', 'type');
 
         validate_presences($required_fields);
               if (!empty($errors))
               { 
                 $_SESSION["errors"] = $errors;
-                include('regAddress.php');
+                include('views/regAddress.php');
               } else {
                 addAddress( $email, $type, $address1, $address2, $address3, $city, $zipCode, $region);
               
@@ -231,6 +185,7 @@ echo "index ".$address1;
         $hLevel = $_POST['hikerLevel'];
         $aLevel = $_POST['accessLevel'];
         $userID = $_SESSION['user_id'];
+       
         admUpdate($fName, $lName, $nName, $hLevel, $aLevel);
 
 
@@ -247,29 +202,42 @@ echo "index ".$address1;
          include('views/admin.php');
          break;
 
-      case "addAddress":
+      case "updateAddress":
+          $_SESSION['memberUpdates'] = $action;
+  
+          memberValidate($action);
+          break;
 
-        $email= $_POST['email'];
+      case "addUpdate":
+
+        $email = $_POST['email'];
+        $address1 = $_POST['address1'];
+       $address2 = $_POST['address2'];
+      
+
+        if(isset($_POST['address3'])){
+          $address3 = $_POST['address3'];
+          }else{$address3 = 'null';}
         
+        $city = $_POST['city'];
+        $zipCode = $_POST['zipCode'];
+        $region = $_POST['region'];
+        $country = $_POST['country'];
+        $type = $_POST['type'];
+        $userID = $_SESSION['user_id'];
 
-        $address = addAddress( $email);
-        $_SESSION['email'] = $address['email_uad'];
+        updateAddress($email, $type, $address1, $address2, $address3, $city, $zipCode, $region, $userID);
         
-        $action = 'admin';
-         include('views/admin.php');
-         break;
-
-      case "addressUpdate":
-
-        $email= $_POST['email'];
-        $usrID = $_SESSION['userID'];
-
-        $address = updateAddress($usrID, $email);
-        $_SESSION['email'] = $address['email_uad'];
-
-        $action = 'admin';
-         include('views/admin.php');
-         break;
+        if($_SESSION['accessLevel'] === '1')
+        {
+        header('location:index.php?action=admin');
+       }elseif($_SESSION['accessLevel'] === '2')
+       {
+         
+          header('location:index.php?action=member');
+         
+       }
+       break;
 
       case "gear":
 

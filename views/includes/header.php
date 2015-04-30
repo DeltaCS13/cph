@@ -26,7 +26,7 @@
     
        <?php if(isset($_SESSION['accessLevel'])){
           if($_SESSION['accessLevel'] === '1' ){?>
-        <li><a <?php if ($action === 'member' || $action === 'memberUpdate'){?> class="selected" <?php } ?>href="index.php?action=member" title="Member's Area">Member's Area</a>
+        <li><a <?php if ($action === 'member' || $action === 'memberUpdate' || $action === 'updateAddress' || $action === 'addUpdate'){?> class="selected" <?php } ?>href="index.php?action=member" title="Member's Area">Member's Area</a>
        
         <li><a <?php if ($action === 'admin'){?> class="selected" <?php } ?>href="index.php?action=admin" title="Administration">Administration</a>
        <?php }elseif($_SESSION['accessLevel'] === '2'){?>

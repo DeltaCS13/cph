@@ -75,6 +75,51 @@ if (!isset($_SESSION['adminUpdates'])){
 		<label>Email:<br>
 		<input type="text" name="email" required autofocus value="<?php if(isset($_SESSION['email'])) echo $_SESSION['email'];?>" placeholder="name@email.com" ></label><br>
 
+		<label>Address Type:<br>
+		<select name="type" required>
+			<option value="home">Home</option>
+			<option value="business">Business</option>
+			<option value="other">Other</option>
+		</select>
+	</label><br>
+
+	<label>Address<span class="requiered">*</span>:<br>
+	<input type="text" name="address1" placeholder="555 Example St" required value="<?php if(isset($_POST['address1']))echo $_POST['address1'];?>"></label><br>
+
+	<label>Address 2:<br>
+	<input type="text" name="address2" placeholder="optional" value="<?php if(isset($_POST['address2'])) echo $_POST['address2'];?>"></label><br>
+
+	<label>Address 3:<br>
+	<input type="text" name="address3" placeholder="optional" value="<?php if(isset($_POST['address3'])) echo $_POST['address3'];?>"></label><br>
+	
+	<label>City<span class="requiered">*</span>:<br>
+		<input type="text" name="city" placeholder="Asheville" required value="<?php if(isset($_POST['city'])) echo $_POST['city'];?>"></label><br>
+
+	<label>State/Provence<span class="requiered">*</span>:<br>
+		<select name="region" required>
+			<option selected></option>
+			<?php $regions = allRegions();
+			
+				foreach ($regions as $region): ?>
+					<option value="<?php echo htmlentities($region['id_sre'])?>"><?php echo htmlentities($region['name_sre']);?></option>
+				<?php endforeach;?>
+			</select>
+		</label><br>	
+	
+	<label>Country:<br>
+		<select name="country">
+			<option selected></option>
+			<?php $countrys = allCountrys();
+			
+				foreach ($countrys as $country): ?>
+					<option value="<?php echo htmlentities($country['id_cou'])?>"><?php echo htmlentities($country['country_cou']);?></option>
+				<?php endforeach;?>
+			</select>
+		</label><br>
+
+		<label>Postal Code/ Zip Code:<br>
+		<input type="text" name="zipCode" placeholder="00000-0000" required value="<?php if(isset($_POST['zipCode'])) echo $_POST['zipCode'];?>"></label><br>
+
 		<input type="submit" value="Update"/>
 	</form>
 </div><!--/form-->
