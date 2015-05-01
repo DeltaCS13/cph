@@ -1,4 +1,12 @@
 <?php
+ /**************************************************
+ * Auther: Howard La Flamme                        *
+ * Title: Session Functions (session_functions.php)*
+ * Description: Provides functions used by   	   *
+ *				Session cookies 				   *
+ * Revision: 0.1.0 4/30/2015                       *
+ **************************************************/
+
 session_start();
 
 //login/out functions

@@ -1,4 +1,12 @@
 <?php
+ /************************************************
+ * Auther: Howard La Flamme                      *
+ * Title: Administration Update (addUpdate.php)  *
+ * Description: Provides Forms for updateing  	 *
+ *				address. 						 *
+ * Revision: 0.1.0 4/30/2015                     *
+ ************************************************/
+
 if (!isset($_SESSION['adminUpdates'])){
 	?>
 	<article class="content2">

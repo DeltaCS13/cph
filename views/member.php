@@ -1,4 +1,14 @@
-<?php include('includes/header.php');?>
+<?php
+/************************************************
+ * Auther: Howard La Flamme                     *
+ * Title: Member's Page (member.php)            *
+ * Description: Provides Member information and *
+ *  links for various member actions.           *
+ * Revision: 0.1.0 4/30/2015                    *
+ ************************************************/
+
+    include('includes/header.php');
+ ?>
 
 
 <article class="content1">
@@ -10,26 +20,56 @@
   <?php 
      $userID = $_SESSION['user_id'];
       $userInfo = getMemberByID($userID);
+      
     ?>
   
   <h2>User Profile</h2>
-    <h3>Name:</h3>
-      <p><?php echo htmlentities($userInfo['firstName_usr']).' '.htmlentities($userInfo['lastName_usr']);?></p>
-    <h3>Trail Name:</h3>
-      <p><?php echo htmlentities($userInfo['nickName_usr']);?></p>
-    <h3>Email:</h3>
-      <p><?php echo htmlentities($userInfo['email_uad']);?></p>
-    <h3>Hiker Level:</h3>
-      <p><?php echo htmlentities($userInfo['name_lvl']);?></p>
-    <h3>Access Level:</h3>
-      <p><?php echo htmlentities($userInfo['accessLvl_ual']);?></p>
-     
+    <div class="floatLeft">
+      <h3>Name:</h3>
+        <p><?php echo htmlentities($userInfo['firstName_usr']).' '.htmlentities($userInfo['lastName_usr']);?></p>
+
+      <h3>Trail Name:</h3>
+        <p><?php echo htmlentities($userInfo['nickName_usr']);?></p>
+
+      <h3>Email:</h3>
+        <p><?php echo htmlentities($userInfo['email_uad']);?></p>
+
+      <h3>Hiker Level:</h3>
+        <p><?php echo htmlentities($userInfo['name_lvl']);?></p>
+      
+      <h3>Access Level:</h3>
+        <p><?php echo htmlentities($userInfo['accessLvl_ual']);?></p>
+    </div>
+
+    <div class="floatLeft">
+      <h3>Address Type:</h3>
+        <p><?php echo htmlentities($userInfo['type_uad']);?></p>
+      
+      <h3>Address:</h3>
+        <p><?php echo htmlentities($userInfo['address1_uad']);?></p>
+
+      <h3>Address 2:</h3>
+        <p><?php echo htmlentities($userInfo['address2_uad']);?></p>
+
+      <h3>Address 3:</h3>
+        <p><?php echo htmlentities($userInfo['address3_uad']);?></p>
+
+      <h3>City:</h3>
+        <p><?php echo htmlentities($userInfo['city_uad']);?></p>
+
+      <h3>State/Provence:</h3>
+        <p><?php echo htmlentities($userInfo['name_sre']);?></p>
+      
+      <h3>Country:</h3>
+        <p><?php echo htmlentities($userInfo['country_cou']);?></p>
+    </div>  
+  <div class="floatReset"></div>   
 </article>
 <!-- member update links/forms-->
 <?php 
   include('includes/members/memberUpdate.php'); 
 ?>
 
-<div class="floatReset"></div>
+  <div class="floatReset"></div>
 <?php include('includes/footer.php');
 ?>

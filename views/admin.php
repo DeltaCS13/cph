@@ -1,4 +1,12 @@
-<?php include('includes/header.php');?>
+<?php
+/******************************************************
+ * Auther: Howard La Flamme                           *
+ * Title: Administration Main Page (admin.php)        *
+ * Description: Administration Page display Admin info*
+ *  and links for admionistration                     *
+ * Revision: 0.1.0 4/30/2015                          *
+ *****************************************************/
+ include('includes/header.php');?>
 
 <article class="content1">  
   <h1 class="pageTitle">Admin Page</h1>

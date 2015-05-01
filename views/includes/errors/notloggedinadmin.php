@@ -1,4 +1,12 @@
-<?php include('views/includes/header.php');?>
+<?php 
+/******************************************************
+ * Auther: Howard La Flamme                     	  *
+ * Title: Not Logged in Admin (notliggedinadmin.php)  *
+ * Description: displays if user tries to access 	  *
+ *				a page they are not authorized to. 	  *
+ * Revision: 0.1.0 4/30/2015                    	  *
+ *****************************************************/
+	include('views/includes/header.php');?>
 <article class="content1">
 
 <?php 

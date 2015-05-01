@@ -1,4 +1,13 @@
-  <?php include('includes/header.php');?>
+<?php
+/******************************************************
+* Auther: Howard La Flamme                            *
+* Title: Main Events Page (events.php)                *
+* Description: Displays events with links for more    *
+* 					information. 					  *
+* Revision: 0.1.0 4/30/2015                           *
+*****************************************************/
+   include('includes/header.php');
+ ?>
 
    <article class="content1">
 		<h1 class="pageTitle">Events</h1>	

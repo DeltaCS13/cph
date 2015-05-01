@@ -1,4 +1,12 @@
-<?php include('views/includes/header.php');?>
+<?php 
+/******************************************************
+* Auther: Howard La Flamme                            *
+* Title: Log In (login.php)            	      		  *
+* Description: Login page for Members & Admin. 		  *
+* Revision: 0.1.0 4/30/2015                           *
+*****************************************************/
+	include('views/includes/header.php');
+?>
 
 <article class="content1">
 

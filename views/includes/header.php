@@ -1,4 +1,11 @@
 <?php 
+/******************************************************
+ * Auther: Howard La Flamme                           *
+ * Title: Page Header (header.php)                    *
+ * Description: Header of site pages                  *
+ * Revision: 0.1.0 4/30/2015                          *
+ *****************************************************/
+
   require_once('./functions/functions.php');
 ?>
 <!doctype html>

@@ -1,4 +1,10 @@
 <?php
+/************************************************
+ * Auther: Howard La Flamme                     *
+ * Title: Functions (functions.php)             *
+ * Description: function providing functionality*
+ * Revision: 0.1.0 4/30/2015                    *
+ ************************************************/
 require_once('/session_functions.php');
 require_once('/../controllers/dbconnect.php');
 require_once('/validation_functions.php');
@@ -216,7 +222,7 @@ require_once('/validation_functions.php');
 	}
 
 	/********************************
-	*function name: memberUpdate	*
+	*function name: memUpdate	*
 	*arguments: $fName, $lName, 	*
 	*			$nName            	*
 	*returned data: 				*
@@ -265,10 +271,12 @@ require_once('/validation_functions.php');
 		global $db;
 
 		
-			$query = $sql = "SELECT firstName_usr, lastName_usr, nickName_usr, email_uad, name_lvl, accessLvl_ual
+			$query = $sql = "SELECT *
 	    FROM user_usr JOIN level_lvl ON level_lvl_id_lvl = id_lvl
 	    JOIN accesslevel_ual ON `accessLevel_ual_id_ual` = id_ual
 	    JOIN useraddress_uad ON user_usr_id_usr = id_usr
+	    JOIN subregions_sre ON subregions_sre_id_sre = id_sre
+	    JOIN regions_cou ON id_cou = region_id_sre
 	    WHERE id_usr = '$userID'";
 
 				$userInfo = $db->query($query);
@@ -346,39 +354,6 @@ require_once('/validation_functions.php');
 			
 	}
 
-	/********************************
-	*function name: updateAddress	*
-	*arguments: $email          	*
-	*returned data: 				*
-	*description: User enters email *
-	*	 	to update profile 	 	*
-	*Dependencies:					*
-	*********************************/
-	function updateAddress( $email, $type, $address1, $address2, $address3, $city, $zipCode, $region, $userID)
-	{
-		echo 'in function: '.$_SESSION['user_id'];
-		global $db;
-			$query = $sql = "UPDATE useraddress_uad SET user_usr_id_usr = :userID, type_uad = :type, address1_uad = :add1, address2_uad = :add2, address3_uad = :add3, city_uad = :city, subregions_sre_id_sre = :subReg, postalCode_uad = :zip, email_uad = :email WHERE user_usr_id_usr = :userID";
-			
-			$statement = $db->prepare($query);
-			
-			$statement->bindValue( ':userID', $userID);
-			$statement->bindValue( ':type', $type);
-			$statement->bindValue( ':add1', $address1);
-			$statement->bindValue( ':add2', $address2);
-			$statement->bindValue( ':add3', $address3);
-			$statement->bindValue( ':city', $city);
-			$statement->bindValue( ':subReg', $region);
-			$statement->bindValue( ':zip', $zipCode);
-			$statement->bindValue( ':email', $email);
-			
-			$statement->execute();
-			$statement->closeCursor();
-			
-			return;
-			
-			
-	}
 
 	/********************************
 	*function name: getUserAddress	*
@@ -398,7 +373,7 @@ require_once('/validation_functions.php');
 
 		$user_set = $db->query($query);
 		$userAddress = $user_set->fetch();
-
+		$_SESSION['email_uad'] = $userAddress['email_uad'];
 		return $userAddress; 
 
 	}

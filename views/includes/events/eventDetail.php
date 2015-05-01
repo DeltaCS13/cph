@@ -1,4 +1,11 @@
 <?php 
+/******************************************************
+ * Auther: Howard La Flamme                     	  *
+ * Title: events details (eventDetails.php) 		  *
+ * Description: displays details of selected event.	  *
+ * Revision: 0.1.0 4/30/2015                    	  *
+ *****************************************************/
+
 		if(isset($_SESSION['eventDetail']))
 		{ ?>
 		<article class="content2">

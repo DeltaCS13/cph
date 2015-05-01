@@ -1,4 +1,10 @@
 <?php
+ /*****************************************************************
+ * Auther: Howard La Flamme                      				  *
+ * Title: Validation Functions (validation_functions.php)         *
+ * Description: Provides functions for validating data.			  *
+ * Revision: 0.1.0 4/30/2015                    				  *
+ *****************************************************************/
 //Initiate errors array
 	$errors = array();
 

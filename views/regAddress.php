@@ -1,4 +1,12 @@
 <?php 
+/******************************************************
+* Auther: Howard La Flamme                            *
+* Title: Address Registration page (regAddress.php)	  *
+* Description: Second page of registration for address*
+*      and email. 									  *
+* Revision: 0.1.0 4/30/2015                           *
+*****************************************************/
+
 require_once('functions/session_functions.php');
 require_once('functions/validation_functions.php');
 include('views/includes/header.php');

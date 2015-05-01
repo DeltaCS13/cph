@@ -1,4 +1,10 @@
 <?php 
+/******************************************************
+* Auther: Howard La Flamme                            *
+* Title: Gear Exhange (gear.php)            	      *
+* Description: Displays Gear for sale/trade. 		  *
+* Revision: 0.1.0 4/30/2015                           *
+*****************************************************/
 	include('includes/header.php');
 ?>
 

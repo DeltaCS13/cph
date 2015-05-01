@@ -1,4 +1,11 @@
-   
+ /************************************************
+ * Auther: Howard La Flamme                      *
+ * Title: Main CSS (main.css)                    *
+ * Description: Provides style for CPH web pages *
+ * Revision: 0.1.0 4/30/2015                     *
+ ************************************************/
+
+
 /* Imported Fonts */
     @import url(http://fonts.googleapis.com/css?family=Fontdiner+Swanky);
     @import url(http://fonts.googleapis.com/css?family=Permanent+Marker);
@@ -137,7 +144,7 @@
     }
     h2 {
         font-size: 1.5em;
-        margin: 5% 2% 2% 2%;
+        margin: 3% 2% 2% 2%;
         padding: 1%;
     }
 
@@ -165,6 +172,8 @@
        
     }
 
+
+
     ul {
       list-style: url('../images/icons/walk16.png');
         margin-left: 35px;
@@ -174,10 +183,12 @@
       font: 1em "Arial Black", Gadget, sans-serif;
     }
 
-    
+    .redText {
+      color: #f00;
+    }
 
     /*Form Styles*/
-  .form1 {
+  form {
       margin: 1% 1% 2% 3%;
       padding: 1%;
   }
@@ -214,9 +225,9 @@
  
 
   .eventLink {
-    text-align: right;
-    margin: 0 20px -30px 5px;
-    padding:10px 0 0;
+    float: right;
+    margin: -50px 20px 10px 5px;
+   
   }
 
 
@@ -262,6 +273,10 @@
     
 @media screen and (max-width: 800px){
   
+  h1 {
+    font-size: 2em;
+  }
+
   header h1 {
         padding: .5%;
         font: 1.5em 'Fontdiner Swanky', cursive;
@@ -591,6 +606,11 @@
      }
 
 }
+
+    .floatLeft {
+      width: 50%;
+      float: left;
+    }
 
     .floatReset {
       clear: both;

@@ -1,5 +1,10 @@
 <?php
-
+ /************************************************
+ * Auther: Howard La Flamme                      *
+ * Title: DataBase Connect (dbconnect.php)       *
+ * Description: Provides connectivity to database*
+ * Revision: 0.1.0 4/30/2015                     *
+ ************************************************/
 if ($_SERVER['HTTP_HOST'] == 'localhost:8080')
    
 {/*Local Host*/

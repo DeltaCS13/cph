@@ -1,3 +1,10 @@
+<!--/******************************************************
+     * Auther: Howard La Flamme                           *
+     * Title: Page Footer (footer.php)                    *
+     * Description: Footer of site pages                  *
+     * Revision: 0.1.0 4/30/2015                          *
+     *****************************************************/-->
+
 <footer class="pageFooter1">
  <article class="contentFooter"> 
   	 <ul>
