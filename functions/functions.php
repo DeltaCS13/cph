@@ -55,6 +55,23 @@ require_once('/validation_functions.php');
 
 // login functions
 
+	function captchaValidate()
+	{
+ 				$secret = "6Le_MgYTAAAAAG77bicOJQUy3GtoLot5YP6WrCl8";
+                $ip = $_SERVER['REMOTE_ADDR'];
+                $captcha = $_POST['g-recaptcha-response'];
+                $rsp = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secret&response=$captcha&remoteip=$ip");
+                $arr = json_decode($rsp,TRUE);
+                if($arr['success'])
+                {
+                	return;
+                }else{
+                    $_SESSION['error_message'] = 'Invalid Captcha Validation';
+                    include('./views/login.php');
+                    break;
+          }
+
+	}
 	/********************************
 	*function name: password_check 	*
 	*arguments: $password, $pwHash 	*
@@ -115,9 +132,12 @@ require_once('/validation_functions.php');
 	            $_SESSION['accName'] =  $user['accessLvl_ual']; 
 	            $_SESSION['userLevelName'] = $user['name_lvl'];
 	           
-
-	            
-					return $user;
+	            if($user['accessLevel_ual_id_ual'] === '2'){
+	            	$_SESSION['memberUpdates'] = 'member';
+	            }elseif($user['accessLevel_ual_id_ual'] === '1'){
+	            	$_SESSION['memberUpdates'] = 'admin';
+					
+	            }return $user;
 				}else{
 				return false;
 
@@ -145,13 +165,13 @@ require_once('/validation_functions.php');
 	function adminValidate($action)
 	{
 		if($_SESSION['accessLevel'] === '1')
-	        {
+	        {echo $_SESSION['adminUpdates'];
 	        	$action = 'admin';
 	           include('/views/admin.php');
 	            
 	        } else {
 	           $_SESSION['error_message'] = 'You must be an Administrator to access the Administration area.';
-	            include('views/includes/errors/notloggedinadmin.php');
+	            include('views/includes/errors/403.php');
 	}
 	}
 
@@ -216,7 +236,7 @@ require_once('/validation_functions.php');
 	         
 	        }else{
 	            $_SESSION['error_message']= 'You must be logged in to see the Members section.';
-	            include('views/includes/errors/notloggedinmember.php');
+	            include('views/includes/errors/404.php');
 	            
 	        }
 	}
@@ -513,6 +533,28 @@ require_once('/validation_functions.php');
 	   					FROM gearexchange_gex g JOIN condition_con c
 	  					ON g.condition_con_id_con = c.id_con
 	    				JOIN user_usr u on u.id_usr = g.user_usr_id_usr";
+		$result = $db->query($query);
+		return $result;
+	}
+
+	/********************************
+	*function name: getUserGear		*
+	*arguments:	$userID				*
+	*returned data: All Gear Listed *
+	*  by user. 					*
+	*description: returns all 		*
+	* 	rows in gearExchange_gex 	*
+	*	table by user ID. 			*
+	*Dependencies:					*
+	*********************************/
+	function getUserGear($userID)
+	{
+		global $db;
+		$query = $sql = "Select g.id_gex, g.name_gex, g.description_gex, c.condition_con, g.dateAdded_gex
+	   					FROM gearexchange_gex g JOIN condition_con c
+	  					ON g.condition_con_id_con = c.id_con
+	    				JOIN user_usr u on u.id_usr = g.user_usr_id_usr
+	    				WHERE user_usr_id_usr = '$userID'";
 		$result = $db->query($query);
 		return $result;
 	}

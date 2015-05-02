@@ -15,7 +15,7 @@
 <title>Couch Potato Hikers</title>
 <link href="css/maincss.css" rel="stylesheet" >
 <meta name="viewport" content="initial-scale=1.0" />
-
+<script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body>
 

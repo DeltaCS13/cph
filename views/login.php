@@ -10,36 +10,43 @@
 
 <article class="content1">
 
-<?php if(isset($_SESSION['error_message']))
-	{
-		?><h2><?php echo htmlentities($_SESSION['error_message']); ?></h2>
-		<p>Please try again. Not yet a member? <a href="index.php?action=register">Register Here</a> to join the hike.</p><?php
-	}
-  		$_SESSION['error_message'] = null; ?> 
-	<div class="form1">
-		<!-- login form-->
+	<?php if(isset($_SESSION['error_message']))
+		{
+	?>
+		<h2><?php echo htmlentities($_SESSION['error_message']); ?></h2>
+			<p>Please try again. Not yet a member? <a href="index.php?action=register">Register Here</a> to join the hike.</p>
+	<?php
+		}
+  		$_SESSION['error_message'] = null;
+  	?> 
+<div><!-- login form-->
 	<?php
 		//Field Validation
 		$errors = errors();
 		echo form_errors($errors);
 	?>
 		<form action="index.php" method="post" id="loginForm">
-			<fieldset>
-				<h1>CPH Member Login</h1>
-					<p>Fields marked with an asterisks (*) are requiered.</p>
-			</fieldset>
-				<input type="hidden" name="action" value="logMeIn">
-					<label>Trail Name *:<br>
-					<input type="text" name="trail_Name" required placeholder="User Name"  value="<?php if(isset($_SESSION['trail_Name'])) {echo $_SESSION['trail_Name'];}?>" ></label><br>
-					<label>Password *:<br>
-					<input type="password" name="password" required placeholder="********" ><br></label>
-						<input type="submit" value="login" >
+			
+			<h1>CPH Member Login</h1>
+				<p>Fields marked with an asterisks (<span class="redText">*</span>) are requiered.</p>
+			
+					<input type="hidden" name="action" value="logMeIn">
 					
-					
+				Trail Name <span class="redText">*</span>:<br>
+					<input type="text" name="trail_Name" required placeholder="User Name"  value="<?php if(isset($_SESSION['trail_Name'])) {echo $_SESSION['trail_Name'];}?>"><br>
+				
+				Password <span class="redText">*</span>:<br>
+					<input type="password" name="password" required placeholder="********" ><br>
+				
+				<!--reCaptcha-->
+					<div class="g-recaptcha" data-sitekey="6Le_MgYTAAAAALAtSdipFL2xWNpb4PGvg7Gs3GGF"></div>
+
+					<input type="submit" value="login" >
 		</form><!-- form -->
-	</div><!--/form-->
+</div><!--/form-->
 </article>
 
-<?php include('views/includes/footer.php');
+<?php 
+	include('views/includes/footer.php');
 ?>
 </div><!--/wrapper-->

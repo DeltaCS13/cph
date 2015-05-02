@@ -44,29 +44,49 @@
 
           $required_fields = array('trail_Name', 'password');
 
-            validate_presences($required_fields);
-              if (!empty($errors))
-              { 
-                $_SESSION["errors"] = $errors;
+        //reCaptcha
+          if(isset($_POST['g-recaptcha-response'])&& $_POST['g-recaptcha-response'])
+            {
 
-                include('views/login.php');
-              } 
-                if (is_valid_login($nickName, $password))
-                  {
+                $secret = "6Le_MgYTAAAAAG77bicOJQUy3GtoLot5YP6WrCl8";
+                $ip = $_SERVER['REMOTE_ADDR'];
+                $captcha = $_POST['g-recaptcha-response'];
+                $rsp = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secret&response=$captcha&remoteip=$ip");
+                $arr = json_decode($rsp,TRUE);
+
+                if($arr['success'])
+                {
+                   validate_presences($required_fields);
+                      if (!empty($errors))
+                        { 
+                          $_SESSION["errors"] = $errors;
+
+                          include('views/login.php');
+                        } 
+                      if (is_valid_login($nickName, $password))
+                        {
                
-                    if($_SESSION['accessLevel'] === '1')
-                    { 
-                        $action ='admin';
-                        include('views/admin.php');
-                        break;
-                    }
-                    elseif($_SESSION['accessLevel'] === '2') 
-                    { 
-                        $action = 'member';
-                        include('views/member.php');
-                        break;
-                    }
-                  }  
+                          if($_SESSION['accessLevel'] === '1')
+                          { 
+                              $action ='admin';
+                              $_SESSION['adminUpdates'] = NULL;
+                              include('views/admin.php');
+                              break;
+                          }
+                          elseif($_SESSION['accessLevel'] === '2') 
+                          { 
+                              $action = 'member';
+                              $_SESSION['memberUpdates'] = NULL;
+                              include('views/member.php');
+                              break;
+                          }
+                        }
+                } 
+            }else{
+                $_SESSION['error_message'] = 'Invalid Captcha Validation';
+                include('views/login.php');
+                break;
+                }
           break;
 
       case "pubhome":
@@ -133,7 +153,7 @@
           break;
 
       case "member":
-         
+          //$_SESSION['memberUpdates'] = $action;
           memberValidate($action);
           break;
        
@@ -142,10 +162,11 @@
           adminValidate($action);
           break;
           
-      case "memberUpdate":
+      case "memProfileUpdate":
           
           $_SESSION['memberUpdates'] = $action;
           memberValidate($action);
+
           break;
 
       case "memUpdate":
@@ -163,12 +184,13 @@
           $_SESSION['lastName']= $userInfo['lastName_usr'];
           $_SESSION['nickName']= $userInfo['nickName_usr'];
         
+          $_SESSION['memberUpdates'] = NULL;
           $action = 'member';
           include('views/member.php');
           break;
 
       case "adminUpdate";
-          
+          echo $action;
           $_SESSION['adminUpdates'] = $action;
           adminValidate($action);
           break;
@@ -195,6 +217,7 @@
           $_SESSION['email'] = $userInfo['email_uad'];
            
           $action = 'admin';
+
           include('views/admin.php');
           break;
 
@@ -210,6 +233,11 @@
           memberValidate($action);
           break;
       
+      case "adminAddressUpdate":
+                    
+          $_SESSION['adminUpdates'] = $action;
+          adminValidate($action);
+          break;
 
       case "gear":
 
@@ -223,11 +251,17 @@
           break;
 
       case "manageGear":
-
+          
           $_SESSION['memberUpdates'] = $action;
           memberValidate($action);
           break;
 
+      case "adminManageGear";
+
+          $_SESSION['adminUpdates'] = $action;
+          adminValidate($action);
+          break;
+          
       case "events":
 
           $_SESSION['selected']= 'events';
@@ -255,6 +289,10 @@
           logout();
    
           include('views/logout.php');
+          break;
+
+      default:
+          include('views/includes/errors/404.html');
           break;
 
      

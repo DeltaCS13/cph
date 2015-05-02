@@ -12,30 +12,95 @@
   <h1 class="pageTitle">Admin Page</h1>
 </article>
 <!-- show Admin info -->
-<article class="content2">
+ <article class="content2">
   <?php 
-    $userID = $_SESSION['user_id'];
+     $userID = $_SESSION['user_id'];
       $userInfo = getMemberByID($userID);
+     
+    if($_SESSION['adminUpdates'] != 'adminManageGear')
+     { 
     ?>
   
   <h2>User Profile</h2>
-    <h3>Name:</h3>
-      <p><?php echo htmlentities($userInfo['firstName_usr']).' '.htmlentities($userInfo['lastName_usr']);?></p>
-    <h3>Trail Name:</h3>
-      <p><?php echo htmlentities($userInfo['nickName_usr']);?></p>
-    <h3>Hiker Level:</h3>
-      <p><?php echo htmlentities($userInfo['name_lvl']);?></p>
-    <h3>Email:</h3>
-      <p><?php echo htmlentities($userInfo['email_uad']);?></p>
-    <h3>Access Level:</h3>
-      <p><?php echo htmlentities($userInfo['accessLvl_ual']);?></p>
-     
+    <div class="floatLeft">
+      <h3>Name:</h3>
+        <p><?php echo htmlentities($userInfo['firstName_usr']).' '.htmlentities($userInfo['lastName_usr']);?></p>
+
+      <h3>Trail Name:</h3>
+        <p><?php echo htmlentities($userInfo['nickName_usr']);?></p>
+
+      <h3>Email:</h3>
+        <p><?php echo htmlentities($userInfo['email_uad']);?></p>
+
+      <h3>Hiker Level:</h3>
+        <p><?php echo htmlentities($userInfo['name_lvl']);?></p>
+      
+      <h3>Access Level:</h3>
+        <p><?php echo htmlentities($userInfo['accessLvl_ual']);?></p>
+    </div>
+
+    <div class="floatLeft">
+      <h3>Address Type:</h3>
+        <p><?php echo htmlentities($userInfo['type_uad']);?></p>
+      
+      <h3>Address:</h3>
+        <p><?php echo htmlentities($userInfo['address1_uad']);?></p>
+
+      <h3>Address 2:</h3>
+        <p><?php echo htmlentities($userInfo['address2_uad']);?></p>
+
+      <h3>Address 3:</h3>
+        <p><?php echo htmlentities($userInfo['address3_uad']);?></p>
+
+      <h3>City:</h3>
+        <p><?php echo htmlentities($userInfo['city_uad']);?></p>
+
+      <h3>State/Provence:</h3>
+        <p><?php echo htmlentities($userInfo['name_sre']);?></p>
+      
+      <h3>Country:</h3>
+        <p><?php echo htmlentities($userInfo['country_cou']);?></p>
+    </div>  
+  <div class="floatReset"></div>   
+</article>
+<!-- admin update links/forms-->
+<?php 
+  include('includes/admin/adminUpdate.php'); 
+}elseif($_SESSION['adminUpdates'] === 'adminManageGear'){
+
+  $userGears = getUserGear($userID);
+?>
+
+<h2>Listed Gear</h2>
+    <div class="floatLeft">
+      <?php foreach($userGears as $userGear):?>
+
+        <h3>Item ID:</h3>
+          <p><?php echo htmlentities($userGear['id_gex']);?></p>
+
+        <h3>Category:</h3>
+          <p><?php echo htmlentities($userGear['name_gex']);?></p>
+
+        <h3>Condition:</h3>
+          <p><?php echo htmlentities($userGear['condition_con']);?></p>
+
+        <h3>Description:</h3>
+          <p><?php echo htmlentities($userGear['description_gex']);?></p>
+
+        <h3>Date Added:</h3>
+          <p><?php echo htmlentities($userGear['dateAdded_gex']);?></p>
+
+    </div>
+<?php
+      endforeach;
+      ?>
 </article>
 
 <?php 
   include('includes/admin/adminUpdate.php');
+  }
 ?>
-</article>
+
 <div class="floatReset"></div>
 <?php include('includes/footer.php');
 ?>

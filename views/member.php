@@ -8,6 +8,7 @@
  ************************************************/
 
     include('includes/header.php');
+    
  ?>
 
 
@@ -20,7 +21,9 @@
   <?php 
      $userID = $_SESSION['user_id'];
       $userInfo = getMemberByID($userID);
-      
+     
+      if(($_SESSION['memberUpdates'] != 'manageGear') || ($_SESSION['memberUpdates'] === NULL))
+     { 
     ?>
   
   <h2>User Profile</h2>
@@ -67,7 +70,38 @@
 </article>
 <!-- member update links/forms-->
 <?php 
-  include('includes/members/memberUpdate.php'); 
+  include('includes/members/memberUpdate.php');  
+}elseif($_SESSION['memberUpdates'] === 'manageGear'){
+
+  $userGears = getUserGear($userID);
+?>
+
+<h2>Listed Gear</h2>
+    <div class="floatLeft">
+      <?php foreach($userGears as $userGear):?>
+
+        <h3>Item ID:</h3>
+          <p><?php echo htmlentities($userGear['id_gex']);?></p>
+
+        <h3>Category:</h3>
+          <p><?php echo htmlentities($userGear['name_gex']);?></p>
+
+        <h3>Condition:</h3>
+          <p><?php echo htmlentities($userGear['condition_con']);?></p>
+
+        <h3>Description:</h3>
+          <p><?php echo htmlentities($userGear['description_gex']);?></p>
+
+        <h3>Date Added:</h3>
+          <p><?php echo htmlentities($userGear['dateAdded_gex']);?></p>
+
+    </div>
+<?php
+      endforeach;
+      ?>
+</article>
+  <?php include('includes/members/memberUpdate.php'); }
+
 ?>
 
   <div class="floatReset"></div>
