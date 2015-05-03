@@ -11,6 +11,14 @@
 <article class="content1">
 	
 	<h1>Gear Exchange</h1>
+	<?php if(isset($_SESSION['error_message']))
+				{
+					$error = "Sorry, ".htmlentities($_SESSION['error_message'])." Please try again.";
+					$_SESSION['error_message']= NULL;
+				}else{
+					$error = NULL;
+				}
+	?>
 
 	<div>	
 
@@ -40,14 +48,21 @@
 	</tr>
 	
 		<?php 
+
+				if(!isset($error))
+				{
+					echo htmlentities($error);
+				}
 			if(!isset($_POST['searchItem'])){
 					$gears = getGear();
 				}else{
 				$item = $_POST['searchItem'];
 				$_POST['searchItem'] = null;
 				$gears = findGear($item);
+
+
 			}
-				foreach ( $gears as $gear):
+				foreach ( $gears as $gear): 
 		?>
 		
 			<tbody>

@@ -245,7 +245,7 @@
           break;
 
       case "gearItemSearch":
-
+          
           $action = 'gear';
           include('views/gear.php');
           break;

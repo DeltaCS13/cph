@@ -9,21 +9,7 @@ require_once('/session_functions.php');
 require_once('/../controllers/dbconnect.php');
 require_once('/validation_functions.php');
 
-// error handling functions
-	/********************************
-	*function name: confirm_query 	*
-	*arguments: $result_set        	*
-	*returned data:  				*
-	*description: determines if a   *
-	*	query returned a result. 	* 				
-	*Dependencies: 					*
-	*********************************/
-	function confirm_query($result_set) {
-			if (!$result_set) {
-				$_SESSION['error_message'] = 'No results found';
-				die("Database query failed.");
-			}
-		}
+
 
 	/********************************
 	*function name: form_errors 	*
@@ -555,7 +541,9 @@ require_once('/validation_functions.php');
 	  					ON g.condition_con_id_con = c.id_con
 	    				JOIN user_usr u on u.id_usr = g.user_usr_id_usr
 	    				WHERE user_usr_id_usr = '$userID'";
-		$result = $db->query($query);
+		
+		$result = $db->prepare($query);
+
 		return $result;
 	}
 
@@ -577,9 +565,10 @@ require_once('/validation_functions.php');
 	  					ON g.condition_con_id_con = c.id_con
 	    				JOIN user_usr u on u.id_usr = g.user_usr_id_usr
 	    				WHERE g.name_gex = '$item'";
+		
+
 		$result = $db->query($query);
 		return $result;
-
 	}
 
 //Event Functions

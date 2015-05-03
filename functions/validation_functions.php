@@ -8,6 +8,9 @@
 //Initiate errors array
 	$errors = array();
 
+
+	
+
 //editing functions
 	/**********************************
 	*function name: fieldname_as_text *
@@ -27,6 +30,22 @@
 	}
 
 //Validation functions
+
+	/********************************
+	*function name: confirm_query 	*
+	*arguments: $result_set        	*
+	*returned data:  				*
+	*description: determines if a   *
+	*	query returned a result. 	* 				
+	*Dependencies: 					*
+	*********************************/
+	function confirm_query($result_set) {
+			if (!$result_set) {
+				$_SESSION['error_message'] = 'No results found';
+				die("Database query failed.");
+			}
+		}
+
 
 	/********************************
 	*function name: has_presence	*
