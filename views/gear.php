@@ -29,7 +29,7 @@
 	<table>
 		
 		<tr>
-			<th>Item</th><th>Description</th>
+			<th>Catagory</th><th>Description</th>
 			<th>Condition</th><th>Listing Member</th><th>Date Listed</th>
 		</tr>
 	

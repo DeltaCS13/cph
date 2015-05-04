@@ -35,7 +35,7 @@
          
           <li><a <?php if ($action === 'admin'){?> class="selected" <?php } ?>href="index.php?action=admin" title="Administration">Administration</a>
          <?php }elseif($_SESSION['accessLevel'] === '2'){?>
-          <li><a <?php if ($action === 'member' || $action === 'memberUpdate'){?> class="selected" <?php } ?>href="index.php?action=member" title="Member's Area">Member's Area</a>
+          <li><a <?php if ($action === 'member' || $action === 'memberUpdate' || $action === 'updateEmail' || $action === 'memProfileUpdate' || $action === 'updateAddress' || $action === 'manageGear'){?> class="selected" <?php } ?>href="index.php?action=member" title="Member's Area">Member's Area</a>
           <?php }; }?>
 
           <li ><a <?php if ($action === 'gear'){?> class="selected" <?php } ?>href="index.php?action=gear " title="Gear Exchange">Gear Exchange</a>

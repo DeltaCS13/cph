@@ -17,12 +17,13 @@
   <?php 
     $userID = $_SESSION['user_id'];
     $userInfo = getMemberByID($userID);
-     
-    if($_SESSION['adminUpdates'] != 'adminManageGear')
+
+    if(($_SESSION['adminUpdates'] != 'adminManageGear') || ($_SESSION['adminUpdates'] === NULL))
     { 
   ?>
   
   <h2>User Profile</h2>
+
     <div class="floatLeft">
       <h3>Name:</h3>
         <p><?php echo htmlentities($userInfo['firstName_usr']).' '.htmlentities($userInfo['lastName_usr']);?></p>
@@ -46,12 +47,16 @@
       
       <h3>Address:</h3>
         <p><?php echo htmlentities($userInfo['address1_uad']);?></p>
-
+  
+    <?php if($userInfo['address2_uad'] != NULL) {?>
       <h3>Address 2:</h3>
         <p><?php echo htmlentities($userInfo['address2_uad']);?></p>
+    <?php } ?>
 
+    <?php if($userInfo['address3_uad'] != NULL) {?>
       <h3>Address 3:</h3>
         <p><?php echo htmlentities($userInfo['address3_uad']);?></p>
+    <?php } ?>
 
       <h3>City:</h3>
         <p><?php echo htmlentities($userInfo['city_uad']);?></p>
@@ -61,6 +66,10 @@
       
       <h3>Country:</h3>
         <p><?php echo htmlentities($userInfo['country_cou']);?></p>
+
+      <h3>Postal/Zip Code:</h3>
+        <p><?php echo htmlentities($userInfo['postalCode_uad']);?></p>
+
     </div>  
   <div class="floatReset"></div>   
 </article>

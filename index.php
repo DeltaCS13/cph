@@ -153,7 +153,7 @@
           break;
 
       case "member":
-          //$_SESSION['memberUpdates'] = $action;
+          
           memberValidate($action);
           break;
        
@@ -226,18 +226,65 @@
           $_SESSION['memberUpdates'] = $action;
           memberValidate($action);
           break;
+
+      case "adminUpdateEmail":
+             
+          $_SESSION['adminUpdates'] = $action;
+          adminValidate($action);
+          break;
+
+      case "emailUpdate";
+
+        $email = $_POST['email'];
+        updateEmail($email);
+
+        if($_SESSION['accessLevel'] === '2'){
+          $action = 'member';
+          include('views/member.php');
+          break;
+        }elseif($_SESSION['accessLevel'] === '1'){
+          $action = 'admin';
+          include('views/admin.php');
+          break;
+        }
+        
       
       case "updateAddress":
-            
+
           $_SESSION['memberUpdates'] = $action;
           memberValidate($action);
           break;
       
-      case "adminAddressUpdate":
-                    
+      case "adminAddUpdate";
+
           $_SESSION['adminUpdates'] = $action;
           adminValidate($action);
           break;
+      
+      case "addressUpdate":
+          
+          $userID = $_SESSION['user_id'];
+          $type = $_POST['type'];
+          $add1 = $_POST['add1'];
+          $add2 = $_POST['add2'];
+          $add3 = $_POST['add3'];
+          $city = $_POST['city'];
+          $state = $_POST['state'];
+          $zipCode = $_POST['zipCode'];
+
+          addressUpdate($userID, $type, $add1, $add2, $add3, $city, $state, $zipCode);
+
+          if($_SESSION['accessLevel'] === '2'){
+          $action = 'member';
+          include('views/member.php');
+          break;
+        }elseif($_SESSION['accessLevel'] === '1'){
+           $action = 'admin';
+           $_SESSION['adminUpdates'] = NULL;
+          include('views/admin.php');
+          break;
+        }
+        break;
 
       case "gear":
 

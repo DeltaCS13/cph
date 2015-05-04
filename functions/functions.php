@@ -372,6 +372,65 @@
 
 
 	/********************************
+	*function name: updateEmail		*
+	*arguments: $email
+	*returned data: 				*
+	*description: User enters 		*
+	*	new email to update in the  *
+	*		database 				*
+	*Dependencies:					*
+	*********************************/
+	function updateEmail($email)
+	{
+			global $db;
+
+			$query= $sql = "UPDATE useraddress_uad SET email_uad=:email WHERE user_usr_id_usr = :userID";
+
+			$statement = $db->prepare($query);
+			
+			$statement->bindValue( ':userID', $_SESSION['user_id']);
+			$statement->bindValue( ':email', $email);
+
+			$statement->execute();
+			$statement->closeCursor();
+
+	}
+	/********************************
+	*function name: addressUpdate	*
+	*arguments: $type, $add1, 		*
+	*	 $add2, $add3, 				*
+	*	$city, $zipCode, $state 	*
+	*	 		        			*
+	*returned data: 				*
+	*description: User enters 		*
+	*	address info to update in   *
+	*		database 				*
+	*	 	to update profile 	 	*
+	*Dependencies:					*
+	*********************************/
+	function addressUpdate($userID, $type, $add1, $add2, $add3, $city, $state, $zipCode)
+	{
+global $db;
+
+	$query = $sql = "UPDATE useraddress_uad SET type_uad=:type,address1_uad=:add1 ,address2_uad=:add2 ,address3_uad=:add3 ,city_uad=:city ,subregions_sre_id_sre=:state ,postalCode_uad=:zip WHERE user_usr_id_usr = :userID";
+
+		$statement = $db->prepare($query);
+			
+		$statement->bindValue( ':userID', $userID);
+		$statement->bindValue( ':type', $type);
+		$statement->bindValue( ':add1', $add1);
+		$statement->bindValue( ':add2', $add2);
+		$statement->bindValue( ':add3', $add3);
+		$statement->bindValue( ':city', $city);
+		$statement->bindValue( ':state', $state);
+		$statement->bindValue( ':zip', $zipCode);
+
+		$statement->execute();
+		$statement->closeCursor();
+
+
+	}
+	/********************************
 	*function name: getUserAddress	*
 	*arguments: 		          	*
 	*returned data: all user address*
