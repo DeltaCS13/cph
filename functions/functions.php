@@ -5,9 +5,9 @@
  * Description: function providing functionality*
  * Revision: 0.1.0 4/30/2015                    *
  ************************************************/
-require_once('/session_functions.php');
-require_once('/../controllers/dbconnect.php');
-require_once('/validation_functions.php');
+	require_once('/session_functions.php');
+	require_once('/../controllers/dbconnect.php');
+	require_once('/validation_functions.php');
 
 
 
@@ -40,6 +40,15 @@ require_once('/validation_functions.php');
 	}
 
 // login functions
+
+	/********************************
+	*function name: captchaValidate	*
+	*arguments:     				*
+	*returned data: 				*
+	*description: If captcha test   *
+	*not passed will not allow login*
+	*Dependencies: 					*
+	*********************************/
 
 	function captchaValidate()
 	{
@@ -214,6 +223,7 @@ require_once('/validation_functions.php');
 	{
 		if($_SESSION['accessLevel'] === '1' )
 	        {
+	        	$_SESSION['action'] = 'member';
 	           include('views/member.php');
 	           
 	        } elseif($_SESSION['accessLevel'] === '2') {
@@ -317,19 +327,19 @@ require_once('/validation_functions.php');
 		return $user_set;
 	}
 
-/********************************
-*function name: addAddress 		*
-*arguments: $email, $address1, 	*
-*	 $address2, $address3, 		*
-*	$city, $zipCode, $region, 	*
-*	 		        			*
-*returned data: 				*
-*description: User enters 		*
-*	address info to entrer into *
-*		database 				*
-*	 	to update profile 	 	*
-*Dependencies:					*
-*********************************/
+	/********************************
+	*function name: addAddress 		*
+	*arguments: $email, $address1, 	*
+	*	 $address2, $address3, 		*
+	*	$city, $zipCode, $region, 	*
+	*	 		        			*
+	*returned data: 				*
+	*description: User enters 		*
+	*	address info to entrer into *
+	*		database 				*
+	*	 	to update profile 	 	*
+	*Dependencies:					*
+	*********************************/
 	function addAddress( $email, $type, $address1, $address2, $address3, $city, $zipCode, $region)
 	{
 		$nickName = $_SESSION['trail_Name'];
@@ -384,46 +394,7 @@ require_once('/validation_functions.php');
 
 	}
 
-
-
-	/********************************
-	*function name: changePassword	*
-	*arguments: $oldPass, $newPass, *
-	*			 $reNewPass    		*
-	*returned data: 				*
-	*description: On successful 	*
-	*	entering of old password,   *
-	*	users new choice for 		*
-	* 	will be entered into 		*
-	*	 database 					*
-	*Dependencies:					*
-	*********************************/
-	function changePassword($oldPass, $newPass, $reNewPass)
-	{
-		global $db;
-
-		$nickName = $_SESSION['nickName'];
-		is_valid_login($nickName, $oldPass);
-
-		if ($oldPass === true)
-		{
-			$query = 'UPDATE user_usr SET password_usr = :newPass WHERE id_usr = :user_id';
-			
-			$statement = $db->prepare($query);
-			
-			$statement->bindValue( ':newPass', $newPass);
-			$statement->bindValue( ':user_id', $_SESSION['user_id']);
-			$statement->execute();
-			$statement->closeCursor();
-
-			return;
-		}else{
-			$_SESSION['errors'] = 'Incorrect Password';
-			return;
-		}
-
-	}
-
+	
 //Public Functions
 
 	/********************************
@@ -543,7 +514,7 @@ require_once('/validation_functions.php');
 	    				WHERE user_usr_id_usr = '$userID'";
 		
 		$result = $db->prepare($query);
-
+	
 		return $result;
 	}
 
@@ -568,6 +539,8 @@ require_once('/validation_functions.php');
 		
 
 		$result = $db->query($query);
+		$result= $result->fetchAll();	
+		confirm_results($result);
 		return $result;
 	}
 

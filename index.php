@@ -228,7 +228,7 @@
           break;
       
       case "updateAddress":
-                    
+            
           $_SESSION['memberUpdates'] = $action;
           memberValidate($action);
           break;

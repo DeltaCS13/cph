@@ -8,23 +8,21 @@
  ************************************************/
 
     include('includes/header.php');
-    
  ?>
-
 
 <article class="content1">
   <h1 class="pageTitle">Member Page</h1>
 </article>
 
 <!-- show member info -->
-  <article class="content2">
+<article class="content2">
   <?php 
-     $userID = $_SESSION['user_id'];
-      $userInfo = getMemberByID($userID);
+    $userID = $_SESSION['user_id'];
+    $userInfo = getMemberByID($userID);
      
-      if(($_SESSION['memberUpdates'] != 'manageGear') || ($_SESSION['memberUpdates'] === NULL))
+    if(($_SESSION['memberUpdates'] != 'manageGear') || ($_SESSION['memberUpdates'] === NULL))
      { 
-    ?>
+  ?>
   
   <h2>User Profile</h2>
     <div class="floatLeft">
@@ -71,7 +69,7 @@
 <!-- member update links/forms-->
 <?php 
   include('includes/members/memberUpdate.php');  
-}elseif($_SESSION['memberUpdates'] === 'manageGear'){
+  }elseif($_SESSION['memberUpdates'] === 'manageGear'){
 
   $userGears = getUserGear($userID);
 ?>
@@ -96,14 +94,15 @@
           <p><?php echo htmlentities($userGear['dateAdded_gex']);?></p>
 
     </div>
-<?php
-      endforeach;
+      <?php
+        endforeach;
       ?>
 </article>
-  <?php include('includes/members/memberUpdate.php'); }
+  <?php 
+    include('includes/members/memberUpdate.php'); }
+  ?>
 
-?>
-
-  <div class="floatReset"></div>
-<?php include('includes/footer.php');
+<div class="floatReset"></div>
+<?php
+  include('includes/footer.php');
 ?>

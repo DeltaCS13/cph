@@ -46,6 +46,17 @@
 			}
 		}
 
+		function confirm_results($results)
+		{ 
+			
+			if(!$results)
+			{
+				
+				$_SESSION['error_message'] = 'No Data Found';
+return;
+			}
+			
+		}
 
 	/********************************
 	*function name: has_presence	*

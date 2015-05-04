@@ -6,7 +6,8 @@
  *  and links for admionistration                     *
  * Revision: 0.1.0 4/30/2015                          *
  *****************************************************/
- include('includes/header.php');?>
+  include('includes/header.php');
+ ?>
 
 <article class="content1">  
   <h1 class="pageTitle">Admin Page</h1>
@@ -14,12 +15,12 @@
 <!-- show Admin info -->
  <article class="content2">
   <?php 
-     $userID = $_SESSION['user_id'];
-      $userInfo = getMemberByID($userID);
+    $userID = $_SESSION['user_id'];
+    $userInfo = getMemberByID($userID);
      
     if($_SESSION['adminUpdates'] != 'adminManageGear')
-     { 
-    ?>
+    { 
+  ?>
   
   <h2>User Profile</h2>
     <div class="floatLeft">
@@ -66,7 +67,7 @@
 <!-- admin update links/forms-->
 <?php 
   include('includes/admin/adminUpdate.php'); 
-}elseif($_SESSION['adminUpdates'] === 'adminManageGear'){
+  }elseif($_SESSION['adminUpdates'] === 'adminManageGear'){
 
   $userGears = getUserGear($userID);
 ?>
@@ -91,8 +92,8 @@
           <p><?php echo htmlentities($userGear['dateAdded_gex']);?></p>
 
     </div>
-<?php
-      endforeach;
+      <?php
+        endforeach;
       ?>
 </article>
 
@@ -102,5 +103,6 @@
 ?>
 
 <div class="floatReset"></div>
-<?php include('includes/footer.php');
+<?php
+   include('includes/footer.php');
 ?>

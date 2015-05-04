@@ -7,19 +7,23 @@
  *   member actions and forms for updates.      *
  * Revision: 0.1.0 4/30/2015                    *
  ************************************************/
-echo $_SESSION['memberUpdates'];
+
 	if (!isset($_SESSION['memberUpdates']))/* === 'member')*/
 	{
 ?>
-	<article class="content2">
+<article class="content2">
 
-<h2>Member Actions</h2>
-  <ul class="menu1">
-    <li><a class="link" href="index.php?action=memProfileUpdate" title="Member Update">Update Profile</a>
-    <li><a class="link" href="index.php?action=updateEmail" title="Update Email">Update Email</a>
-    <li><a class="link" href="index.php?action=updateAddress" title="Update Address">Update Address</a>
-    <li><a class="link" href="index.php?action=manageGear" title="Manage Your Gear Exchange Items">Manage Your Gear</a> on the Gear Exchange
-  </ul>
+	<h2>Member Actions</h2>
+	  <ul>
+	    
+	    <li><a class="link" href="index.php?action=memProfileUpdate" title="Member Update">Update Profile</a>
+	    
+	    <li><a class="link" href="index.php?action=updateEmail" title="Update Email">Update Email</a>
+	    
+	    <li><a class="link" href="index.php?action=updateAddress" title="Update Address">Update Address</a>
+	    
+	    <li><a class="link" href="index.php?action=manageGear" title="Manage Your Gear Exchange Items">Manage Your Gear</a> on the Gear Exchange
+	  </ul>
 </article>
 <?php
 	}elseif($_SESSION['memberUpdates'] === 'memProfileUpdate'){

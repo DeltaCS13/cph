@@ -14,10 +14,11 @@
 	<h2>Administrator Actions</h3>
   		<ul>
     		<li><a class="link" href="index.php?action=adminUpdate" title="Admin Update">Update Profile</a>
+    		
     		<li><a class="link" href="index.php?action=adminAddressUpdate" title="Address Update">Update Address</a>
+    		
     		<li><a class="link" href="index.php?action=adminManageGear" title="Manage Your Gear Exchange Items">Manage Your Gear</a> on the Gear Exchange
   		</ul>
-<? echo $_SESSION['adminUpdates'];?>
 </article>
 
 <?php
