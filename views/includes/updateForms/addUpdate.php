@@ -18,7 +18,7 @@
  	}
 ?>
 
-<article class="content2">
+<div class="content2">
 	<h2>Update Your Address</h2>
 			<form action="index.php" method="post" id="addressUpdateForm">
 	<?php
@@ -73,5 +73,4 @@
 				<input type="submit" value="Update Address" />
 		</form>
 	</div><!--/form-->
-</article>
-</article>
+

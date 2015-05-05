@@ -41,6 +41,7 @@
 
 			Address Type:<br>
 				<select name="type" required>
+					<option value="">Please Select</option>
 					<option value="home">Home</option>
 					<option value="business">Business</option>
 					<option value="other">Other</option>
@@ -61,7 +62,7 @@
 
 			State/Provence<span class="requiered">*</span>:<br>
 				<select name="region" required>
-					<option selected></option>
+					<option value="">Please Select</option>
 					<?php $regions = allRegions();
 					
 						foreach ($regions as $region): ?>
@@ -72,7 +73,7 @@
 			
 			Country:<br>
 				<select name="country">
-					<option selected></option>
+					<option value="">Please Select</option>
 					<?php $countrys = allCountrys();
 					
 						foreach ($countrys as $country): ?>
@@ -82,7 +83,7 @@
 				<br>
 
 			Postal Code/ Zip Code:<br>
-				<input type="text" name="zipCode" placeholder="00000-0000" required value="<?php if(isset($_POST['zipCode'])) echo $_POST['zipCode'];?>"></label><br>
+				<input type="text" name="zipCode" placeholder="00000-0000" required value="<?php if(isset($_POST['zipCode'])) echo $_POST['zipCode'];?>"><br>
 
 				<input type="submit" value="Continue" />
 		</form>

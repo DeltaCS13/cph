@@ -13,7 +13,7 @@
 	<?php if(isset($_SESSION['error_message']))
 		{
 	?>
-		<h2><?php echo htmlentities($_SESSION['error_message']); ?></h2>
+		<h2><span class="redText"><?php echo htmlentities($_SESSION['error_message']); ?></span></h2>
 			<p>Please try again. Not yet a member? <a href="index.php?action=register">Register Here</a> to join the hike.</p>
 	<?php
 		}

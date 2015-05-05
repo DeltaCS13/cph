@@ -1,3 +1,4 @@
+<!doctype html>
 <!--/******************************************************
  * Auther: Howard La Flamme                     	  *
  * Title: 404 ERROR (404.php)  *
@@ -6,7 +7,6 @@
  * Revision: 0.1.0 4/30/2015                    	  *
  *****************************************************/-->
 
-<!doctype html>
 <html>
 <head>
 	<meta charset="UTF-8">

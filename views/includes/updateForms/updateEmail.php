@@ -20,11 +20,11 @@
 <article class="content2">
 	<h2>Update Your Email</h2>
 	<form action="index.php" method="post" id="emailUpdateForm">
-	<?php
+		<?php
 			$errors = errors();
 			echo form_errors($errors);
 			$_SESSION['memberUpdates']=NULL;
-	?>
+		?>
 
 				
 				<input type="hidden" name="action" value="emailUpdate">
@@ -34,5 +34,4 @@
 				
 				<input type="submit" value="Update Email" />
 		</form>
-	</div><!--/form-->
 </article>

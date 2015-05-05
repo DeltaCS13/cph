@@ -12,7 +12,7 @@
 ?>
 <article class="content2">
 
-	<h2>Administrator Actions</h3>
+	<h2>Administrator Actions</h2>
   		<ul>
     		<li><a class="link" href="index.php?action=adminUpdate" title="Admin Update">Update Profile</a>
     		

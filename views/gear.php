@@ -12,8 +12,8 @@
 	<h1>Gear Exchange</h1>
 </article>
 
-<article class="contentTable1">
-	<form action="" method="post" id="gearItemSearchForm" name="gearItemSearchForm">
+<div class="contentTable1">
+	<form action="index.php" method="post" id="gearItemSearchForm" name="gearItemSearchForm">
 		<?php
 			$errors = errors();
 			echo form_errors($errors);
@@ -65,7 +65,7 @@
 			<?php endforeach; ?>		
 		</tbody>
 	</table>	
-</article>
+</div><!--/contenttable1-->
 
 <div class="floatReset"></div>
 

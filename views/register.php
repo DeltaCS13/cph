@@ -2,7 +2,7 @@
 /******************************************************
 * Auther: Howard La Flamme                            *
 * Title: Registration Page (register.php)      		  *
-* Description: First registration page for name. 	  *
+* Description: First registration page for name, 	  *
 *				trail name and password. 	 		  *
 * Revision: 0.1.0 4/30/2015                           *
 *****************************************************/
