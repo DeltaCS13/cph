@@ -52,21 +52,22 @@
 
 	function captchaValidate()
 	{
- 				$secret = "6Le_MgYTAAAAAG77bicOJQUy3GtoLot5YP6WrCl8";
-                $ip = $_SERVER['REMOTE_ADDR'];
-                $captcha = $_POST['g-recaptcha-response'];
-                $rsp = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secret&response=$captcha&remoteip=$ip");
-                $arr = json_decode($rsp,TRUE);
-                if($arr['success'])
-                {
-                	return;
-                }else{
-                    $_SESSION['error_message'] = 'Invalid Captcha Validation';
-                    include('./views/login.php');
-                    break;
-          }
+		$secret = "6Le_MgYTAAAAAG77bicOJQUy3GtoLot5YP6WrCl8";
+        $ip = $_SERVER['REMOTE_ADDR'];
+        $captcha = $_POST['g-recaptcha-response'];
+        $rsp = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secret&response=$captcha&remoteip=$ip");
+        $arr = json_decode($rsp,TRUE);
+        if($arr['success'])
+        {
+        	return;
+        }else{
+            $_SESSION['error_message'] = 'Invalid Captcha Validation';
+            include('./views/login.php');
+            break;
+      }
 
 	}
+
 	/********************************
 	*function name: password_check 	*
 	*arguments: $password, $pwHash 	*
@@ -113,9 +114,9 @@
 		$user = find_member($nickName);
 
 		if ($user['nickName_usr'] === $nickName) {
-				if (password_check($password, $user["password_usr"])){
+			if (password_check($password, $user["password_usr"])){
 
-					
+				
 			 	$_SESSION['user_id'] = $user['id_usr'];
 			 	$_SESSION['firstName'] = $user['firstName_usr'];
 			 	$_SESSION['lastName'] = $user['lastName_usr'];
@@ -137,12 +138,12 @@
 				return false;
 
 				}
-		}else{
-			 $_SESSION['error_message']='You entered an invalid Trail Name or Password.';
-                        $action = 'login';
-                        include('views/login.php');
-                       
-			
+			}else{
+		 	$_SESSION['error_message']='You entered an invalid Trail Name or Password.';
+	                $action = 'login';
+	                include('views/login.php');
+	               
+		
 		}
 	}
 
@@ -166,8 +167,8 @@
 	            
 	        } else {
 	           $_SESSION['error_message'] = 'You must be an Administrator to access the Administration area.';
-	            include('views/includes/errors/403.php');
-	}
+	            include('errors/403.php');
+			}
 	}
 
 	/********************************
@@ -224,16 +225,12 @@
 		if($_SESSION['accessLevel'] === '1' )
 	        {
 	        	$_SESSION['action'] = 'member';
-	           include('views/member.php');
-	           
+	           	include('views/member.php');
 	        } elseif($_SESSION['accessLevel'] === '2') {
-
-	          include('views/member.php');
-	         
+	          	include('views/member.php');
 	        }else{
 	            $_SESSION['error_message']= 'You must be logged in to see the Members section.';
-	            include('views/includes/errors/404.php');
-	            
+	            include('errors/403.php');
 	        }
 	}
 
@@ -287,14 +284,9 @@
 		global $db;
 
 		
-			$query = $sql = "SELECT *
-	    FROM user_usr JOIN level_lvl ON level_lvl_id_lvl = id_lvl
-	    JOIN accesslevel_ual ON `accessLevel_ual_id_ual` = id_ual
-	    JOIN useraddress_uad ON user_usr_id_usr = id_usr
-	    JOIN subregions_sre ON subregions_sre_id_sre = id_sre
-	    JOIN regions_cou ON id_cou = region_id_sre
-	    WHERE id_usr = '$userID'";
-
+			$query = $sql = "SELECT * FROM user_usr JOIN level_lvl ON level_lvl_id_lvl = id_lvl JOIN accesslevel_ual ON `accessLevel_ual_id_ual` = id_ual JOIN useraddress_uad ON user_usr_id_usr = id_usr JOIN subregions_sre ON subregions_sre_id_sre = id_sre JOIN regions_cou ON id_cou = region_id_sre
+			    WHERE id_usr = '$userID'";
+			    
 				$userInfo = $db->query($query);
 				$user=$userInfo->fetch();
 			

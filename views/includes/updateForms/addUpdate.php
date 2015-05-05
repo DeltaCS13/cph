@@ -44,10 +44,10 @@
 				<br><input type="text" name="add1" value="<?php echo htmlentities($userInfo['address1_uad']);?>"><br>
 				
 			Address 2:
-				<br><input type="text" name="add2" value="<?php echo htmlentities($userInfo['address2_uad']);?>"><br>
+				<br><input type="text" name="add2" placeholder="Optional" value="<?php echo htmlentities($userInfo['address2_uad']);?>"><br>
 
 			Address 3:
-				<br><input type="text" name="add3" value="<?php echo htmlentities($userInfo['address3_uad']);?>"><br>
+				<br><input type="text" name="add3" placeholder="Optional" value="<?php echo htmlentities($userInfo['address3_uad']);?>"><br>
 			City:
 				<br><input type="text" name="city"  value="<?php echo htmlentities($userInfo['city_uad']);?>"><br>
 

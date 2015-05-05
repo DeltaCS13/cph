@@ -36,7 +36,7 @@
 
         include('views/login.php');
         break;
-
+    //Log In Validation
       case "logMeIn":
 
           $nickName = $_POST['trail_Name'];
@@ -89,17 +89,20 @@
                 }
           break;
 
+    //Home Page
       case "pubhome":
           
           $_SESSION['selected'] = 'home';
           include('views/pubhome.php');
           break;
 
+    //Registration Page
       case "register":
 
           include('views/register.php');
           break;
 
+    //First New Register Page 
       case "newRegister":
 
         	$firstName = $_POST['first_Name'];
@@ -124,6 +127,7 @@
         	      }
             break;
 
+    //Second Registration Page
       case "registerAddress":
 
           $email = $_POST['email'];
@@ -152,16 +156,19 @@
                 }
           break;
 
+    //Member's Area Validation
       case "member":
           
           memberValidate($action);
           break;
        
+    //Administration Area Validation  
       case "admin":
        
           adminValidate($action);
           break;
           
+    //Member's Profile Update Validation  
       case "memProfileUpdate":
           
           $_SESSION['memberUpdates'] = $action;
@@ -169,6 +176,7 @@
 
           break;
 
+    //Member's Profile Update
       case "memUpdate":
 
           $fName = $_POST['firstName'];
@@ -189,12 +197,14 @@
           include('views/member.php');
           break;
 
+    //Admin Profile Update Validation  
       case "adminUpdate";
-          echo $action;
+          
           $_SESSION['adminUpdates'] = $action;
           adminValidate($action);
           break;
 
+    //Admin Profile Update
       case "admUpdate":
           
           $fName = $_POST['firstName'];
@@ -221,18 +231,21 @@
           include('views/admin.php');
           break;
 
+    //Member Email Update Validation  
       case "updateEmail":
              
           $_SESSION['memberUpdates'] = $action;
           memberValidate($action);
           break;
 
+    //Admin Email Update Validation
       case "adminUpdateEmail":
              
           $_SESSION['adminUpdates'] = $action;
           adminValidate($action);
           break;
 
+    //Admin & Member Email Update
       case "emailUpdate";
 
         $email = $_POST['email'];
@@ -249,18 +262,21 @@
         }
         
       
+    //Member Update address Validation
       case "updateAddress":
 
           $_SESSION['memberUpdates'] = $action;
           memberValidate($action);
           break;
       
+    //Admin Update address Validation
       case "adminAddUpdate";
 
           $_SESSION['adminUpdates'] = $action;
           adminValidate($action);
           break;
       
+    //Admin & Member Address Update
       case "addressUpdate":
           
           $userID = $_SESSION['user_id'];
@@ -286,35 +302,41 @@
         }
         break;
 
+    //Gear Exchange
       case "gear":
 
           include('views/gear.php');
           break;
 
+    //Gear Search
       case "gearItemSearch":
           
           $action = 'gear';
           include('views/gear.php');
           break;
 
+    //Member Manage Gear Validation
       case "manageGear":
           
           $_SESSION['memberUpdates'] = $action;
           memberValidate($action);
           break;
 
+    //Admin Manage Gear Validation
       case "adminManageGear";
 
           $_SESSION['adminUpdates'] = $action;
           adminValidate($action);
           break;
           
+    //Events Page
       case "events":
 
           $_SESSION['selected']= 'events';
           include('views/events.php');
           break;
        
+    //Events Details
       case "eventDetails":
         
           $eventName = $_POST['eventName'];
@@ -325,11 +347,13 @@
           include('views/events.php');
           break;
 
+    //Hiker Blog
       case "blog":
 
           include('views/blog.php');
           break;
 
+    //Logout 
       case "logout":
 
           $nickNameLogOut = $_SESSION['nickName'];
@@ -338,8 +362,9 @@
           include('views/logout.php');
           break;
 
+    //404 error default
       default:
-          include('views/includes/errors/404.html');
+          include('errors/404.html');
           break;
 
      

@@ -50,6 +50,7 @@
 	
 </article>
 
-<?php include('views/includes/footer.php');
+<?php 
+	include('views/includes/footer.php');
 ?>
 
