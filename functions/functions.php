@@ -564,7 +564,7 @@ global $db;
 	    				JOIN user_usr u on u.id_usr = g.user_usr_id_usr
 	    				WHERE user_usr_id_usr = '$userID'";
 		
-		$result = $db->prepare($query);
+		$result = $db->query($query);
 	
 		return $result;
 	}

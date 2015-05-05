@@ -274,7 +274,8 @@
 
     td {
       font: 1em "Arial Black", Gadget, sans-serif;
-      padding: 1%;
+      padding: 2%;
+      margin-right: 10px;
       border: 1px dashed;
     }
 
@@ -381,6 +382,14 @@
       padding-top: 2%;
       border-radius: 6px;
       box-shadow: 10px 10px 5px #020;
+    }
+
+    th {
+      font-size: 65%;
+    }
+      
+    td {
+      font-size: 65%;
     }
 
 /*Footer*/

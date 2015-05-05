@@ -102,6 +102,7 @@
           <p><?php echo htmlentities($userGear['dateAdded_gex']);?></p>
 
     </div>
+    <div class=".floatReset"></div>
       <?php
         endforeach;
       ?>
