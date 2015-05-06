@@ -21,7 +21,7 @@
 
 		<input type="hidden" name="action" value="gearItemSearch">
 
-		<input type="text" name="searchItem" placeholder="Item Name">
+		<input type="text" name="searchItem" placeholder="Category Name">
 
 		<input type="submit" value="Search Gear" />
 	</form>

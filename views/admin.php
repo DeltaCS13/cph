@@ -111,7 +111,7 @@
 
         <h3>Date Added:</h3>
           <p><?php echo htmlentities($userGear['dateAdded_gex']);?></p>
-
+        <hr/>
     </div>
       <?php
         endforeach;
