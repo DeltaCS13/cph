@@ -4,7 +4,7 @@
  * Title: Address Update (addUpdate.php)         *
  * Description: Provides Forms for updateing  	 *
  *				address. 						 *
- * Revision: 0.1.0 4/30/2015                     *
+ * Revision: 0.1.5 5/6/2015                      *
  ************************************************/
 
  	if(isset($_SESSION['memberUpdates'])){
@@ -25,10 +25,7 @@
 			$errors = errors();
 			echo form_errors($errors);
 			$_SESSION['memberUpdates']=NULL;
-
-			echo $_SESSION['user_id'];
 	?>
-
 				
 				<input type="hidden" name="action" value="addressUpdate">
 

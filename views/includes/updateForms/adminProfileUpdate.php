@@ -1,3 +1,10 @@
+<!--/******************************************************
+	 * Auther: Howard La Flamme                     	  *
+	 * Title: Admin Profile Update (adminProfileUpdate.php)*
+	 * Description: Provides links for various  		  *
+	 *   admin actions and forms for updates.        	  *
+	 * Revision: 0.1.5 5/6/2015                     	  *
+	 *****************************************************/-->
 <article class="content2">
 	<div>	
 		<h2>Update Your Profile</h2>

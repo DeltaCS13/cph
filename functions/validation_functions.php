@@ -3,7 +3,7 @@
  * Auther: Howard La Flamme                      				  *
  * Title: Validation Functions (validation_functions.php)         *
  * Description: Provides functions for validating data.			  *
- * Revision: 0.1.0 4/30/2015                    				  *
+ * Revision: 0.1.5 5/6/2015                     				  *
  *****************************************************************/
 //Initiate errors array
 	$errors = array();
@@ -39,24 +39,23 @@
 	*	query returned a result. 	* 				
 	*Dependencies: 					*
 	*********************************/
-	function confirm_query($result_set) {
+	function confirm_query($result_set) 
+	{
 			if (!$result_set) {
 				$_SESSION['error_message'] = 'No results found';
 				die("Database query failed.");
 			}
 		}
 
-		function confirm_results($results)
-		{ 
-			
-			if(!$results)
-			{
-				
-				$_SESSION['error_message'] = 'No Data Found';
-return;
-			}
-			
+
+	function confirm_results($results)
+	{ 
+		if(!$results)
+		{
+			$_SESSION['error_message'] = 'No Data Found';
+			return;
 		}
+	}
 
 	/********************************
 	*function name: has_presence	*

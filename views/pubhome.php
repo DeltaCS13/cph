@@ -3,8 +3,8 @@
 * Auther: Howard La Flamme                            *
 * Title: Home Page (pubhome.php)            	  	  *
 * Description: Home page that Everyone can see.		  *
-* Revision: 0.1.0 4/30/2015                           *
-*****************************************************/
+* Revision: 0.1.5 5/6/2015                            *
+******************************************************/
 
  include('views/includes/header.php');
 ?>

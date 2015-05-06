@@ -4,7 +4,7 @@
 * Title: Address Registration page (regAddress.php)	  *
 * Description: Second page of registration for address*
 *      and email. 									  *
-* Revision: 0.1.0 4/30/2015                           *
+* Revision: 0.1.5 5/6/2015                            *
 *****************************************************/
 
 	require_once('functions/session_functions.php');

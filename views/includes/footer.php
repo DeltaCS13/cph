@@ -2,7 +2,7 @@
      * Auther: Howard La Flamme                           *
      * Title: Page Footer (footer.php)                    *
      * Description: Footer of site pages                  *
-     * Revision: 0.1.0 4/30/2015                          *
+     * Revision: 0.1.5 5/6/2015                           *
      *****************************************************/-->
 
 <footer class="pageFooter1">
@@ -30,7 +30,7 @@
     </ul>
   
   	<h5>&copy;Copyright 2015 Couch Potato Hikers.  All rights reserved. </h5>
-    <div> Icons made by <a class="link" href="http://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a class="link" href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a>             is licensed by <a class="link" href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></div>
+    <div> Icons made by <a class="link" href="http://www.flaticon.com/authors/freepik" title="Freepik" target="_blank">Freepik</a> from <a class="link" href="http://www.flaticon.com" title="Flaticon" target="_blank">www.flaticon.com</a>             is licensed by <a class="link" href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC BY 3.0</a></div>
   </article>
   
 </footer>

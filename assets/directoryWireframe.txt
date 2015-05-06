@@ -1,0 +1,79 @@
+Folder PATH listing
+Volume serial number is DC1E-3FF8
+C:.
+|   index.php
+|   README.md
+|   
++---assets
+|   |   database_final.sql
+|   |   directoryWireframe.txt
+|   |   erd.jpg
+|   |   mediaSources.docx
+|   |   styleGuide.pdf
+|   |   
+|   \---Original Unedited Artwork
+|           023.JPG
+|           IMG_1550.JPG
+|           leaf canopy.jpg
+|           
++---controllers
+|       dbconnect.php
+|       
++---css
+|       maincss.css
+|       
++---errors
+|       403.php
+|       404.html
+|       
++---functions
+|       functions.php
+|       session_functions.php
+|       validation_functions.php
+|       
++---images
+|   |   bgLeaf.jpg
+|   |   bgTexture.jpg
+|   |   footPath.jpg
+|   |   headPath.jpg
+|   |   
+|   \---icons
+|           compass107.png
+|           walk16.png
+|           
+\---views
+    |   admin.php
+    |   blog.php
+    |   events.php
+    |   gear.php
+    |   login.php
+    |   logout.php
+    |   member.php
+    |   pubhome.php
+    |   regAddress.php
+    |   register.php
+    |   
+    \---includes
+        |   footer.php
+        |   header.php
+        |   
+        +---admin
+        |       adminUpdate.php
+        |       
+        +---events
+        |       eventDetail.php
+        |       manageEvents.php
+        |       
+        +---gearExchange
+        |       adminManageGear.php
+        |       manageGear.php
+        |       
+        +---members
+        |       memberUpdate.php
+        |       
+        \---updateForms
+                addUpdate.php
+                adminProfileUpdate.php
+                memProfileUpdate.php
+                updateEmail.php
+                

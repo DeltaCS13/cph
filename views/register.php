@@ -4,7 +4,7 @@
 * Title: Registration Page (register.php)      		  *
 * Description: First registration page for name, 	  *
 *				trail name and password. 	 		  *
-* Revision: 0.1.0 4/30/2015                           *
+* Revision: 0.1.5 4/30/2015                           *
 *****************************************************/
 
 	require_once('functions/session_functions.php');

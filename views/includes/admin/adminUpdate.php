@@ -4,7 +4,7 @@
  * Title: Administration Update (addUpdate.php)  *
  * Description: Provides Forms for updateing  	 *
  *				address. 						 *
- * Revision: 0.1.0 4/30/2015                     *
+ * Revision: 0.1.5 5/6/2015                      *
  ************************************************/
 
 	if (!isset($_SESSION['adminUpdates'])){
@@ -21,6 +21,8 @@
     		<li><a class="link" href="index.php?action=adminUpdateEmail" title="Update Email">Update Email</a>
     		
     		<li><a class="link" href="index.php?action=adminManageGear" title="Manage Your Gear Exchange Items">Manage Your Gear</a> on the Gear Exchange
+
+    		<li><a class="link" href="index.php?action=manageEvents" title="Manage Events">Manage Events</a>
   		</ul>
 </article>
 
@@ -33,15 +35,8 @@
 		include('/../updateForms/addUpdate.php');
 	}elseif($_SESSION['adminUpdates'] === 'adminManageGear'){
 		include('/../gearExchange/adminManageGear.php');
+	}elseif($_SESSION['adminUpdates'] === 'manageEvents'){
+		include('/../events/manageEvents.php');
 	}
 
 ?>
-
-
-	
-
-
-
-
-
-

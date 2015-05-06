@@ -1,10 +1,10 @@
 <!doctype html>
-<!--/******************************************************
+<!--/**************************************************
  * Auther: Howard La Flamme                     	  *
- * Title: 404 ERROR (404.php)  *
+ * Title: 403 ERROR (403.php) 						  *
  * Description: displays if user tries to access 	  *
  *				a page they are not authorized to. 	  *
- * Revision: 0.1.0 4/30/2015                    	  *
+ * Revision: 0.1.5 5/6/2015                     	  *
  *****************************************************/-->
 
 <html>

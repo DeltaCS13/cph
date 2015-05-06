@@ -4,7 +4,7 @@
 * Title: Main Events Page (events.php)                *
 * Description: Displays events with links for more    *
 * 					information. 					  *
-* Revision: 0.1.0 4/30/2015                           *
+* Revision: 0.1.5 5/6/2015                            *
 *****************************************************/
    include('includes/header.php');
  ?>

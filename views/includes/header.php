@@ -3,7 +3,7 @@
  * Auther: Howard La Flamme                           *
  * Title: Page Header (header.php)                    *
  * Description: Header of site pages                  *
- * Revision: 0.1.0 4/30/2015                          *
+ * Revision: 0.1.5 5/6/2015                           *
  *****************************************************/
 
   require_once('./functions/functions.php');
@@ -19,6 +19,9 @@
   </head>
 <body>
 
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5447b37266fcdcfe" async="async"></script>
+
 <div class="wrapper">
   <header>
     <div>
@@ -31,7 +34,7 @@
       
          <?php if(isset($_SESSION['accessLevel'])){
             if($_SESSION['accessLevel'] === '1' ){?>
-          <li><a <?php if ($action === 'member' ){?> class="selected" <?php } ?>href="index.php?action=member" title="Member's Area">Member's Area</a>
+          
          
           <li><a <?php if ($action === 'admin'){?> class="selected" <?php } ?>href="index.php?action=admin" title="Administration">Administration</a>
          <?php }elseif($_SESSION['accessLevel'] === '2'){?>

@@ -1,9 +1,9 @@
 <?php 
 /******************************************************
  * Auther: Howard La Flamme                     	  *
- * Title: events details (eventDetails.php) 		  *
+ * Title: Events Details (eventDetails.php) 		  *
  * Description: displays details of selected event.	  *
- * Revision: 0.1.0 4/30/2015                    	  *
+ * Revision: 0.1.5 5/6/2015                     	  *
  *****************************************************/
 
 		if(isset($_SESSION['eventDetail']))

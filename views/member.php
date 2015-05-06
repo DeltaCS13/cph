@@ -4,7 +4,7 @@
  * Title: Member's Page (member.php)            *
  * Description: Provides Member information and *
  *  links for various member actions.           *
- * Revision: 0.1.0 4/30/2015                    *
+ * Revision: 0.1.5 5/6/2015                     *
  ************************************************/
 
     include('includes/header.php');
@@ -83,8 +83,17 @@
 ?>
 
 <h2>Listed Gear</h2>
-    <div class="floatLeft">
-      <?php foreach($userGears as $userGear):?>
+    <div>
+      
+      <?php 
+            if(isset($_SESSION['error_message']))
+            {
+              ?><h3>You have no items listed<br> on the Gear Exchange.</h3>
+              <?php 
+              $_SESSION['error_message']= NULL;
+            }echo $_SESSION['error_message'];
+              foreach($userGears as $userGear):
+      ?>
 
         <h3>Item ID:</h3>
           <p><?php echo htmlentities($userGear['id_gex']);?></p>
@@ -100,7 +109,7 @@
 
         <h3>Date Added:</h3>
           <p><?php echo htmlentities($userGear['dateAdded_gex']);?></p>
-
+        <hr/>
     </div>
     <div class=".floatReset"></div>
       <?php

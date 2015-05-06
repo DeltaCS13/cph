@@ -3,7 +3,7 @@
 	 * Title: Member Profile Update (memProfileUpdate.php)*
 	 * Description: Provides links for various  		  *
 	 *   member actions and forms for updates.      	  *
-	 * Revision: 0.1.0 4/30/2015                    	  *
+	 * Revision: 0.1.5 5/6/2015                     	  *
 	 *****************************************************/-->
 
 <article class="content2">

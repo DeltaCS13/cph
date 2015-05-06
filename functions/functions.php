@@ -3,7 +3,7 @@
  * Auther: Howard La Flamme                     *
  * Title: Functions (functions.php)             *
  * Description: function providing functionality*
- * Revision: 0.1.0 4/30/2015                    *
+ * Revision: 0.1.5 5/6/2015                     *
  ************************************************/
 	require_once('/session_functions.php');
 	require_once('/../controllers/dbconnect.php');
@@ -161,7 +161,7 @@
 	function adminValidate($action)
 	{
 		if($_SESSION['accessLevel'] === '1')
-	        {echo $_SESSION['adminUpdates'];
+	        {
 	        	$action = 'admin';
 	           include('/views/admin.php');
 	            
@@ -565,8 +565,11 @@ global $db;
 	    				WHERE user_usr_id_usr = '$userID'";
 		
 		$result = $db->query($query);
-	
+		$result= $result->fetchAll();
+		confirm_results($result);
 		return $result;
+	
+		
 	}
 
 	/********************************
@@ -590,7 +593,7 @@ global $db;
 		
 
 		$result = $db->query($query);
-		$result= $result->fetchAll();	
+		$result = $result->fetchAll();	
 		confirm_results($result);
 		return $result;
 	}

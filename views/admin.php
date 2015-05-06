@@ -4,7 +4,7 @@
  * Title: Administration Main Page (admin.php)        *
  * Description: Administration Page display Admin info*
  *  and links for admionistration                     *
- * Revision: 0.1.0 4/30/2015                          *
+ * Revision: 0.1.5 5/6/2015                           *
  *****************************************************/
   include('includes/header.php');
  ?>
@@ -82,8 +82,20 @@
 ?>
 
 <h2>Listed Gear</h2>
-    <div class="floatLeft">
-      <?php foreach($userGears as $userGear):?>
+    <div>
+
+      <?php 
+            if(isset($_SESSION['error_message']))
+            {
+              ?><h3>You have no items listed<br> on the Gear Exchange.</h3>
+              <?php 
+              $_SESSION['error_message']= NULL;
+            }
+
+              foreach($userGears as $userGear):
+      ?>
+
+        
 
         <h3>Item ID:</h3>
           <p><?php echo htmlentities($userGear['id_gex']);?></p>

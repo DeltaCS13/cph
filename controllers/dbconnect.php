@@ -3,7 +3,7 @@
  * Auther: Howard La Flamme                      *
  * Title: DataBase Connect (dbconnect.php)       *
  * Description: Provides connectivity to database*
- * Revision: 0.1.0 4/30/2015                     *
+ * Revision: 0.1.5 5/6/2015                      *
  ************************************************/
 if ($_SERVER['HTTP_HOST'] == 'localhost:8080')
    
@@ -26,7 +26,7 @@ else
     try {
         $db = new PDO($dsn, $username, $password);
     } catch (PDOException $e) {
-        $error_message = "OH SNAP!";
+        $_SESSION['error_message'] = "OH SNAP!";
         
         exit();
     }

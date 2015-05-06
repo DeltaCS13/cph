@@ -3,7 +3,7 @@
  * Auther: Howard La Flamme                      *
  * Title: Index (index.php)                      *
  * Description: Directs all traffic on website.  *
- * Revision: 0.1.0 4/30/2015                     *
+ * Revision: 0.1.5 5/6/2015                      *
  ************************************************/
   require_once('controllers/dbconnect.php');
   require_once('functions/functions.php');
@@ -346,6 +346,13 @@
           $action = 'events';
           include('views/events.php');
           break;
+
+      //Manage Events
+        case "manageEvents":
+
+        $_SESSION['adminUpdates'] = $action;
+        adminValidate($action);
+        break;
 
     //Hiker Blog
       case "blog":

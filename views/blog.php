@@ -1,10 +1,10 @@
 <?php
 /********************************************************
 * Auther: Howard La Flamme                              *
-* Title: Blog Page (pubhome.php)            	  	    *
+* Title: Blog Page (blog.php)            	  	    *
 * Description: Everyone can see, members can post, admin*
 *  can post & edit.	A place to share stories & tips.    *
-* Revision: 0.1.0 4/30/2015                             *
+* Revision: 0.1.5 5/6/2015                              *
 ********************************************************/
 
  include('views/includes/header.php');
