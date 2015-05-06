@@ -8,12 +8,12 @@
 -- PHP Version: 5.4.23
 
 -- LOG INs
---Administrators:
---Name: Wynterskye    	Password: G0dd355!
---Name: TechRat	      	Password: Pa55w0rd!
---Members:
---Name: Agent69 	Password: Pa55w0rd!
---Name: Ziggy		Password: Pa55w0rd!
+-- Administrators:
+-- Name: Wynterskye    	Password: G0dd355!
+-- Name: TechRat	      	Password: Pa55w0rd!
+-- Members:
+-- Name: Agent69 	Password: Pa55w0rd!
+-- Name: Ziggy		Password: Pa55w0rd!
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
