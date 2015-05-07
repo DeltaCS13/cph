@@ -39,7 +39,7 @@
 			email<span class="requiered">*</span>:<br>
 				<input type="text" name="email" placeholder="example@email.com" required value="<?php if(isset($_POST['email'])) echo $_POST['email'];?>"><br>
 
-			Address Typespan<span class="redText">*</span>:<br>
+			Address Type<span class="redText">*</span>:<br>
 				<select name="type" required>
 					<option value="">Please Select</option>
 					<option value="home">Home</option>
