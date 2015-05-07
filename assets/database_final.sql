@@ -3,17 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 06, 2015 at 10:52 AM
+-- Generation Time: May 07, 2015 at 06:59 AM
 -- Server version: 5.5.42-37.1
 -- PHP Version: 5.4.23
-
--- LOG INs
--- Administrators:
--- Name: Wynterskye    	Password: G0dd355!
--- Name: TechRat	      	Password: Pa55w0rd!
--- Members:
--- Name: Agent69 	Password: Pa55w0rd!
--- Name: Ziggy		Password: Pa55w0rd!
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -156,7 +148,7 @@ CREATE TABLE IF NOT EXISTS `gearexchange_gex` (
   `condition_con_id_con` int(11) NOT NULL,
   `description_gex` varchar(255) DEFAULT NULL,
   `user_usr_id_usr` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='	';
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='	';
 
 --
 -- Dumping data for table `gearexchange_gex`
@@ -166,8 +158,10 @@ INSERT INTO `gearexchange_gex` (`id_gex`, `dateAdded_gex`, `name_gex`, `conditio
 (2, '2015-04-10', 'Backpack', 1, '65 Liter Backpack, Never Used.', 9),
 (3, '2015-11-05', 'Stove', 1, 'Pocket Rocket in box with all accessories.', 44),
 (4, '2012-11-02', 'Knife', 3, 'K-bar survival knife, Used but in good condition. Well cared for.', 9),
-(5, '1979-04-13', 'Tent', 5, 'Lots of hole from ungrateful kid', 39),
-(6, '1968-06-12', 'Shoe', 4, 'Very worn, but phone still works', 45);
+(5, '1979-04-13', 'Tent', 5, 'Lots of holes from ungrateful kid', 39),
+(6, '1968-06-12', 'Shoe', 4, 'Very worn, but phone still works', 45),
+(9, '2015-01-02', 'Boots', 1, 'Brand new in box Go-Lite x-89 boots', 9),
+(12, '2015-01-02', 'Tent', 1, 'Brand New in box, never used Spitfire one man tent', 9);
 
 -- --------------------------------------------------------
 
@@ -4424,7 +4418,7 @@ CREATE TABLE IF NOT EXISTS `useraddress_uad` (
   `subregions_sre_id_sre` int(10) unsigned NOT NULL,
   `postalCode_uad` varchar(15) DEFAULT NULL,
   `email_uad` varchar(150) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `useraddress_uad`
@@ -4432,12 +4426,14 @@ CREATE TABLE IF NOT EXISTS `useraddress_uad` (
 
 INSERT INTO `useraddress_uad` (`id_uad`, `user_usr_id_usr`, `type_uad`, `address1_uad`, `address2_uad`, `address3_uad`, `city_uad`, `subregions_sre_id_sre`, `postalCode_uad`, `email_uad`) VALUES
 (1, 39, 'Other', '666 Death Star', 'Force', 'Evil', 'Tatune', 360, '696954', 'D@v.com'),
-(2, 9, 'Home', '601 Mountain View Rd.', '', '', 'Mars Hill', 3707, '28754-7601', 'howard@howardlaflamme.com'),
+(2, 9, 'Business', '601 Mountain View Rd.', 'Suite 23', '', 'Mars Hill', 3707, '28754-7601', 'TechRat@MyMail.com'),
 (3, 40, 'business', '123 Road st.', 'everywhere', 'blackbird', 'Every City', 3725, '99999', 'Diana@Krall.jaz'),
 (4, 41, 'Business', '32 Broad St.', 'PO Box 3221', '', 'Asheville', 3707, '28754', 'Bob@frost.net'),
 (7, 44, 'home', '601 Mountain View Rd.', 'Apartment 7a', '', 'Mars Hill', 3707, '28754', 'ginny@yahoo.com'),
 (8, 45, 'business', '99 Agent Ln.', 'Apt. 100', 'Secret', 'LA', 3684, '90214', 'Mel@Brooks.net'),
-(9, 10, 'home', '14 Star Dust St.', 'Block 15', 'Flat 9', 'Burbank', 2936, '789654', 'Star@Dust.org');
+(9, 10, 'home', '14 Star Dust St.', 'Block 15', 'Flat 9', 'Burbank', 2936, '789654', 'Star@Dust.org'),
+(10, 46, 'home', '123 whatever st ', '', '', 'ashville ', 1986, '00248', 'kayzz@gmail.com'),
+(11, 47, 'other', 'Amazon', 'everywhere', '', 'Nioby', 1627, '6543256ui', 'Tree@House.org');
 
 -- --------------------------------------------------------
 
@@ -4471,21 +4467,23 @@ CREATE TABLE IF NOT EXISTS `user_usr` (
   `level_lvl_id_lvl` int(11) NOT NULL DEFAULT '1',
   `password_usr` varchar(164) DEFAULT NULL,
   `accessLevel_ual_id_ual` int(11) NOT NULL DEFAULT '2'
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `user_usr`
 --
 
 INSERT INTO `user_usr` (`id_usr`, `firstName_usr`, `lastName_usr`, `nickName_usr`, `level_lvl_id_lvl`, `password_usr`, `accessLevel_ual_id_ual`) VALUES
-(9, 'Howard', 'LaFlamme', 'TechRat', 3, '$2y$10$Z7BeFZxStjijFladXNlCe./wR5WboozkjTGvpizuCbNozNLLKFDQu', 1),
+(9, 'Howard', 'LaFlamme', 'TechRat', 2, '$2y$10$Z7BeFZxStjijFladXNlCe./wR5WboozkjTGvpizuCbNozNLLKFDQu', 1),
 (10, 'David', 'Bowie', 'Ziggy', 3, '$2y$10$1IcMWaleNY/50JZfyBUtyOOKi225RszXU7RzMQe/3ejJBNHmBM6zG', 2),
 (19, 'Dominique', 'La FLamme', 'Dominator', 1, '$2y$10$U3.wPgxVVo5GYA/9GUWGs.acbNawj8E7yem3S1.qXQzpObje9g9Hi', 2),
 (39, 'Darth', 'Vader', 'Master', 1, '$2y$10$iE9c4RhRfxpbke8A8F5zvOubdtFjNNJ.srpkhOMmdmlttsC4f3FN2', 2),
 (40, 'Diana', 'Kralls', 'Jazz', 1, '$2y$10$eJRB6p4mlURaXSkHOHyNJ.Ei3mJ37GchT7yoSveg/rHr4ZZ4M9.LG', 2),
 (41, 'Bob', 'Frost', 'BookWorm', 1, '$2y$10$7O6jP7JOmQ11NjA8kVKVAeRAU.KEomhe5CvUJvFqU65OE4InqczPy', 2),
 (44, 'Virginia', 'La Flamme', 'Wynterskye', 1, '$2y$10$6pkpFBTt4lMaKwdlskdIZu9Q.37Q8js7vGusgw6bhXiPimZjHenxu', 1),
-(45, 'Maxwell', 'Smart', 'Aggent69', 1, '$2y$10$s58Vx1e6FvqMbhQmBExaJO0Ky2rtgt4vuIsv4vDMgn7cMsvXWssPq', 2);
+(45, 'Maxwell', 'Smart', 'Aggent69', 1, '$2y$10$s58Vx1e6FvqMbhQmBExaJO0Ky2rtgt4vuIsv4vDMgn7cMsvXWssPq', 2),
+(46, 'kayle', 'laflamme', 'kkmonster ', 1, '$2y$10$SYf4wrsdXd4fmKm9Flotfu.Z2ouSDkgO/a1MR5zMWbDAnr.tjyu5G', 2),
+(47, 'George', 'Of The', 'Jungle', 1, '$2y$10$pnANr73AZPkHIFbEY3IIT.BaW3JZZDN4ksf6l0ewZUHIXzu23ZykG', 2);
 
 --
 -- Indexes for dumped tables
@@ -4531,7 +4529,7 @@ ALTER TABLE `events_evt`
 -- Indexes for table `gearexchange_gex`
 --
 ALTER TABLE `gearexchange_gex`
-  ADD PRIMARY KEY (`id_gex`), ADD UNIQUE KEY `name_gex_UNIQUE` (`name_gex`), ADD KEY `fk_gearExchange_gex_user_usr1_idx` (`user_usr_id_usr`), ADD KEY `fk_gearExchange_gex_condition_con1_idx` (`condition_con_id_con`);
+  ADD PRIMARY KEY (`id_gex`), ADD KEY `fk_gearExchange_gex_user_usr1_idx` (`user_usr_id_usr`), ADD KEY `fk_gearExchange_gex_condition_con1_idx` (`condition_con_id_con`), ADD KEY `name_gex_2` (`name_gex`);
 
 --
 -- Indexes for table `genhikelist_ghl`
@@ -4619,7 +4617,7 @@ ALTER TABLE `events_evt`
 -- AUTO_INCREMENT for table `gearexchange_gex`
 --
 ALTER TABLE `gearexchange_gex`
-  MODIFY `id_gex` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id_gex` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `genhikelist_ghl`
 --
@@ -4639,7 +4637,7 @@ ALTER TABLE `level_lvl`
 -- AUTO_INCREMENT for table `useraddress_uad`
 --
 ALTER TABLE `useraddress_uad`
-  MODIFY `id_uad` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+  MODIFY `id_uad` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `userhikelog_uhl`
 --
@@ -4649,7 +4647,7 @@ ALTER TABLE `userhikelog_uhl`
 -- AUTO_INCREMENT for table `user_usr`
 --
 ALTER TABLE `user_usr`
-  MODIFY `id_usr` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=46;
+  MODIFY `id_usr` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=48;
 --
 -- Constraints for dumped tables
 --
