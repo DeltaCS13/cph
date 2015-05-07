@@ -21,7 +21,7 @@
 
 		<input type="hidden" name="action" value="gearItemSearch">
 
-		<input type="text" name="searchItem" placeholder="Category Name">
+		<input type="text" name="searchItem" placeholder="Enter Search">
 
 		<input type="submit" value="Search Gear" />
 	</form>
@@ -30,7 +30,7 @@
 		
 		<tr>
 			<th>Category</th><th>Description</th>
-			<th>Condition</th><th>Listing Member</th><th>Date Listed</th>
+			<th>Condition</th><th>Listing Member</th>
 		</tr>
 	
 		<?php 
@@ -38,16 +38,21 @@
 			if(!isset($_POST['searchItem'])){
 					$gears = getGear();
 				}else{
+					if(preg_match("/[A-Z  | a-z]+/", $_POST['searchItem'])){  
 				$item = $_POST['searchItem'];
-				$_POST['searchItem'] = null;
+				$_POST['searchItem'] = null;}else{$item = NULL;
+					$error = 'Please Try another search.';}
 				$gears = findGear($item);
 				
 					if(isset($_SESSION['error_message']))
 						{
-							?><h3><span class='redText'>Sorry, <?php echo htmlentities($_SESSION['error_message']);?>, Please try again.</span></h3>
+							?><h3>Sorry, Your search for <?php echo htmlentities($item);?> has no listings,<br>Please try again.</h3>
 							<?php 
 							$_SESSION['error_message']= NULL;
 						}
+					if(isset($error)){
+						?><h3><span class"redText"><?php echo htmlentities($error); ?></span></h3>
+				<?php	}
 				
 
 				}
@@ -60,7 +65,6 @@
 				<td><?php echo $gear['description_gex']; ?></td>
 				<td><?php echo $gear['condition_con']; ?></td>
 				<td><?php echo $gear['nickName_usr']; ?></td>
-				<td><?php echo $gear['dateAdded_gex']; ?></td>
 			</tr>
 			<?php endforeach; ?>		
 		</tbody>

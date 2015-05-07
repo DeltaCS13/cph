@@ -589,7 +589,8 @@ global $db;
 	   					FROM gearexchange_gex g JOIN condition_con c
 	  					ON g.condition_con_id_con = c.id_con
 	    				JOIN user_usr u on u.id_usr = g.user_usr_id_usr
-	    				WHERE g.name_gex = '$item'";
+	    				WHERE g.name_gex LIKE '%$item%' OR g.description_gex LIKE '% $item %'OR c.condition_con LIKE '%$item%' OR u.nickName_usr LIKE '%$item%'
+	    				OR g.dateAdded_gex LIKE '% $item %'";
 		
 
 		$result = $db->query($query);

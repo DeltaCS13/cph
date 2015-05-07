@@ -1,6 +1,6 @@
 <?php
  /*****************************************************************
- * Auther: Howard La Flamme                      				  *
+ * Author: Howard La Flamme                      				  *
  * Title: Validation Functions (validation_functions.php)         *
  * Description: Provides functions for validating data.			  *
  * Revision: 0.1.5 5/6/2015                     				  *
