@@ -3,9 +3,17 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 07, 2015 at 06:59 AM
+-- Generation Time: May 07, 2015 at 04:44 PM
 -- Server version: 5.5.42-37.1
 -- PHP Version: 5.4.23
+
+-- LOG INs
+-- Administrators:
+-- Name: Wynterskye     Password: G0dd355!
+-- Name: TechRat          Password: Pa55w0rd!
+-- Members:
+-- Name: Agent69  Password: Pa55w0rd!
+-- Name: Ziggy    Password: Pa55w0rd!
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -4418,7 +4426,7 @@ CREATE TABLE IF NOT EXISTS `useraddress_uad` (
   `subregions_sre_id_sre` int(10) unsigned NOT NULL,
   `postalCode_uad` varchar(15) DEFAULT NULL,
   `email_uad` varchar(150) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `useraddress_uad`
@@ -4433,7 +4441,13 @@ INSERT INTO `useraddress_uad` (`id_uad`, `user_usr_id_usr`, `type_uad`, `address
 (8, 45, 'business', '99 Agent Ln.', 'Apt. 100', 'Secret', 'LA', 3684, '90214', 'Mel@Brooks.net'),
 (9, 10, 'home', '14 Star Dust St.', 'Block 15', 'Flat 9', 'Burbank', 2936, '789654', 'Star@Dust.org'),
 (10, 46, 'home', '123 whatever st ', '', '', 'ashville ', 1986, '00248', 'kayzz@gmail.com'),
-(11, 47, 'other', 'Amazon', 'everywhere', '', 'Nioby', 1627, '6543256ui', 'Tree@House.org');
+(11, 47, 'other', 'Amazon', 'everywhere', '', 'Nioby', 1627, '6543256ui', 'Tree@House.org'),
+(12, 48, 'business', 'A-B Tech', '', '', 'Asheville', 3297, '222222', 'charliekwallin@gmail.com'),
+(13, 49, 'business', '12 here ln.', '', '', 'asheville', 3707, '28701', 'me@here.com'),
+(14, 51, 'home', '314 Justice Ridge Rd', '', '', 'candler', 1534, '28715', 'wintas@bustas.com'),
+(15, 50, 'home', '555 Example St', '', '', 'asheville', 3845, '12356', 'example@example.com'),
+(16, 52, 'home', '13 magic way', '', '', 'Secret', 853, '555555', 'Hog@warts.wiz'),
+(17, 53, 'business', '32 Our rd.', '', '', 'LA', 105, '65456', 'good@guy.pas');
 
 -- --------------------------------------------------------
 
@@ -4467,14 +4481,14 @@ CREATE TABLE IF NOT EXISTS `user_usr` (
   `level_lvl_id_lvl` int(11) NOT NULL DEFAULT '1',
   `password_usr` varchar(164) DEFAULT NULL,
   `accessLevel_ual_id_ual` int(11) NOT NULL DEFAULT '2'
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `user_usr`
 --
 
 INSERT INTO `user_usr` (`id_usr`, `firstName_usr`, `lastName_usr`, `nickName_usr`, `level_lvl_id_lvl`, `password_usr`, `accessLevel_ual_id_ual`) VALUES
-(9, 'Howard', 'LaFlamme', 'TechRat', 2, '$2y$10$Z7BeFZxStjijFladXNlCe./wR5WboozkjTGvpizuCbNozNLLKFDQu', 1),
+(9, 'Howard', 'LaFlamme', 'TechRat', 3, '$2y$10$Z7BeFZxStjijFladXNlCe./wR5WboozkjTGvpizuCbNozNLLKFDQu', 1),
 (10, 'David', 'Bowie', 'Ziggy', 3, '$2y$10$1IcMWaleNY/50JZfyBUtyOOKi225RszXU7RzMQe/3ejJBNHmBM6zG', 2),
 (19, 'Dominique', 'La FLamme', 'Dominator', 1, '$2y$10$U3.wPgxVVo5GYA/9GUWGs.acbNawj8E7yem3S1.qXQzpObje9g9Hi', 2),
 (39, 'Darth', 'Vader', 'Master', 1, '$2y$10$iE9c4RhRfxpbke8A8F5zvOubdtFjNNJ.srpkhOMmdmlttsC4f3FN2', 2),
@@ -4483,7 +4497,13 @@ INSERT INTO `user_usr` (`id_usr`, `firstName_usr`, `lastName_usr`, `nickName_usr
 (44, 'Virginia', 'La Flamme', 'Wynterskye', 1, '$2y$10$6pkpFBTt4lMaKwdlskdIZu9Q.37Q8js7vGusgw6bhXiPimZjHenxu', 1),
 (45, 'Maxwell', 'Smart', 'Aggent69', 1, '$2y$10$s58Vx1e6FvqMbhQmBExaJO0Ky2rtgt4vuIsv4vDMgn7cMsvXWssPq', 2),
 (46, 'kayle', 'laflamme', 'kkmonster ', 1, '$2y$10$SYf4wrsdXd4fmKm9Flotfu.Z2ouSDkgO/a1MR5zMWbDAnr.tjyu5G', 2),
-(47, 'George', 'Of The', 'Jungle', 1, '$2y$10$pnANr73AZPkHIFbEY3IIT.BaW3JZZDN4ksf6l0ewZUHIXzu23ZykG', 2);
+(47, 'George', 'Of The', 'Jungle', 1, '$2y$10$pnANr73AZPkHIFbEY3IIT.BaW3JZZDN4ksf6l0ewZUHIXzu23ZykG', 2),
+(48, 'Charlie', 'Wallin', 'Big Foot', 1, '$2y$10$Myt7GR4b04lobHjISRYT7e/tJPbIaIxL/zGkmkyIkLIlq/4zsQs/m', 2),
+(49, 'John', 'Public', 'John', 1, '$2y$10$l8Vb15xrHXgtLxXV0XYOO.RlszC0Y57vn51R9sFzZrW5YWvZqBhoe', 2),
+(50, 'john', 'doe', 'nickname', 1, '$2y$10$GyhRqfH.rU8SvhPRr4HKluJYVNQlge5mWEckZMO2V25CbB7ayPk3W', 2),
+(51, 'mark', 'locklear', 'lumbee', 1, '$2y$10$jXaO50EYZSPhkZrM64/QiOqvhYNUIOqusjmV6esWWBFPuB7cplcNS', 2),
+(52, 'Harry', 'Potter', 'Wizard', 1, '$2y$10$m/KgrGlfuT0icdspJqG6Outpw2DGn6g1B8YgSkTGdTVc8Mi0KTU5a', 2),
+(53, 'Theadore', 'Clever', 'Beav', 1, '$2y$10$DDAe097VoJY9SalsJE4Epuyk3hEcLaUjc1qO4gLnVkmfnWWEpjePy', 2);
 
 --
 -- Indexes for dumped tables
@@ -4637,7 +4657,7 @@ ALTER TABLE `level_lvl`
 -- AUTO_INCREMENT for table `useraddress_uad`
 --
 ALTER TABLE `useraddress_uad`
-  MODIFY `id_uad` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+  MODIFY `id_uad` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `userhikelog_uhl`
 --
@@ -4647,7 +4667,7 @@ ALTER TABLE `userhikelog_uhl`
 -- AUTO_INCREMENT for table `user_usr`
 --
 ALTER TABLE `user_usr`
-  MODIFY `id_usr` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=48;
+  MODIFY `id_usr` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=54;
 --
 -- Constraints for dumped tables
 --
